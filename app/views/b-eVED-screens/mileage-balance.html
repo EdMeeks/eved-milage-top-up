@@ -1,0 +1,93 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Mileage balance – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+<h1 class="govuk-heading-l">Mileage balance</h1>
+
+<dl class="govuk-summary-list">
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">Previous recorded mileage</dt>
+    <dd class="govuk-summary-list__value">{{ previousRecordedFmt }} Miles</dd>
+  </div>
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">Current mileage reading</dt>
+    <dd class="govuk-summary-list__value">{{ currentMileageFmt }} Miles</dd>
+  </div>
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">Mileage driven</dt>
+    <dd class="govuk-summary-list__value">{{ mileageDrivenFmt }} Miles</dd>
+  </div>
+
+  <div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">Previous estimated mileage</dt>
+    <dd class="govuk-summary-list__value">{{ previousEstimatedFmt }} Miles</dd>
+  </div>
+
+</dl>
+
+<div class="govuk-inset-text">
+  You drove <strong>{{ milesDifferenceFmt }}</strong> miles
+  {% if isLess %}
+    less than you previously estimated.
+  {% else %}
+    more than you previously estimated.
+  {% endif %}
+</div>
+
+<dl class="govuk-summary-list">
+
+  {% if isLess %}
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">Unused mileage</dt>
+      <dd class="govuk-summary-list__value">{{ milesDifferenceFmt }}</dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">Credit</dt>
+      <dd class="govuk-summary-list__value">£{{ moneyValueFmt }}</dd>
+    </div>
+  {% else %}
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">Mileage owed</dt>
+      <dd class="govuk-summary-list__value">{{ milesDifferenceFmt }} Miles</dd>
+    </div>
+
+    <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">Cost</dt>
+      <dd class="govuk-summary-list__value">£{{ moneyValueFmt }}</dd>
+    </div>
+  {% endif %}
+
+</dl>
+
+<p class="govuk-body">
+  £{{ moneyValueFmt }}
+  {% if isLess %}
+    will be taken off the cost of this year’s eVED.
+  {% else %}
+    will be added to the cost of this year’s eVED.
+  {% endif %}
+</p>
+
+<form action="/b-eVED-screens/estimate-your-miles" method="post">
+  <button class="govuk-button" data-module="govuk-button">Continue</button>
+</form>
+</div>
+  </div>
+{% endblock %}

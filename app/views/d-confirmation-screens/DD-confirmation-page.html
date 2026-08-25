@@ -1,0 +1,110 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Confirmation page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+     <div class="govuk-panel govuk-panel--confirmation">
+  <h1 class="govuk-panel__title">
+    Application complete
+  </h1>
+  <div class="govuk-panel__body">
+    Your reference number<br><strong>HDJ2123F</strong>
+  </div>
+</div>
+
+<div class="govuk-inset-text">
+  You do not need to wait for the first Direct Debit payment to be taken before using 
+  the vehicle on the road.
+</div>
+
+    <h2 class="govuk-heading-m">Vehicle tax</h2>
+
+    <dl class="govuk-summary-list govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Registration number</dt>
+        <dd class="govuk-summary-list__value">
+          <span class="numberplate back">
+            {{ data['vehicleRegistrationFormatted'] or 'AP51 LNK' }}
+          </span>
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Tax duration</dt>
+        <dd class="govuk-summary-list__value">
+          {{ data.taxLengthLabel or '—' }}
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Start date</dt>
+        <dd class="govuk-summary-list__value">
+          {{ data.taxStartDate or '—' }}
+        </dd>
+      </div>
+    </dl>
+
+    <h2 class="govuk-heading-m">eVED</h2>
+
+    <dl class="govuk-summary-list govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Miles purchased</dt>
+        <dd class="govuk-summary-list__value">
+          {% if data.estimatedMileage %}
+            {{ data.estimatedMileage }}
+          {% else %}
+            —
+          {% endif %}
+        </dd>
+      </div>
+    </dl>
+
+    <h2 class="govuk-heading-m">What happens next</h2>
+
+    <p class="govuk-body">
+      If an email address was provided, we’ll send you confirmation.
+    </p>
+
+    <h2 class="govuk-heading-m">You can also</h2>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>
+        view the amount of miles purchased at
+        <a class="govuk-link" href="https://vehicleenquiry.service.gov.uk">
+          vehicleenquiry.service.gov.uk
+        </a>
+      </li>
+      <li>
+        buy additional miles at
+        <a class="govuk-link" href="https://mileage.portal.gov.uk">
+          mileage.portal.gov.uk
+        </a>
+      </li>
+      <li>
+        see your driving licence and vehicle details in one place at
+        <a class="govuk-link" href="https://www.gov.uk/driver-vehicles-account">
+          www.gov.uk/driver-vehicles-account
+        </a>
+      </li>
+    </ul>
+
+    <a href="/index" class="govuk-button">
+      Return to GOV.UK
+    </a>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="#" onclick="window.print(); return false;">
+        Print this page
+      </a>
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}

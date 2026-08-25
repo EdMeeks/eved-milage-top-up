@@ -1,0 +1,9 @@
+{
+  "serviceName": "Vehicle tax",
+  "useServiceNavigation": true,
+  "plugins": {
+    "govuk-frontend": {
+      "rebrand": true
+    }
+  }
+}
