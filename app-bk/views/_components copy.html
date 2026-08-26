@@ -1,0 +1,202 @@
+{% extends "layout.html" %}
+
+{% block pageTitle %} Was your previous address in Great Britain? {% endblock %}
+
+{% block beforeContent %}
+<a href="javascript:history.back()" class="govuk-back-link">Back</a>
+{% endblock %}
+
+{% block content %}
+
+<!-- Check you answers-->
+{{ govukSummaryList({
+  rows: [
+
+  {
+    key: {
+      text: "Organ donation preferences"
+    },
+    value: {
+      text: data['organ-donation']
+    },
+    actions: {
+      items: [
+        {
+          href: "#",
+          text: "Change",
+          visuallyHiddenText: "organ donation"
+        }
+      ]
+    }
+  }
+
+  
+]
+}) }}
+
+
+  <!-- Headings-->
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Main page heading
+      </h1>
+
+        <h2 class="govuk-heading-m">
+       Heading medium
+        </h2>
+
+        <h2 class="govuk-heading-s">
+         heading small
+          </h2>
+     
+   <!-- Bullets-->
+        <p>Bullets</p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>your identity document number</li>
+              <li>your GB driving licence number if you have it</li>
+              <li>your National Insurance number if you know it</li>
+              <li>addresses where you've lived over the last 3 years</li>
+              </ul>
+      </p>
+
+
+
+      
+
+ <!-- inset text (grey bar text)-->
+      <div class="govuk-inset-text">
+        It can take up to 8 weeks to register a lasting power of attorney if there are no mistakes in the application.
+      </div>
+
+
+       <!-- Button -->
+      <input value="Continue" type="submit" class="govuk-button" onclick="next()">
+
+    </div>
+  </div>
+
+
+
+  <!-- link text-->
+  <p class="govuk-body">
+    <a class="govuk-link" href="/link-to-page">
+      Text for link</a>
+  </p>
+
+  
+  <!-- link in paragraph text-->
+  <p>Check the <a href="#">INFiD booklet</a>  to see if you need a D4 form.</p>
+
+
+  <!-- Details panel (dropdown reveal)-->
+  <details class="govuk-details">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">
+        Help with nationality
+      </span>
+    </summary>
+    <div class="govuk-details__text">
+      We need to know your nationality so we can work out which elections you’re entitled to vote in. 
+      If you cannot provide your nationality, you’ll have to send copies of identity documents through the post.
+    </div>
+  </details>
+
+<!-- Warning text-->
+<div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+  <strong class="govuk-warning-text__text">
+    As you do not have your current GB driving licence, there is a replacement fee of £20
+  </strong>
+</div>
+
+
+<!-- Display user answer-->
+{{ data['email'] }}
+
+
+
+<!-- Continue button with link-->
+<a class="govuk-button" id="continue" href="/dva/dva-home-modal">Go to my Driver and vehicles account</a> 
+
+
+
+  {% from "govuk/components/button/macro.njk" import govukButton %}
+
+{{ govukButton({
+  text: "Continue",
+  href: "/service-eligibility/licence"
+}) }}
+{% endblock %}
+
+
+
+
+
+
+<!-- Page routing scripts-->
+{% block pageScripts %}
+<script>
+  $('.govuk-button')
+  .click(() => {validate();});
+
+  function validate() 
+  {
+      var value = $('input[name=ren70]:checked').val();
+
+      if (value === 'yes') 
+
+      {go('/rep/service-eligibility/dropout-ren70');} 
+      
+      else if (value === 'no') 
+      {go('/rep/service-eligibility/renewing-lorry-bus');}
+  }
+</script>
+
+{% endblock %}
+
+
+{% block pageScripts %}
+<script type="text/javascript">
+    $('.govuk-button').click(() => {
+        validate();
+    });
+
+    function next() {
+        go('/service-elig/renewing-70');
+    }
+
+</script>
+{% endblock %}
+
+<!-- Checkbox routing -->
+  router.post('/treatment-type', function (request, response) {
+ 
+  let treatment = request.session.data['treatment']
+ 
+    if (!treatment || (Array.isArray(treatment) && treatment.length === 0)) {
+    return response.redirect('/conditions/diabetes/treatments/any-issues-affecting-eyes')
+  }
+ 
+  <!-- Always normalise to an array (checkboxes) -->
+  if (!Array.isArray(treatment)) {
+    treatment = [treatment]
+  }
+ 
+  <!-- ✅ Example branches -->
+  if (treatment.includes(' Any other tablets, such as Metformin or Dapagliflozin') && treatment.includes(' Non-insulin injections')) {
+    return response.redirect('/_screens/medical/parkinsons-narcolepsy')
+  }
+ 
+  if (treatment.includes(' Insulin')) {
+    return response.redirect('/conditions/diabetes/treatments/insulin/blood-glucose-levels')
+  }
+ 
+  if (treatment.includes(' Sulphonylurea or Glinide tablets')) {
+    return response.redirect('/conditions/diabetes/treatments/insulin/understand-warning-signs')
+  }
+ 
+  <!-- ✅ If they select nothing, just move them on -->
+  return response.redirect('/conditions/diabetes/treatments/any-issues-affecting-eyes')
+})

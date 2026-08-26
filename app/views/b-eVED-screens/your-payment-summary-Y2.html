@@ -60,7 +60,7 @@ href: "javascript:window.history.back()"
 
     </dl>
 
-    <h2 class="govuk-heading-m">Vehicle tax</h2>
+    <!--<h2 class="govuk-heading-m">Vehicle tax</h2>
 
     <dl class="govuk-summary-list">
 
@@ -86,7 +86,7 @@ href: "javascript:window.history.back()"
         <dd class="govuk-summary-list__actions"></dd>
       </div>
 
-    </dl>
+    </dl>-->
 
     <h2 class="govuk-heading-m">eVED</h2>
 
@@ -128,11 +128,11 @@ href: "javascript:window.history.back()"
       </div>
       {% endif %}
 
-      <div class="govuk-summary-list__row">
+      <!--<div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">eVED cost</dt>
         <dd class="govuk-summary-list__value">{{ data['evedCostFormatted'] }}</dd>
         <dd class="govuk-summary-list__actions"></dd>
-      </div>
+      </div>-->
 
     </dl>
 
@@ -140,7 +140,7 @@ href: "javascript:window.history.back()"
     <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
       <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
         <h1 class="govuk-fieldset__heading govuk-heading-m">
-          Total cost
+          Your eVED was calculated as
         </h1>
       </legend>
       <!-- <div id="changedName-hint" class="govuk-hint">
@@ -149,8 +149,9 @@ href: "javascript:window.history.back()"
 
       <dl class="govuk-summary-list">
         <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">Total cost</dt>
-          <dd class="govuk-summary-list__value">{{ data['totalCostFormatted'] }}</dd>
+          <dt class="govuk-summary-list__key">Top-up balance</dt>
+          <!--<dd class="govuk-summary-list__value">{{ data['totalCostFormatted'] }}</dd>-->
+          <dd class="govuk-summary-list__value">{{ data['evedCostFormatted'] }}</dd>
           <dd class="govuk-summary-list__actions"></dd>
         </div>
       </dl>

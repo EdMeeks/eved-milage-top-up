@@ -1,0 +1,97 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Using a V5C in your name – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">Using a V5C in your name</h1>
+
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-visually-hidden">Warning</span>
+        Only use this reference number if the V5C is in your name.
+      </strong>
+    </div>
+
+    <p class="govuk-body">
+      You should have received a V5C vehicle registration certificate with your name on, within two weeks of acquiring your vehicle.
+    </p>
+
+    <p class="govuk-body">
+      Check your address is correct on your logbook (V5C) as it will be used to refund any future tax payments.
+      You can update your address <a class="govuk-link" href="#">here</a>.
+    </p>
+
+    <form action="/a-starting-screens/check-vehicle-details" method="post" novalidate>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="v5c-reference">
+          <strong>11 digit V5C document reference number</strong>
+        </label>
+        <input
+          class="govuk-input govuk-input--width-10"
+          id="v5c-reference"
+          name="v5cReference"
+          type="text"
+          inputmode="numeric"
+          autocomplete="off"
+        >
+      </div>
+
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Where to find your V5C document reference number
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <div class="govuk-!-padding-bottom-3">
+            <img
+              src="/public/images/V5Creferencehint_x1.png"
+              alt="V5C document showing where to find the document reference number."
+            >
+          </div>
+        </div>
+      </details>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="vehicle-registration">
+          <strong>Vehicle registration (number plate)</strong>
+        </label>
+        <div id="vehicle-registration-hint" class="govuk-hint">
+          For example, AB12 CDE
+        </div>
+        <input
+          class="govuk-input govuk-input--width-10"
+          id="vehicle-registration"
+          name="vehicleRegistration"
+          type="text"
+          autocomplete="off"
+          aria-describedby="vehicle-registration-hint"
+        >
+      </div>
+
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

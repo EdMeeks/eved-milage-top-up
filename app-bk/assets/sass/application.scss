@@ -1,0 +1,53 @@
+//
+// For guidance on how to add CSS and SCSS see:
+// https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
+// 
+
+// Add extra styles here
+@import "./patterns/fonts";
+@import "./patterns/numberplate";
+
+
+/* Make numberplates consistent everywhere: 19px + snug badge (not full-width bars) */
+.numberplate {
+  display: inline-block;
+  width: auto;
+  max-width: max-content; /* optional */
+  white-space: nowrap;
+
+  font-size: 19px;
+  line-height: 1;
+  padding: 3px 10px;
+
+  height: auto;
+  min-height: 0;
+  vertical-align: middle;
+
+  /* ✅ add these to restore the black border */
+  border: 2px solid #0b0c0c;
+  border-radius: 6px;
+}
+
+/* If any templates still use .medium, make it the same size */
+.numberplate.medium {
+  font-size: 19px;
+  line-height: 1;
+  padding: 3px 10px;
+
+  /* ✅ fix typo + keep border consistent */
+  border: 2px solid #0b0c0c;
+  border-radius: 6px;
+}
+
+.dvla-cvc-inline {
+  display: flex;
+  gap: 12px;
+  align-items: center; /* keeps image vertically aligned with input */
+}
+
+/* Scale the 203px-tall image down to sit nicely next to the input */
+.dvla-cvc-inline__img {
+  display: block;
+  height: 32px;  /* try 32px first; adjust to 36px if you prefer */
+  width: auto;
+}

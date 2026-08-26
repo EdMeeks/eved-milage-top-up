@@ -1,0 +1,123 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Enter payment details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">Enter payment details</h1>
+
+    <h2 class="govuk-heading-m">Pay by debit or credit card</h2>
+
+    <div class="govuk-!-padding-bottom-3">
+      <img src="/public/images/credit-cards.png" alt="Visa and Mastercard logos">
+    </div>
+
+    <p class="govuk-body">
+      You can pay using Visa debit and credit, Visa Electron or Mastercard debit and credit cards.
+    </p>
+
+    <dl class="govuk-summary-list govuk-summary-list--no-border">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Payment reference</dt>
+        <dd class="govuk-summary-list__value"><strong>DVLA12345678</strong></dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Total amount to pay</dt>
+        <dd class="govuk-summary-list__value">
+          <strong>{{ data.paymentTotalFormatted or data.totalCostFormatted or '£0.00' }}</strong>
+        </dd>
+      </div>
+    </dl>
+
+    <form action="/c-payment-screens/card-payment-details" method="post" novalidate autocomplete="off">
+
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-label--s" for="nameOnCard">Name on card</label>
+        <div class="govuk-hint">Your name as it appears on the front of your card</div>
+        <input class="govuk-input govuk-input--width-20" id="nameOnCard" name="nameOnCard" type="text" autocomplete="off">
+      </div>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-label--s" for="cardNumber">Card number</label>
+        <div class="govuk-hint">The long number on the front of the card</div>
+        <input class="govuk-input govuk-input--width-20" id="cardNumber" name="cardNumber" type="text" inputmode="numeric" autocomplete="off">
+      </div>
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" role="group" aria-describedby="expiry-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+            Card expiry date
+          </legend>
+          <div id="expiry-hint" class="govuk-hint">For example, 03 28</div>
+
+          <div class="govuk-date-input" id="expiryDate">
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="expiryMonth">Month</label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2"
+                       id="expiryMonth" name="expiryMonth" type="text"
+                       inputmode="numeric" autocomplete="off">
+              </div>
+            </div>
+
+            <div class="govuk-date-input__item">
+              <div class="govuk-form-group">
+                <label class="govuk-label govuk-date-input__label" for="expiryYear">Year</label>
+                <input class="govuk-input govuk-date-input__input govuk-input--width-2"
+                       id="expiryYear" name="expiryYear" type="text"
+                       inputmode="numeric" autocomplete="off">
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label govuk-label--s" for="securityCode">Card security code</label>
+        <div class="govuk-hint">The 3 digit code found on the back of the card</div>
+
+        <div class="dvla-cvc-inline">
+          <input class="govuk-input govuk-input--width-3"
+                 id="securityCode" name="securityCode" type="text"
+                 inputmode="numeric" autocomplete="off">
+
+          <img src="/public/images/security-code-319x203.jpg"
+               alt=""
+               aria-hidden="true"
+               class="dvla-cvc-inline__img">
+        </div>
+      </div>
+
+      <button class="govuk-button" data-module="govuk-button" type="submit">
+        Pay now
+      </button>
+
+      <p class="govuk-body">
+        <a class="govuk-link" href="#">Cancel</a>
+      </p>
+
+      <p class="govuk-body govuk-!-margin-top-6">
+        Card information is transferred in accordance with our security statement and is held in accordance with our privacy statement.
+        See our <a class="govuk-link" href="#">terms and conditions</a> for further information.
+      </p>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

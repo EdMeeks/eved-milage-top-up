@@ -1,0 +1,37 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Direct Debit is not available – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/c-payment-screens/choose-how-to-pay"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">Card payment is not available in this prototype</h1>
+
+    <p class="govuk-body">
+      This part of the prototype is not functional.
+    </p>
+
+    <p class="govuk-body">
+      To continue, go back and choose <b>Direct debit</b>.
+    </p>
+
+    <a class="govuk-button" data-module="govuk-button" href="/c-payment-screens/choose-how-to-pay">
+      Back to choose how to pay
+    </a>
+
+  </div>
+</div>
+
+{% endblock %}

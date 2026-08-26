@@ -1,0 +1,119 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Choose how to pay – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form method="post" action="/c-payment-screens/choose-how-to-pay" novalidate>
+
+      <div class="govuk-form-group{% if data.paymentMethodError %} govuk-form-group--error{% endif %}">
+        <fieldset class="govuk-fieldset" aria-describedby="{% if data.paymentMethodError %}payment-method-error{% endif %}">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              Choose how to pay
+            </h1>
+          </legend>
+
+          {% if data.paymentMethodError %}
+            <p id="payment-method-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> Select how you want to pay
+            </p>
+          {% endif %}
+
+          <div class="govuk-radios" data-module="govuk-radios">
+
+            <!-- Card -->
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input"
+                     id="payment-method-card"
+                     name="paymentMethod"
+                     type="radio"
+                     value="card"
+                     {% if data.paymentMethod == 'card' %}checked{% endif %}>
+              <label class="govuk-label govuk-radios__label" for="payment-method-card">
+                A one off card payment of <b>{{ data.paymentTotalFormatted or data.totalCostFormatted or '£0.00' }}</b>
+              </label>
+            </div>
+
+            
+
+            <!-- Monthly Direct Debit -->
+             {% if data.taxLength == '12' %}
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input"
+                     id="payment-method-dd-monthly"
+                     name="paymentMethod"
+                     type="radio"
+                     value="dd-monthly">
+              <label class="govuk-label govuk-radios__label" for="payment-method-dd-monthly">
+                Monthly Direct Debit payments (<b>{{ data.ddMonthlyAmountFormatted }}</b> a month for <b>{{ data.taxLength }}</b> months)<br>
+                The total amount payable will be <b>{{ data.paymentTotalFormatted or '£0.00' }}</b>
+              </label>
+            </div>
+            {% else %}
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input"
+                     id="payment-method-dd-monthly"
+                     name="paymentMethod"
+                     type="radio"
+                     value="dd-monthly">
+            <label class="govuk-label govuk-radios__label" for="payment-method-dd-monthly">
+                A Direct Debit payment of <b>{{ data.paymentTotalFormatted or '£0.00' }}</b>
+              </label>
+{% endif %}
+          </div>
+        </fieldset>
+      </div>
+
+{% if data.taxLength == '12' %}
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            I want to use Direct Debit but pay at 12 month intervals
+          </span>
+        </summary>
+ 
+        <div class="govuk-details__text">
+ 
+          <div class="govuk-radios" data-module="govuk-radios">
+            
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input"
+                     id="payment-method-dd-12"
+                     name="paymentMethod"
+                     type="radio"
+                     value="dd-12"
+                     {% if data.paymentMethod == 'dd-12' %}checked{% endif %}>
+              <label class="govuk-label govuk-radios__label" for="payment-method-dd-12">
+                A Direct Debit payment of <b>{{ data.paymentTotalFormatted or '£0.00' }}</b>
+              </label>
+            </div>
+ 
+          </div>
+ 
+        </div>
+      </details>
+{% endif %}
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

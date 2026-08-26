@@ -584,7 +584,7 @@ router.post('/c-payment-screens/choose-how-to-pay', function (req, res) {
   const method = data.paymentMethod
 
   if (method === 'card') {
-    return res.redirect('/c-payment-screens/direct-debit-filler')
+    return res.redirect('/c-payment-screens/card-payment-details')
   }
 
   // Any Direct Debit option -> filler for now

@@ -1,0 +1,176 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Tax your vehicle – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBreadcrumbs({
+    items: [
+      { text: "Home", href: "#" },
+      { text: "Driving and transport", href: "#" },
+      { text: "Vehicle tax, MOT and insurance" }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+
+  <!-- Main content -->
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">
+      Tax your vehicle
+    </h1>
+
+    <p>
+      Use this service to tax your car, motorcycle or other vehicle using a reference number from:
+    </p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>a recent vehicle tax reminder or ‘last chance’ warning letter from DVLA</li>
+      <li>your vehicle log book (V5C) – it must be in your name</li>
+      <li>the green ‘new keeper’ slip from a log book if you’ve just bought it</li>
+    </ul>
+
+    <p>
+      If you do not have any of these documents, you’ll need to apply for a new log book.
+      You can tax your vehicle at the same time.
+    </p>
+
+    <p>You can pay vehicle tax by Direct Debit, or debit or credit card.</p>
+
+    <p>
+      You must tax your vehicle even if you do not have to pay anything because it’s exempt from vehicle tax.
+    </p>
+
+    <p>You’ll need to meet all the legal obligations for drivers before you can drive.</p>
+
+    <div class="govuk-inset-text">
+      This service is also available
+      <a href="#">in Welsh (Cymraeg)</a>.
+    </div>
+
+    {{ govukButton({
+      text: "Start now",
+      href: "/a-starting-screens/do-you-have-a-V11-reminder",
+      isStartButton: true
+    }) }}
+
+    <!-- Other ways to apply -->
+    <h2 class="govuk-heading-m">Other ways to apply</h2>
+
+    <h3 class="govuk-heading-s">Apply by phone</h3>
+
+    <p>
+      DVLA vehicle tax service<br>
+      Telephone: 0300 123 4321<br>
+      24-hour service
+    </p>
+
+    <p>You cannot pay by Direct Debit over the phone.</p>
+
+    <h3 class="govuk-heading-s">At a Post Office</h3>
+
+    <p>Go to a Post Office that deals with vehicle tax. You need to take either:</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>the payment for your vehicle tax</li>
+      <li>your bank or building society account details to set up a Direct Debit</li>
+    </ul>
+
+    <p>You will not need these payment details if your vehicle is exempt from tax.</p>
+
+    <p>You also need to take one of the following:</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>your vehicle log book (V5C) (it must be in your name)</li>
+      <li>the green ‘new keeper’ slip from a log book if you’ve just bought it</li>
+    </ul>
+
+    <p>
+      You might also need to show evidence of an MOT (it must be valid when the tax starts).
+      For example, a screenshot of your vehicle’s MOT history or your MOT certificate.
+    </p>
+
+    <div class="govuk-inset-text">
+      It can take up to 2 days for MOT information to be updated, so you might not be able
+      to tax your vehicle immediately after it passes its test.
+    </div>
+
+    <!-- Northern Ireland -->
+    <h3 class="govuk-heading-s">If you live in Northern Ireland</h3>
+
+    <p>To tax your vehicle at a Post Office in Northern Ireland, you’ll also need both:</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>a paper copy of an insurance certificate or cover note</li>
+      <li>
+        an original MOT test certificate or evidence of a Temporary Exemption
+        Certificate (TEC)
+      </li>
+    </ul>
+
+    <p>
+      You can provide evidence of your TEC with a screenshot of your vehicle’s MOT history.
+      If you cannot do this, you can show an expired MOT certificate.
+    </p>
+
+    <p>You do not need to apply for a new MOT certificate.</p>
+
+    <!-- Other scenarios -->
+    <h2 class="govuk-heading-m">If the vehicle is off the road</h2>
+
+    <p>
+      Register that your vehicle is off the road, for example you’re keeping it in a garage.
+      You do not need to tax your vehicle.
+    </p>
+
+    <h2 class="govuk-heading-m">
+      Change your car’s tax class to or from ‘disabled’
+    </h2>
+
+    <p>You may need to change your vehicle’s tax class, for example if either:</p>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>your car was previously used by a disabled person</li>
+      <li>you’re disabled and taxing your car for the first time</li>
+    </ul>
+
+    <p>You can only apply at a Post Office.</p>
+
+    <!-- Explore -->
+    <h2 class="govuk-heading-m">Explore the topic</h2>
+
+    <p>
+      <a href="#"><strong>Vehicle tax, MOT and insurance</strong></a>
+    </p>
+
+  </div>
+
+  <!-- Related content -->
+  <div class="govuk-grid-column-one-third">
+    <aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+      <h2 class="govuk-heading-m" id="subsection-title">Related content</h2>
+
+      <nav role="navigation" aria-labelledby="subsection-title">
+        <ul class="govuk-list govuk-!-font-size-16">
+          <li><a href="#">Check if a vehicle is taxed</a></li>
+          <li><a href="#">Vehicle tax Direct Debit payments</a></li>
+          <li><a href="#">Register your vehicle as off the road (SORN)</a></li>
+          <li><a href="#">Check tax rates for new unregistered cars</a></li>
+          <li><a href="#">Cancel your vehicle tax and get a refund</a></li>
+          <li><a href="#">Driver and vehicles account: sign in or set up</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+
+</div>
+{% endblock %}

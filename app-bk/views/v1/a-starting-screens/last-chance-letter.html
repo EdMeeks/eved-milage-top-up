@@ -1,0 +1,102 @@
+{% extends "layouts/layout.html" %}
+
+{% set serviceName %}
+{{ data['start'] }} 
+{% endset%}
+
+{% block pageTitle %}
+ Using a V5C in your name – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+  <form class="form" action="javascript:submitBranching(branchingData)" method="post">
+
+      
+      <h1 class="govuk-heading-l">What reference number is on your letter?</h1>
+
+  
+      <div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+
+    <div class="govuk-radios" data-module="govuk-radios">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="whereDoYouLive" name="whereDoYouLive" type="radio" value="england">
+        <label class="govuk-label govuk-radios__label" for="whereDoYouLive">
+          A 16‑digit reference number
+        </label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="whereDoYouLive-2" name="whereDoYouLive" type="radio" value="scotland">
+        <label class="govuk-label govuk-radios__label" for="whereDoYouLive-2">
+          An 11‑digit reference number
+        </label>
+      </div>
+
+      <div class="govuk-radios__divider">or</div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="whereDoYouLive-6" name="whereDoYouLive" type="radio" value="abroad">
+        <label class="govuk-label govuk-radios__label" for="whereDoYouLive-6">
+          I do not have a letter
+        </label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+      <details class="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+           Where to find your letter reference number
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+   
+          <img src="\public/Images/lastchance-diagram.png" alt="photo from driving licence."> 
+        </div>
+      </details>
+
+        <button class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
+  
+      </form>
+
+
+
+{% endblock %}
+
+
+
+<!-----------ROUTING SCRIPTS----------->
+{% block pageScripts %}
+<script>
+    
+    let branchingData = [{
+            value: 'yes',
+            url: '/_screens/service-eligibility/entitlement-expired'
+        }, {
+            value: 'no',
+            url: '/_screens/eved-evl/no-reminder/which-doc'
+        }, 
+
+    ];
+
+
+
+
+</script>
+
+
+{% endblock %}
+
+

@@ -1,0 +1,57 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form class="govuk-form" method="post" action="/a-starting-screens/do-you-have-a-V11-reminder-answer">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="hasV11-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              Do you have a tax reminder letter (V11) printed in your name?
+            </h1>
+          </legend>
+
+          <div class="govuk-radios govuk-radios--inline" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="hasV11" name="hasV11" type="radio" value="yes">
+              <label class="govuk-label govuk-radios__label" for="hasV11">
+                Yes
+              </label>
+            </div>
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="hasV11-2" name="hasV11" type="radio" value="no">
+              <label class="govuk-label govuk-radios__label" for="hasV11-2">
+                No
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}
