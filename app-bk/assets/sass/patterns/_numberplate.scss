@@ -1,0 +1,61 @@
+// Numberplate
+// ==========================================================================
+.numberplate {
+  font-family: 'dvla_vrm';
+  font-weight: 400;
+  color: #0B0C0C;
+  display: inline-flex;
+  display: block;
+  text-align: center;
+  border-radius: 0.3em;
+
+  a {
+    color: #0B0C0C;
+    text-decoration: none;
+
+    &:hover { text-decoration: underline; }
+  }
+
+  &.front { background-color: #FFFFFF; }
+  &.back { background-color: #FFD307; }
+
+  &.xlarge {
+    font-size: 48px;
+    width: 251px;
+    height: 68px;
+    border: 3.5px solid #0B0C0C;
+  }
+
+  &.large {
+    font-size: 36px;
+    line-height: 1.4;
+    width: 187px;
+    height: 51px;
+    border: 3px solid #0B0C0C;
+  }
+
+  &.panel {
+  margin: auto;
+  }
+
+  &.medium {
+    font-size: 24px;
+    width: 128px;
+    height: 33px;
+    border: 2.5px solid #0B0C0C;
+  }
+
+  &.small {
+    font-size: 19px;
+    // width: 100px;
+    height: 26px;
+    border: 2px solid #0B0C0C;
+  }
+
+  &.xsmall {
+    font-size: 16px;
+    width: 84px;
+    height: 24px;
+    border: 1.5px solid #0B0C0C;
+  }
+}

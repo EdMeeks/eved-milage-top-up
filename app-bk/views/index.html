@@ -1,0 +1,60 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Home" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        <!---  % include "govuk-prototype-kit/includes/homepage-top.njk" % -->
+
+        <h1 class="govuk-heading-l govuk-heading-xl">
+            {{ serviceName }}
+        </h1>
+
+        <h2 class="govuk-heading-m govuk-!-margin-top-9">
+            Version 1
+        </h2>
+
+        <p class="govuk-body">
+            <strong class="govuk-tag govuk-tag--grey">25 August 2026</strong>
+        </p>
+
+        <p class="govuk-body">
+            This version carries is a fresh redesign specifically for Milage Top-Up UCD round 1
+        </p>
+
+        {{
+         govukButton({
+              text: "View journey",
+              href: "/v1/a-starting-screens/start-page.html"
+            })
+        }}
+
+        <hr class="govuk-section-break govuk-section-break--visible govuk-section-break--l">
+
+
+        <h2 class="govuk-heading-m">
+            Version 0
+        </h2>
+
+        <p class="govuk-body">
+            <strong class="govuk-tag govuk-tag--grey">25 August 2026</strong>
+        </p>
+
+        <p class="govuk-body">
+            Taken from Tax and Milage UCD POC.
+        </p>
+
+        {{
+        govukButton({
+             text: "View journey",
+             href: "/a-starting-screens/start-page.html"
+           })
+        }}
+
+    </div>
+</div>
+
+{% endblock %}

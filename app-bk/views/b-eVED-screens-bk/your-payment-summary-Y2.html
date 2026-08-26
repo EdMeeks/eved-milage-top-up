@@ -1,0 +1,177 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Your payment summary – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+{{ govukBackLink({
+text: "Back",
+href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <h1 class="govuk-heading-xl">Your payment summary</h1>
+
+    <h2 class="govuk-heading-m">Vehicle details</h2>
+
+    <dl class="govuk-summary-list">
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Registration number</dt>
+        <dd class="govuk-summary-list__value">
+          <span class="numberplate back">
+            {{ data['vehicleRegistrationFormatted'] or 'AP51 LNK' }}
+          </span>
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/a-starting-screens/which-document-do-you-have">
+            Change<span class="govuk-visually-hidden"> registration number</span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Vehicle make</dt>
+        <dd class="govuk-summary-list__value">Volvo</dd>
+        <dd class="govuk-summary-list__actions"></dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Current mileage</dt>
+        <dd class="govuk-summary-list__value">
+          {% if data['exactMileageMiles'] %}
+          {{ data['exactMileageMiles'] }} miles
+          {% else %}
+          Not provided
+          {% endif %}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/b-eVED-screens/do-you-know-exact-mileage">
+            Change<span class="govuk-visually-hidden"> current mileage</span>
+          </a>
+        </dd>
+      </div>
+
+    </dl>
+
+    <h2 class="govuk-heading-m">Vehicle tax</h2>
+
+    <dl class="govuk-summary-list">
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Tax start date</dt>
+        <dd class="govuk-summary-list__value">{{ data['taxStartDate'] or '—' }}</dd>
+        <dd class="govuk-summary-list__actions"></dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Duration</dt>
+        <dd class="govuk-summary-list__value">{{ data['taxLengthLabel'] }}</dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/b-eVED-screens/how-long-do-you-want-to-tax-the-vehicle">
+            Change<span class="govuk-visually-hidden"> tax duration</span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Tax cost</dt>
+        <dd class="govuk-summary-list__value">{{ data['taxCostFormatted'] }}</dd>
+        <dd class="govuk-summary-list__actions"></dd>
+      </div>
+
+    </dl>
+
+    <h2 class="govuk-heading-m">eVED</h2>
+
+    <dl class="govuk-summary-list">
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Mileage estimate</dt>
+        <dd class="govuk-summary-list__value">
+          {% if data['estimatedMileage'] %}
+          {{ data['estimatedMileage'] }} miles
+          {% else %}
+          Not provided
+          {% endif %}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="/b-eVED-screens/estimate-your-miles">
+            Change<span class="govuk-visually-hidden"> mileage estimate</span>
+          </a>
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Mileage estimated cost</dt>
+        <dd class="govuk-summary-list__value">{{ data['estimateCostFormatted'] }}</dd>
+        <dd class="govuk-summary-list__actions"></dd>
+      </div>
+
+      {% if data['creditValue'] %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Mileage credit</dt>
+        <dd class="govuk-summary-list__value">{{ data['creditValueFormatted'] }}</dd>
+        <dd class="govuk-summary-list__actions"></dd>
+      </div>
+      {% elseif data['costValue'] %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Mileage owed</dt>
+        <dd class="govuk-summary-list__value">{{ data['costValueFormatted'] }}</dd>
+        <dd class="govuk-summary-list__actions"></dd>
+      </div>
+      {% endif %}
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">eVED cost</dt>
+        <dd class="govuk-summary-list__value">{{ data['evedCostFormatted'] }}</dd>
+        <dd class="govuk-summary-list__actions"></dd>
+      </div>
+
+    </dl>
+
+
+    <fieldset class="govuk-fieldset" aria-describedby="changedName-hint">
+      <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+        <h1 class="govuk-fieldset__heading govuk-heading-m">
+          Total cost
+        </h1>
+      </legend>
+      <!-- <div id="changedName-hint" class="govuk-hint">
+      This is your tax cost plus your eVED cost
+    </div> -->
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Total cost</dt>
+          <dd class="govuk-summary-list__value">{{ data['totalCostFormatted'] }}</dd>
+          <dd class="govuk-summary-list__actions"></dd>
+        </div>
+      </dl>
+
+      <a class="govuk-button" data-module="govuk-button" href="/c-payment-screens/choose-how-to-pay">
+        Accept and continue
+      </a>
+
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            How are these amounts calculated?
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          Your total payment is the standard vehicle tax plus a mileage-based charge.
+          Electric vehicles are charged at 3p per mile and plug-in hybrids at 1.5p per mile.
+        </div>
+      </details>
+
+  </div>
+</div>
+
+{% endblock %}

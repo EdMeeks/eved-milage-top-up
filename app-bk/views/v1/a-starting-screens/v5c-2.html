@@ -1,0 +1,97 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  V5C/2 new keeper supplement (green slip) – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      V5C/2 new keeper supplement (green slip)
+    </h1>
+
+    <p class="govuk-body">
+      You should have received a V5C/2 (green slip) when you became the new keeper of the vehicle.
+    </p>
+
+    <form action="/a-starting-screens/check-vehicle-details" method="post" novalidate>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="v5c2-reference">
+          <strong>V5C/2 document reference number</strong>
+        </label>
+        <div id="v5c2-reference-hint" class="govuk-hint">
+          This is a 12 digit number.
+        </div>
+        <input
+          class="govuk-input govuk-input--width-10"
+          id="v5c2-reference"
+          name="v5c2Reference"
+          type="text"
+          inputmode="numeric"
+          autocomplete="off"
+          aria-describedby="v5c2-reference-hint"
+        >
+      </div>
+
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Where to find your V5C/2 document reference number
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <img
+            src="/public/images/v5c2-diagram.png"
+            class="govuk-!-margin-bottom-2"
+            alt="Diagram showing where to find the V5C/2 document reference number."
+          >
+        </div>
+      </details>
+
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-visually-hidden">Warning</span>
+          Only new keepers should use this number. Do not use it if you have a V5C in your name or a V11 reminder.
+        </strong>
+      </div>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="vehicle-registration">
+          <strong>Vehicle registration (number plate)</strong>
+        </label>
+        <div id="vehicle-registration-hint" class="govuk-hint">
+          For example, AB77 ABC
+        </div>
+        <input
+          class="govuk-input govuk-input--width-10"
+          id="vehicle-registration"
+          name="vehicleRegistration"
+          type="text"
+          autocomplete="off"
+          aria-describedby="vehicle-registration-hint"
+        >
+      </div>
+
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

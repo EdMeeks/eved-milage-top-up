@@ -1,0 +1,123 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Do you know your vehicle’s exact mileage? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<form action="/b-eVED-screens/mileage-answer" method="post" novalidate>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              Enter your vehicle’s exact mileage
+            </h1>
+          </legend>
+
+          <p class="govuk-body">
+            Check the dashboard on your vehicle. It will show the mileage in miles or kilometres.
+          </p>
+
+          <h2 class="govuk-heading-m">
+            Is the total mileage in miles or kilometres?
+          </h2>
+
+          <div class="govuk-radios" data-module="govuk-radios">
+
+            <div class="govuk-radios__item">
+              <input
+                class="govuk-radios__input"
+                id="mileage-unit-miles"
+                name="mileageUnit"
+                type="radio"
+                value="miles"
+                data-aria-controls="conditional-mileage-miles"
+              >
+              <label class="govuk-label govuk-radios__label" for="mileage-unit-miles">
+                Miles (mi)
+              </label>
+            </div>
+
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-mileage-miles">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="exact-mileage-miles">
+                  Enter the mileage in miles
+                </label>
+                <input
+                  class="govuk-input govuk-!-width-one-third"
+                  id="exact-mileage-miles"
+                  name="exactMileageMiles"
+                  type="text"
+                  inputmode="numeric"
+                  autocomplete="off"
+                  spellcheck="false"
+                >
+              </div>
+            </div>
+
+            <div class="govuk-radios__item">
+              <input
+                class="govuk-radios__input"
+                id="mileage-unit-kilometres"
+                name="mileageUnit"
+                type="radio"
+                value="kilometres"
+                data-aria-controls="conditional-mileage-kilometres"
+              >
+              <label class="govuk-label govuk-radios__label" for="mileage-unit-kilometres">
+                Kilometres (km)
+              </label>
+            </div>
+
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-mileage-kilometres">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="exact-mileage-km">
+                  Enter the mileage in kilometres
+                </label>
+                <div id="exact-mileage-km-hint" class="govuk-hint">
+                  We’ll convert this to miles for you
+                </div>
+                <input
+                  class="govuk-input govuk-!-width-one-third"
+                  id="exact-mileage-km"
+                  name="exactMileageKm"
+                  type="text"
+                  inputmode="numeric"
+                  autocomplete="off"
+                  spellcheck="false"
+                  aria-describedby="exact-mileage-km-hint"
+                >
+              </div>
+            </div>
+
+          </div>
+        </fieldset>
+      </div>
+
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+
+      <p class="govuk-body">
+        <a class="govuk-link" href="/b-eVED-screens/dropout-does-not-know-exact-mileage">
+          I don't know my vehicle's exact mileage
+        </a>
+      </p>
+
+    </div>
+  </div>
+</form>
+
+{% endblock %}

@@ -1,0 +1,65 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  How long do you want to tax the vehicle? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/b-eVED-screens/how-long-answer" method="post" novalidate>
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              How long do you want to tax the vehicle?
+            </h1>
+          </legend>
+
+          <div class="govuk-radios" data-module="govuk-radios">
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="tax-length-6" name="taxLength" type="radio" value="6">
+              <label class="govuk-label govuk-radios__label" for="tax-length-6">
+                6 months <strong>(£165.38)</strong>
+              </label>
+            </div>
+
+            <div class="govuk-radios__divider">or</div>
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="tax-length-12" name="taxLength" type="radio" value="12">
+              <label class="govuk-label govuk-radios__label" for="tax-length-12">
+                12 months <strong>(£330.75)</strong>
+              </label>
+            </div>
+
+          </div>
+        </fieldset>
+      </div>
+
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+
+    </form>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="#">Comparison tables for rates of vehicle tax (V149)</a>
+    </p>
+
+  </div>
+</div>
+
+{% endblock %}

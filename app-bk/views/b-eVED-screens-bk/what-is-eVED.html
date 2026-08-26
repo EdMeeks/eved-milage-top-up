@@ -1,0 +1,71 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Electric Vehicle Excise Duty (eVED) – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      Electric Vehicle Excise Duty (eVED)
+    </h1>
+
+    <p class="govuk-body">
+      From <span id="today-date"></span>, your vehicle will be charged Electric Vehicle Excise Duty (eVED).
+    </p>
+
+    <h2 class="govuk-heading-m">
+      What is eVED?
+    </h2>
+
+    <p class="govuk-body">
+      eVED is a mileage based road tax for electric and plug-in hybrid vehicles.
+      You will need to pay eVED and standard vehicle tax (VED).
+    </p>
+
+    <div class="govuk-inset-text">
+      Electric vehicles are charged 3p per mile and plug-in hybrids are charged 1.5p per mile.
+    </div>
+
+    <h2 class="govuk-heading-m">
+      What happens next
+    </h2>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>you’ll need to tell us your vehicle’s current mileage</li>
+      <li>you’ll then estimate how many miles you expect to drive over the next year</li>
+    </ul>
+
+    <a class="govuk-button" data-module="govuk-button" href="/b-eVED-screens/how-long-do-you-want-to-tax-the-vehicle">
+      Continue
+    </a>
+
+  </div>
+</div>
+
+<script>
+  (function () {
+    var today = new Date();
+    var formatted = today.toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+
+    var el = document.getElementById('today-date');
+    if (el) el.textContent = formatted;
+  })();
+</script>
+
+{% endblock %}

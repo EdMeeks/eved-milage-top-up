@@ -1,0 +1,60 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+If you do not have any documents – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      If you do not have any documents
+    </h1>
+
+    <p class="govuk-body">
+      If you have not received a V11 reminder, DVLA may not have your correct address.
+    </p>
+
+    <p class="govuk-body">
+      If your address is wrong, you must
+      <a class="govuk-link" href="#">
+        change your address on your vehicle log book (V5C)
+      </a>.
+    </p>
+
+    <p class="govuk-body">
+      If you have lost your V5C you can
+      <a class="govuk-link" href="#">
+        get a new vehicle log book (V5C)
+      </a>.
+    </p>
+
+    <p class="govuk-body">
+      You can also find out how to
+      <a class="govuk-link" href="#">
+        tax your vehicle without a V11 reminder
+      </a>.
+    </p>
+
+    <a
+      href="/a-starting-screens/which-document-do-you-have"
+      class="govuk-button"
+      data-module="govuk-button"
+    >
+      Return to GOV.UK
+    </a>
+
+  </div>
+</div>
+
+{% endblock %}

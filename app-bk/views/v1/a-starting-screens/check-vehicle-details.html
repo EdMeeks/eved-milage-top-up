@@ -1,0 +1,101 @@
+
+{% extends "layouts/layout.html" %}
+
+{% block pageTitle %}
+  Check vehicle details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <h1 class="govuk-heading-xl">Check vehicle details</h1>
+
+    <dl class="govuk-summary-list">
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Registration number</dt>
+        <dd class="govuk-summary-list__value">
+          
+        <span class="numberplate back">
+        <!--{{ data['vehicleRegistrationFormatted'] or 'AP51 LNK' }}-->
+         AP51 LNK
+        </span>
+
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Vehicle make</dt>
+        <dd class="govuk-summary-list__value">Volvo</dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Tax class</dt>
+        <dd class="govuk-summary-list__value">Alternative fuel</dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Tax/SORN status</dt>
+        <dd class="govuk-summary-list__value">
+          <p class="govuk-body">
+            Your vehicle will be taxed from <strong><span id="tax-start-date"></span></strong>.
+          </p>
+        </dd>
+      </div>
+
+    </dl>
+
+    <details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Incorrect details</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">
+          If these details are incorrect, you may have entered the wrong information.
+          <a class="govuk-link" href="javascript:window.history.back()">Try again</a>.
+        </p>
+
+        <p class="govuk-body">
+          If the details are still incorrect, contact DVLA on <strong>0300 123 4321</strong> for help.
+        </p>
+      </div>
+    </details>
+
+    <p class="govuk-body">
+      By clicking ‘Continue’ you agree to DVLA checking that your vehicle has an electronic MOT/GVT certificate (if applicable).
+      <a class="govuk-link" href="#">Find out how we do this</a>.
+    </p>
+
+    <a class="govuk-button" data-module="govuk-button" href="../b-eVED-screens/what-is-eVED">
+      Continue
+    </a>
+
+  </div>
+</div>
+
+<script>
+  (function () {
+    var today = new Date();
+    var firstOfNextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+
+    var formatted = firstOfNextMonth.toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+
+    var el = document.getElementById('tax-start-date');
+    if (el) el.textContent = formatted;
+  })();
+</script>
+
+{% endblock %}

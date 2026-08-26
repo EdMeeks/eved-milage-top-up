@@ -1,0 +1,88 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  The mileage you entered is lower than your last recorded mileage – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "/b-eVED-screens/do-you-know-exact-mileage"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      The mileage you entered is lower than your last recorded mileage
+    </h1>
+
+    
+
+
+
+<p class="govuk-body">
+
+  {% if data.enteredMileageUnit == "kilometres" %}
+    You entered 
+    <strong>{{ data.enteredMileageValueFormatted }}</strong> kilometres
+    (<strong>{{ data.exactMileageMilesFormatted }}</strong> miles).
+
+  {% elseif data.exactMileageMilesFormatted %}
+    You entered 
+    <strong>{{ data.exactMileageMilesFormatted }}</strong> miles.
+
+  {% else %}
+    You entered a mileage value.
+
+  {% endif %}
+
+</p>
+
+
+    <p class="govuk-body">
+      The last recorded mileage is <strong>38,657 miles</strong>.
+    </p>
+
+    <h2 class="govuk-heading-m">What you can do</h2>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>If you entered the mileage incorrectly, go back and update your mileage. </li>
+      <li>Check the mileage using the 
+        <a 
+          class="govuk-link" 
+          href="https://www.gov.uk/check-mot-history"
+          target="_blank" 
+          rel="noopener noreferrer">
+          Check the MOT history of a vehicle (opens in new tab). 
+        </a>
+         
+      </li>
+      <li>If the MOT mileage is wrong, contact the garage that carried out the MOT or DVSA.</li>
+      <li>
+        If the mileage you entered is correct you’ll need to 
+        <a 
+          class="govuk-link" 
+          href="https://www.gov.uk/contact-the-dvla/y/vehicle-tax-and-sorn"
+          target="_blank" 
+          rel="noopener noreferrer">
+          contact DVLA (opens in new tab).
+        </a>
+        
+      </li>
+    </ul>
+
+    <form action="/b-eVED-screens/do-you-know-exact-mileage" method="get">
+      <button class="govuk-button" data-module="govuk-button">
+        Update your mileage
+      </button>
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

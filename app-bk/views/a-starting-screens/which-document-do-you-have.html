@@ -1,0 +1,117 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Which document do you have? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/a-starting-screens/which-document-do-you-have-answer" method="post" novalidate>
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              Which document do you have?
+            </h1>
+          </legend>
+
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="documentType" name="documentType" type="radio" value="v5c">
+              <label class="govuk-label govuk-radios__label" for="documentType">
+                I have the V5C Registration Certificate (logbook) printed in my name
+              </label>
+            </div>
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="documentType-2" name="documentType" type="radio" value="last-chance">
+              <label class="govuk-label govuk-radios__label" for="documentType-2">
+                I have the Last Chance Letter printed in my name
+              </label>
+            </div>
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="documentType-3" name="documentType" type="radio" value="v5c-2">
+              <label class="govuk-label govuk-radios__label" for="documentType-3">
+                I have the V5C/2 new keeper supplement (green slip)
+              </label>
+            </div>
+
+            <div class="govuk-radios__divider">or</div>
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="documentType-4" name="documentType" type="radio" value="email">
+              <label class="govuk-label govuk-radios__label" for="documentType-4">
+                I have an email reminder
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <p class="govuk-body">
+      <a class="govuk-link" href="/a-starting-screens/no-docs">
+        I don't have any of these documents
+      </a>
+      </p>
+
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Need help?
+          </span>
+        </summary>
+
+        <div class="govuk-details__text">
+          <h2 class="govuk-heading-s">Webchat</h2>
+          <p class="govuk-body">In order to continue, please click ‘Start Chat’</p>
+    
+          <button type="button" class="govuk-button" data-module="govuk-button">
+            Start Chat
+          </button>
+
+          <h2 class="govuk-heading-s">Opening hours</h2>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>Monday to Friday, 8am to 7pm</li>
+            <li>Saturdays, 8am to 2pm</li>
+            <li>Public holidays, closed</li>
+          </ul>
+
+          <p class="govuk-body">
+            If there are no advisors available, you can call our contact centre on:<br>
+            0300 790 6802
+          </p>
+
+          <p class="govuk-body">
+            You can also find more information at:
+            <span class="govuk-!-display-block">
+              <a class="govuk-link" href="#" aria-label="DVLA contact information link (prototype)">
+                www.gov.uk/contact-the-dvla/y/vehicle-tax-and-sorn
+              </a>
+            </span>
+          </p>
+        </div>
+      </details>
+
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,103 @@
+
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Payment details – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+
+
+
+<a href="javascript:history.back()" class="govuk-back-link">Back</a>
+
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:30px;">
+
+      <h1 class="govuk-heading-l govuk-!-margin-bottom-0">Payment details</h1>
+
+      <img src="/public/images/direct-debit-logo.png" alt="Direct Debit" style="max-width:140px;">
+    </div>
+
+    <p class="govuk-body">
+      Instruction to your Bank or Building Society to pay by Direct Debit. Please
+      enter the bank account holder's details below. This account must belong to
+      and match the personal or business account holder information provided on
+      the previous screen.
+    </p>
+
+    <form action="#" method="post">
+
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="account-holder">
+          Name of account holder
+        </label>
+        <input class="govuk-input govuk-input--width-20" id="account-holder" name="accountHolder" type="text">
+      </div>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label">Sort code</label>
+
+
+        <div style="display:flex; gap:10px;">
+          <input class="govuk-input govuk-input--width-2" maxlength="2" type="text">
+          <input class="govuk-input govuk-input--width-2" maxlength="2" type="text">
+          <input class="govuk-input govuk-input--width-2" maxlength="2" type="text">
+        </div>
+      </div>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="account-number">
+          Account number
+        </label>
+        <input class="govuk-input govuk-input--width-10" id="account-number" name="accountNumber" type="text">
+      </div>
+
+      <div class="govuk-form-group">
+        <div class="govuk-checkboxes govuk-checkboxes--small">
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="authority" name="authority" type="checkbox">
+            <label class="govuk-label govuk-checkboxes__label" for="authority">
+              I confirm that I have the authority to set up a Direct Debit against this account and I am the only person required to authorise direct debits from this account. 
+              By ticking this box I am confirming that this account does not require dual signatories.
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <p class="govuk-body">
+        A Direct Debit can be set up on a joint account where only one signature is required to transact.
+      </p>
+      <h2 class="govuk-heading-m">Direct Debit Guarantee</h2>
+
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>This Guarantee is offered by all banks and building societies that accept instructions to pay Direct Debits.</li>
+        <li>If there are any changes to the amount, date or frequency of your Direct Debit the Driver & Vehicle Licensing Agency (DVLA) will notify you 10 working days in advance.</li>
+        <li>If an error is made in the payment of your Direct Debit by DVLA or your bank or building society, you are entitled to a full and immediate refund.</li>
+        <li>If you receive a refund you are not entitled to, you must pay it back when DVLA asks you to.</li>
+        <li>You can cancel a Direct Debit at any time by simply contacting your bank or building society.</li>
+      </ul>
+
+
+     <a class="govuk-button" data-module="govuk-button" href="/c-payment-screens/dd-payment-screens/dd-setup">
+      Continue
+    </a>
+
+
+    </form>
+
+  </div>
+
+
+
+{% endblock %}

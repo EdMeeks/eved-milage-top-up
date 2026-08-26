@@ -1,0 +1,81 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/a-starting-screens/check-vehicle-details.html" method="get" novalidate>
+
+      <div class="govuk-form-group">
+        <h1 class="govuk-label-wrapper">
+          <label class="govuk-label govuk-label--l" for="v11-reference">
+            What is your V11 reference number?
+          </label>
+        </h1>
+
+        <div id="v11-reference-hint" class="govuk-hint">
+          Enter the 16-digit reference number from your V11 reminder letter.
+        </div>
+
+        <input
+          class="govuk-input govuk-input--width-20"
+          id="v11-reference"
+          name="v11Reference"
+          type="text"
+          inputmode="numeric"
+          autocomplete="off"
+          aria-describedby="v11-reference-hint"
+        >
+      </div>
+
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Your V11 reminder letter
+          </span>
+        </summary>
+
+        <div class="govuk-details__text">
+          <div class="govuk-!-padding-bottom-3">
+            <img
+              src="/public/images/v11.gif"
+              class="govuk-!-width-full"
+              alt="V11 reminder letter."
+            >
+          </div>
+        </div>
+      </details>
+
+      <p class="govuk-body">
+        The amount you pay may be different from the amount shown on your V11. 
+        Vehicle tax rates can change from 1 April.
+      </p>
+
+      <p class="govuk-body">
+        You will pay the same amount whether you tax your vehicle online, 
+        by phone or at the Post Office.
+      </p>
+
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

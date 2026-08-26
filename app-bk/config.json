@@ -1,0 +1,9 @@
+{
+  "serviceName": "Milage top up",
+  "useServiceNavigation": true,
+  "plugins": {
+    "govuk-frontend": {
+      "rebrand": true
+    }
+  }
+}
