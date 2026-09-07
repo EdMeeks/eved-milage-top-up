@@ -1,5 +1,5 @@
 {
-  "serviceName": "Electric vehicle milage top up service",
+  "serviceName": "Electric vehicle mileage top up service",
   "useServiceNavigation": true,
   "plugins": {
     "govuk-frontend": {
