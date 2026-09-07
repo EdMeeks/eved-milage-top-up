@@ -1,0 +1,270 @@
+
+{% extends "layouts/layout.html" %}
+
+{% block pageTitle %}
+  Check vehicle details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+
+<form action="/v1/b-eVED-screens/vehicle-details" method="post" novalidate>
+<input type="hidden" id="vehicle-reg-input" name="vehicle-reg" value="">
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <h1 class="govuk-heading-xl">Check vehicle details</h1>
+
+    <div class="card">
+      <div class="govuk-summary-card results">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Summary</h2>
+        </div>
+
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Registration number</dt>
+        <dd class="govuk-summary-list__value">
+          
+        <span class="numberplate back" id="registration-number">
+        SW65 DBA
+        </span>
+
+        </dd>
+      </div>
+
+      <!-- create if statements here -->
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Vehichle make</dt>
+        <dd class="govuk-summary-list__value">Ford</dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Model</dt>
+        <dd class="govuk-summary-list__value">Mustang</dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Year</dt>
+        <dd class="govuk-summary-list__value">2025</dd>
+      </div>
+
+      <!-- /// create if statements here ///  -->
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Tax class</dt>
+        <dd class="govuk-summary-list__value">Alternative fuel</dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Licence period expiry</dt>
+        <dd class="govuk-summary-list__value">15 January 2027</dd>
+      </div>
+
+      <!--<div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Milage paid for to date</dt>
+        <dd class="govuk-summary-list__value">10,000 miles</dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Recorded mileage</dt>
+        <dd class="govuk-summary-list__value">26,825 miles</dd>
+      </div>
+
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">Total mileage</dt>
+              <dd class="govuk-summary-list__value"><strong>36,825 miles</strong></dd>
+            </div>
+          </dl>
+        </div-->
+        </div>
+    </div>
+   <!--{% from "govuk/components/table/macro.njk" import govukTable %}
+
+      {{ govukTable({
+
+        captionClasses: "govuk-table__caption--m",
+        firstCellIsHeader: false,
+        
+        rows: [
+          [
+            {
+              text: "Milage paid for to date"
+            },
+            {
+              text: "10,000 miles"
+            }
+          ],
+          [
+            {
+              text: "You previously recorded mileage is"
+            },
+            {
+              text: "26,825 miles"
+            }
+          ],
+          [
+            {
+              text: "Licence period expiry"
+            },
+            {
+              text: "15 January 2027"
+            }
+          ]
+        ]
+      }) }}--> 
+
+         <!-- {% from "govuk/components/table/macro.njk" import govukTable %}
+
+{{ govukTable({
+  caption: "",
+  captionClasses: "govuk-table__caption--m",
+  firstCellIsHeader: true,
+  classes: "govuk-table--small-text-until-tablet",
+  head: [
+    {
+      text: ""
+    },
+    {
+      text: "Odometer reading"
+    },
+    {
+      text: "Pre-paid"
+    },
+    {
+      text: "Total"
+    }
+  ],
+  rows: [
+    [
+      {
+        text: "Milage"
+      },
+      {
+        text: "10,000 miles"
+      },
+      {
+        text: "26,825 miles"
+      },
+      {
+        text: "36,825 miles"
+      }
+    ]
+  ]
+}) }}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+
+      {{ govukTable({
+
+        captionClasses: "govuk-table__caption--m",
+        firstCellIsHeader: false,
+        
+        rows: [
+          
+          [
+            {
+              text: "Licence period expiry"
+            },
+            {
+              text: "15 January 2027"
+            }
+          ]
+        ]
+      }) }}--> 
+
+    <!--details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Incorrect details</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">
+          If these details are incorrect, you may have entered the wrong information.
+          <a class="govuk-link" href="javascript:window.history.back()">Try again</a>.
+        </p>
+
+        <p class="govuk-body">
+          If the details are still incorrect, contact DVLA on <strong>0300 123 4321</strong> for help.
+        </p>
+      </div>
+    </details-->
+
+    {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+      
+
+    {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+      {{ govukRadios({
+        classes: "govuk-radios--inline",
+        name: "vechile-details-radios",
+        fieldset: {
+          legend: {
+            text: "Are these details correct?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--s"
+          }
+        },
+        hint: {
+          text: ""
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes"
+          },
+          {
+            value: "no",
+            text: "No, try again"
+          }
+        ]
+      }) }}
+
+    <p class="govuk-body">
+      By clicking ‘Continue’ you agree to DVLA checking that your vehicle has an electronic MOT/GVT certificate (if applicable).
+      <a class="govuk-link" href="#">Find out how we do this</a>.
+    </p>
+
+    <button type="submit" class="govuk-button govuk-!-margin-top-3" data-module="govuk-button">
+      Continue
+    </button>
+
+  </div>
+</div>
+</fieldset>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const registration = params.get('vehicle-reg');
+
+  if (registration && registration.trim() !== '') {
+    document.getElementById('registration-number').textContent = registration.trim();
+    document.getElementById('vehicle-reg-input').value = registration.trim();
+  }
+</script>
+
+<script>
+  (function () {
+    var today = new Date();
+    var firstOfNextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+
+    var formatted = firstOfNextMonth.toLocaleDateString('en-GB', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+
+    var el = document.getElementById('tax-start-date');
+    if (el) el.textContent = formatted;
+  })();
+</script>
+
+{% endblock %}

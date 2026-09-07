@@ -1,0 +1,129 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Do you know your vehicle’s exact mileage? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<!--form action="/b-eVED-screens/mileage-answer" method="post" novalidate-->
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-error-summary" data-module="govuk-error-summary" hidden>
+  <div role="alert">
+    <h2 class="govuk-error-summary__title">
+      There is a problem
+    </h2>
+    <div class="govuk-error-summary__body">
+      <ul class="govuk-list govuk-error-summary__list">
+        <li>
+          <a href="#mileage">Enter your mileage</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+  <h1 class="govuk-heading-l">Do you know your current exact milage?</h1>
+
+  {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+    {% call govukInsetText() %}
+      Your previously recorded mileage reading is <strong>36,825 miles</strong>
+    {% endcall %}
+    
+    <p>Enter only the mileage currently shown on your vehicle. Do not add any previous estimates or top-up mileage.</p>
+
+    <p>We will use this to determine if you have driven more or less than your pre-paid electric vehicle mileage.</p>
+
+  
+
+    <div class="govuk-form-group" id="mileage-form-group">
+      <label class="govuk-label govuk-label--s" for="event-name">Enter your current mileage</label>
+
+      <div class="govuk-input__wrapper govuk-!-margin-bottom-3">
+      <input class="govuk-input govuk-input--width-5" type="number" id="mileage" placeholder="0" inputmode="numeric" min="0">
+
+      <div class="govuk-input__suffix" aria-hidden="true">miles</div>
+      </div>
+
+      
+      <div class="error-msg" id="error-msg">
+
+    </div>
+
+    </div>
+
+    <p class="govuk-body govuk-!-margin-top-3">
+        <a class="govuk-link govuk-link--no-visited-state" href="/v1/b-eVED-screens/dropout-does-not-know-exact-mileage">
+          I don't know my vehicle's exact mileage
+        </a>
+      </p>
+
+      <button type="button" class="govuk-button govuk-!-margin-top-3" data-module="govuk-button" onclick="submitForm()">
+        Calculate difference
+      </button>
+
+  
+</div>
+
+<script>
+  const PREVIOUS_RECORDED_MILEAGE = 36825;
+
+  function submitForm() {
+    const input = document.getElementById('mileage');
+    const formGroup = document.getElementById('mileage-form-group');
+    const errorMsg = document.getElementById('error-msg');
+    const errorSummary = document.querySelector('.govuk-error-summary');
+    const raw = input.value.trim();
+    const num = parseFloat(raw);
+
+    if (raw === '' || isNaN(num) || num < 0) {
+      errorMsg.innerHTML = '<p id="mileage-entered-error" class="govuk-error-message"><span class="govuk-visually-hidden">Error:</span> Enter a valid mileage figure to continue.</p>';
+      formGroup.classList.add('govuk-form-group--error');
+      input.classList.add('govuk-input--error');
+      errorSummary.hidden = raw !== '';
+      input.blur();
+      return;
+    }
+
+    if (num < PREVIOUS_RECORDED_MILEAGE) {
+      errorMsg.innerHTML = '<p id="mileage-entered-error" class="govuk-error-message"><span class="govuk-visually-hidden">Error:</span> The mileage you entered is lower than your last recorded mileage of 36,825 miles.</p>';
+      formGroup.classList.add('govuk-form-group--error');
+      input.classList.add('govuk-input--error');
+      errorSummary.hidden = false;
+      input.blur();
+      return;
+    }
+
+    errorMsg.textContent = '';
+    formGroup.classList.remove('govuk-form-group--error');
+    input.classList.remove('govuk-input--error', 'govuk-input--width-2');
+    input.classList.add('govuk-input--width-5');
+    errorSummary.hidden = true;
+
+    window.location.assign('/v1/b-eVED-screens/mileage-balance?mileage=' + encodeURIComponent(num));
+  }
+
+  document.getElementById('mileage').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') submitForm();
+  });
+</script>
+      
+      </div>
+
+    </div>
+  </div>
+<!--/form-->
+
+{% endblock %}

@@ -1,0 +1,180 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Application complete – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukPanel({
+      titleText: "Payment complete",
+      html: "Your application reference:<br><strong>5470-5281-6173-4485</strong>"
+    }) }}
+
+    <h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-6">Confirmation of added miles</h2>
+
+    <!-- Vehicle summary -->
+
+  <div class="card">
+      <div class="govuk-summary-card results">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Vehicle summary</h2>
+        </div>
+
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Registration number</dt>
+        <dd class="govuk-summary-list__value">
+          
+        <span class="numberplate back" id="registration-number">
+        {{ data['vehicle-reg'] or 'SW65 DBA' }} 
+        </span>
+
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Vehichle make</dt>
+        <dd class="govuk-summary-list__value">Ford</dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Model</dt>
+        <dd class="govuk-summary-list__value">Mustang</dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Year</dt>
+        <dd class="govuk-summary-list__value">2025</dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Tax class</dt>
+        <dd class="govuk-summary-list__value">Alternative fuel</dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Licence period expiry</dt>
+        <dd class="govuk-summary-list__value">15 January 2027</dd>
+      </div>
+
+        </div>
+    </div>
+
+ <!-- Milage summary -->
+
+    <div class="card">
+    <div class="govuk-summary-card results">
+    <div class="govuk-summary-card__title-wrapper">
+      <h2 class="govuk-summary-card__title">
+        Milage summary
+      </h2>
+    </div>
+
+     <div class="govuk-summary-card__content">
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Your current mileage
+        </dt>
+        <dd class="govuk-summary-list__value value" id="row-input">
+          {{ data['exactMileageMiles'] or data['exactMileage'] or 'Not provided' }} miles
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Added miles
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['estimatedMileage'] or 'Not provided' }} miles
+        </dd>
+      </div>
+      {% if data['totalDebitMiles'] %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Total debit</dt>
+          <dd class="govuk-summary-list__value">{{ data['totalDebitMiles'] }} miles</dd>
+          <dd class="govuk-summary-list__actions">
+            <strong class="govuk-tag">
+              Top-up miles
+            </strong>
+          </dd>
+        </div>
+      {% endif %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key" id="row-diff-label">
+          Cost at 3p per mile
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {% if data['totalDebitMiles'] %}
+            {{ data['totalDebitCostFormatted'] }}
+          {% else %}
+            {{ data['evedCostFormatted'] or '£0.00' }}
+          {% endif %}
+        </dd>
+        <dd class="govuk-summary-list__actions">
+            <strong class="govuk-tag govuk-tag--purple">
+              Payment
+            </strong>
+          </dd>
+      </div>
+    </dl>
+  </div>
+  </div>
+
+    <h2 class="govuk-heading-m">What happens next</h2>
+
+    <p class="govuk-body">
+      If an email address was provided, we’ll send you confirmation.
+    </p>
+
+    <h2 class="govuk-heading-m">You can also</h2>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>
+        view the amount of miles purchased at
+        <a class="govuk-link" href="https://vehicleenquiry.service.gov.uk">
+          vehicleenquiry.service.gov.uk
+        </a>
+      </li>
+      <li>
+        buy additional miles at
+        <a class="govuk-link" href="https://mileage.portal.gov.uk">
+          mileage.portal.gov.uk
+        </a>
+      </li>
+      <li>
+        see your driving licence and vehicle details in one place at
+        <a class="govuk-link" href="https://www.gov.uk/driver-vehicles-account">
+          www.gov.uk/driver-vehicles-account
+        </a>
+      </li>
+    </ul>
+
+    <a href="https://www.gov.uk" class="govuk-button">
+      Return to GOV.UK
+    </a>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="#" onclick="window.print(); return false;">
+        Print this page
+      </a>
+    </p>
+
+  </div>
+</div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const registration = params.get('vehicle-reg');
+
+  if (registration && registration.trim() !== '') {
+    document.getElementById('registration-number').textContent = registration.trim();
+  }
+</script>
+
+{% endblock %}
