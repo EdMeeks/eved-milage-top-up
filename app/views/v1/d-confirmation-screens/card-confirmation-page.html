@@ -15,7 +15,61 @@
       html: "Your application reference:<br><strong>5470-5281-6173-4485</strong>"
     }) }}
 
-    <h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-6">Confirmation of added miles</h2>
+    
+
+    <!--Date timestamp-->
+
+    <!--<div class="call-to-action">-->
+
+      <div>
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-6">Confirmation of added miles</h2>
+
+            <p>
+                <strong>Date submitted: </strong>
+                <current date:="" <b=""> <span id="span1"></span>
+            <script type="text/javascript">
+                function GetDateFormat(date) {
+
+                var month = today.toLocaleString('default', { month: 'long' });
+
+                var day = date.getDate().toString();
+                day = day.length > 1 ? day : '0' + day;
+
+                return day + ' ' + month + ' ' + date.getFullYear();
+                }
+
+                var today = new Date();
+                var dateObj = new Date();
+                var dateFormat = GetDateFormat(dateObj); // 07/05/2016
+
+                document.getElementById('span1').innerHTML = dateFormat
+
+                            </script>
+
+                            <span>at</span>
+
+                            <script>
+                const dateTimeformat = (date) => {
+                let hours = date.getHours();
+                let minutes = date.getMinutes();
+                let x = hours >= 12 ? 'pm' : 'am';
+                hours = hours % 24;
+                hours = hours ? hours : 24;
+                minutes = minutes.toString().padStart(2, '0');
+                let mergeTime = hours + ':' + minutes + '' ;
+                return mergeTime;
+                }
+                document.write(dateTimeformat(new Date()));
+            </script>
+            </current></p>
+
+            <p class="govuk-body govuk-!-margin-bottom-6">These details confirm your submission. You do not need to contact us unless we get in touch with you.</p>
+
+
+
+        </div>
+
 
     <!-- Vehicle summary -->
 
@@ -155,7 +209,7 @@
       </li>
     </ul>
 
-    <a href="https://www.gov.uk" class="govuk-button">
+    <a href="https://www.gov.uk" class="govuk-button govuk-!-margin-top-3">
       Return to GOV.UK
     </a>
 
