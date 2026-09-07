@@ -1,0 +1,79 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/v1/a-starting-screens/check-vehicle-details" method="get" novalidate>
+
+      <div class="govuk-form-group">
+        <h1 class="govuk-heading-xl">
+          <label class="govuk-label govuk-label--l" for="v11-reference">
+            What is your car registration and V5c reference number?
+          </label>
+        </h1>
+
+        <p class="govuk-body govuk-!-margin-bottom-6">
+          We need this information to check your vehicle details.
+        </p>
+
+        {{ govukInput({
+          hint: {
+            text: "Enter your vehicle registration"
+          },
+          classes: "govuk-input--width-10",
+          id: "vehicle-reg",
+          name: 'vehicle-reg',
+          value: data['vehicle-reg']
+        }) }}
+
+        {{ govukInput({
+          hint: {
+            text: "Enter the 11-digit reference number from your V5c document"
+          },
+          classes: "govuk-input--width-20",
+          id: "v5c-ref",
+          name: 'v5c-ref',
+          value: data['v5c-ref']
+        }) }}
+
+        
+
+        <!--input
+          class="govuk-input govuk-input--width-20"
+          id="v11-reference"
+          name="v11Reference"
+          type="text"
+          inputmode="numeric"
+          autocomplete="off"
+          aria-describedby="v11-reference-hint"
+        >
+      </div-->
+
+      <!--button type="submit" class="govuk-button govuk-!-margin-top-6" data-module="govuk-button">
+        Continue
+      </button-->
+
+      <button type="submit" class="govuk-button govuk-!-margin-top-6" data-module="govuk-button">
+        Continue
+      </button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

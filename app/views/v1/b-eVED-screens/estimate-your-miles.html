@@ -1,0 +1,101 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Estimate your mileage – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+{% if error %}
+{{ govukErrorSummary({
+  titleText: "There is a problem",
+  errorList: [{
+    text: errorMessage,
+    href: "#mileage-top-up"
+  }]
+}) }}
+{% endif %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+  <h1 class="govuk-heading-l">
+      How many miles do you wish to add to your vehicle?
+    </h1>
+
+    {% if data['showAddedMileageInset'] and data['estimatedMileage'] %}
+      {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+      {% call govukInsetText() %}
+        Added miles: <strong>{{ data['estimatedMileage'] }} miles</strong>
+      {% endcall %}
+    {% endif %}
+
+    <p class="govuk-body">The minimum mileage you can add is 100 miles.</p> 
+
+      <form id="estimate-mileage-form" action="/v1/b-eVED-screens/estimate-your-miles-answer" method="post" novalidate>
+      <input type="hidden" id="current-mileage" name="currentMileage" value="{{ data['exactMileageMiles'] or data['exactMileage'] or '' }}">
+      <div class="govuk-form-group{% if error %} govuk-form-group--error{% endif %}" id="mileage-form-group">
+        {% if error %}
+          <p id="mileage-entered-error" class="govuk-error-message">
+            <span class="govuk-visually-hidden">Error:</span> {{ errorMessage }}
+          </p>
+        {% endif %}
+        <div id="waste-hint" class="govuk-hint">
+      Add more miles
+      </div>
+      
+
+      <div class="govuk-input__wrapper govuk-!-margin-bottom-3">
+      <input class="govuk-input{% if error %} govuk-input--error{% endif %} govuk-input--width-5" type="number" id="mileage-top-up" name="estimatedMileageMiles" placeholder="0" inputmode="numeric" min="100"{% if error %} aria-describedby="mileage-entered-error"{% endif %}>
+
+      <div class="govuk-input__suffix" aria-hidden="true">miles</div>
+      </div>
+
+      
+      <div class="error-msg" id="error-msg">
+
+    </div>
+
+    </div>
+
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+      </form>
+
+  </div>
+</div>
+
+<script>
+  const estimateMileageForm = document.getElementById('estimate-mileage-form');
+  const estimateMileageInput = document.getElementById('mileage-top-up');
+  const estimateMileageGroup = document.getElementById('mileage-form-group');
+  const estimateMileageError = document.getElementById('error-msg');
+
+  estimateMileageForm.addEventListener('submit', function (event) {
+    if (estimateMileageInput.value.trim() !== '' && Number(estimateMileageInput.value) < 100) {
+      event.preventDefault();
+      estimateMileageError.innerHTML = '<p id="mileage-entered-error" class="govuk-error-message"><span class="govuk-visually-hidden">Error:</span> Enter at least 100 miles.</p>';
+      estimateMileageGroup.classList.add('govuk-form-group--error');
+      estimateMileageInput.classList.add('govuk-input--error');
+      estimateMileageInput.focus();
+    }
+  });
+
+  const currentMileageInput = document.getElementById('current-mileage');
+  const mileageFromBalance = new URLSearchParams(window.location.search).get('mileage');
+
+  if (currentMileageInput && !currentMileageInput.value && mileageFromBalance) {
+    currentMileageInput.value = mileageFromBalance;
+  }
+</script>
+
+{% endblock %}
