@@ -14,14 +14,6 @@
 
 {% block content %}
 <style>
-  .govuk-notification-banner--success {
-    background-color: #ca3535;
-    border-color: #ca3535;
-  }
-
-  .govuk-notification-banner--success .govuk-notification-banner__header {
-    background-color: #ca3535;
-  }
 
   #cost-row.is-hidden {
     display: none;
@@ -49,41 +41,30 @@
     <div class="govuk-grid-column-two-thirds">
 <h1 class="govuk-heading-l">Mileage balance</h1>
 
-<div class="govuk-panel govuk-panel--interruption">
-  <div class="govuk-panel__body">
-      <div class="status-banner" id="status-banner">
-        <div class="status-icon" id="status-icon"></div>
-          <div class="status-text">
-            <div class="headline govuk-heading-m" id="status-headline"><p class="govuk-body"></p></div>
-            <div class="sub govuk-body govuk-!-margin-bottom-0" id="status-sub"></div>
-          </div>
-      </div>
+  <div class="govuk-notification-banner" role="alert" aria-labelledby="debit-notification-title" data-module="govuk-notification-banner" hidden id="debit-notification">
+    <div class="govuk-notification-banner__header">
+      <h2 class="govuk-notification-banner__title" id="debit-notification-title">Debit</h2>
+    </div>
+    <div class="govuk-notification-banner__content">
+      <h3 class="govuk-notification-banner__heading">Your current mileage is in debit</h3>
+      <p class="govuk-body">Your vehicle has exceeded its purchased mileage by <strong id="debit-miles"></strong>.</p>
     </div>
   </div>
 
-  <div class="govuk-notification-banner govuk-notification-banner--success" role="alert" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner" hidden id="success-notification">
+  <div class="govuk-notification-banner" role="alert" aria-labelledby="credit-notification-title" data-module="govuk-notification-banner" hidden id="credit-notification">
     <div class="govuk-notification-banner__header">
-      <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-        Error
-      </h2>
+      <h2 class="govuk-notification-banner__title" id="credit-notification-title">Credit</h2>
     </div>
     <div class="govuk-notification-banner__content">
-      <h3 class="govuk-notification-banner__heading">
-        Mileage below target
-      </h3>
-        <p class="govuk-body" id="notification-message"></p>
+      <h3 class="govuk-notification-banner__heading">Your current mileage is in credit</h3>
+      <p class="govuk-body">You have a balance of <strong id="credit-miles"></strong> remaining on your vehicle.</p>
     </div>
   </div>
 
 
 
 <div>
-    
 
-{% call govukInsetText() %}
-        The mileage information shown is based on your latest records. 
-        If any details are incorrect, you should contact DVLA before continuing.
-      {% endcall %}
 
 
   <div class="card">
@@ -96,7 +77,7 @@
   
   <div class="govuk-summary-card__content">
     <dl class="govuk-summary-list">
-      <div class="govuk-summary-list__row">
+      <div class="govuk-summary-list__row" style="display:none;">
         <dt class="govuk-summary-list__key">
           Previous total milage
         </dt>
@@ -106,7 +87,7 @@
       </div>
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Your current mileage
+          Odometer reading
         </dt>
         <dd class="govuk-summary-list__value value" id="row-input">
           –
@@ -114,10 +95,13 @@
       </div>
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Previous added miles
+          Paid for mileage
         </dt>
-        <dd class="govuk-summary-list__value">
-          8,000 miles
+        <dd class="govuk-summary-list__value value">
+        44,825 miles
+        </dd>
+        <dd class="govuk-summary-list__value" id="row-paid-for-mileage" style="display:none">
+          –
         </dd>
       </div>
       <div class="govuk-summary-list__row" id="diff-row">
@@ -215,6 +199,7 @@
 
     document.getElementById('row-target').textContent = formatNum(TARGET) + ' miles';
     document.getElementById('row-input').textContent = formatNum(num) + ' miles';
+    document.getElementById('row-paid-for-mileage').textContent = formatNum(num + PREVIOUS_ADDED_MILES) + ' miles';
 
     const diffRowValue = document.getElementById('row-diff');
     const diffRowLabel = document.getElementById('row-diff-label');
@@ -226,16 +211,17 @@
     diffRowValue.classList.remove('under', 'over');
     diffRowValue.classList.add(isInCredit ? 'under' : 'over');
 
-    const banner = document.getElementById('status-banner');
-    const icon = document.getElementById('status-icon');
-    const headline = document.getElementById('status-headline');
-    const sub = document.getElementById('status-sub');
+    const debitNotification = document.getElementById('debit-notification');
+    const creditNotification = document.getElementById('credit-notification');
+    const debitMiles = document.getElementById('debit-miles');
+    const creditMiles = document.getElementById('credit-miles');
     const checkAnotherButton = document.getElementById('check-another-button');
-
-    banner.classList.remove('under', 'over');
 
     if (isInCredit) {
       checkAnotherButton.style.display = 'none';
+      creditNotification.hidden = false;
+      debitNotification.hidden = true;
+      creditMiles.textContent = formatNum(credit) + ' miles';
       diffRowLabel.textContent = 'Remaining credit';
       mileageStatusTag.classList.remove('govuk-tag--red');
       mileageStatusTag.classList.add('govuk-tag--green');
@@ -244,17 +230,14 @@
       diffRowValue.parentElement.classList.add('cost-hidden');
       costRow.style.display = 'none';
       costRow.classList.add('is-hidden');
-      document.querySelector('.govuk-panel--interruption').hidden = false;
-      document.getElementById('success-notification').hidden = true;
-      banner.classList.add('under');
-      icon.textContent = '';
-      headline.textContent = 'Your current mileage is in credit';
-      sub.innerHTML = 'You have a balance of <strong>' + formatNum(credit) + ' miles</strong> remaining on your vehicle';
     } else {
       checkAnotherButton.style.display = 'none';
       const mileageOwed = Math.abs(credit);
       const cost = mileageOwed * 0.03;
 
+      debitNotification.hidden = false;
+      creditNotification.hidden = true;
+      debitMiles.textContent = formatNum(mileageOwed) + ' miles';
       diffRowLabel.textContent = 'Total debit';
       mileageStatusTag.classList.remove('govuk-tag--green');
       mileageStatusTag.classList.add('govuk-tag--red');
@@ -264,12 +247,6 @@
       costValue.textContent = '£' + cost.toFixed(2);
       costRow.style.display = 'table-row';
       costRow.classList.remove('is-hidden');
-      document.querySelector('.govuk-panel--interruption').hidden = false;
-      document.getElementById('success-notification').hidden = true;
-      banner.classList.add('under');
-      icon.textContent = '';
-      headline.textContent = 'Your current mileage is in debit';
-      sub.innerHTML = 'Your vehicle has exceeded its purchased mileage by <strong>' + formatNum(mileageOwed) + ' miles</strong>';
     }
   }
 
