@@ -264,11 +264,7 @@ router.post("/b-eVED-screens/vehicle-details", function (request, response) {
     request.session.data["vehicle-reg"] = request.body["vehicle-reg"];
   }
 
-  if (request.session.data["vechile-details-radios"] === "yes") {
-    return response.redirect("/v1/b-eVED-screens/do-you-know-exact-mileage");
-  }
-
-  return response.redirect("/v1/a-starting-screens/V5c-number");
+  return response.redirect("/v1/b-eVED-screens/do-you-know-exact-mileage");
 });
 
 // Mileage choice routing
@@ -292,8 +288,14 @@ function handleMileageChoice(request, response, noDestination, fromPaymentSummar
 
 router.post("/b-eVED-screens/mileage-balance-answer", function (request, response) {
   const destination = "/v1/a-starting-screens/start-page";
+  const currentMileage = request.body.currentMileage || request.session.data["exactMileageMiles"];
+  const isInDebit = Number(currentMileage) > 36825 + 8000;
 
   if (request.body["add-more-miles"] === "no") {
+    if (isInDebit) {
+      return response.redirect("/v1/b-eVED-screens/your-payment-summary?currentMileage=" + encodeURIComponent(currentMileage || ""));
+    }
+
     request.session.data.exactMileage = '';
     request.session.data.exactMileageMiles = '';
     request.session.data.exactMileageKm = '';
@@ -314,6 +316,10 @@ router.post("/b-eVED-screens/mileage-balance-answer", function (request, respons
 });
 
 router.post("/b-eVED-screens/your-payment-summary-answer", function (request, response) {
+  if (!request.body["add-more-miles"] && Number(request.session.data.estimatedMileage) > 0) {
+    return response.redirect("/v1/c-payment-screens/confirmation-of-your-payment");
+  }
+
   return handleMileageChoice(request, response, "/v1/c-payment-screens/confirmation-of-your-payment", true);
 });
 
@@ -361,6 +367,8 @@ router.post('/b-eVED-screens/estimate-your-miles-answer', function (req, res) {
   addedMileageEntries.push(estimatedMileage)
   req.session.data['addedMileageEntries'] = addedMileageEntries
   req.session.data['estimatedMileage'] = addedMileageEntries.reduce((total, miles) => total + Number(miles), 0)
+  req.session.data['estimatedMileageFormatted'] = req.session.data['estimatedMileage'].toLocaleString('en-GB')
+  req.session.data.addedMilesRemoved = false
 
   return res.redirect('/v1/b-eVED-screens/your-payment-summary?currentMileage=' + encodeURIComponent(currentMileage || ''))
 })
@@ -424,6 +432,15 @@ function formatCurrencyGBP(amount) {
 
 router.get('/b-eVED-screens/your-payment-summary', function (req, res) {
   const data = req.session.data
+
+  if (req.query.remove === 'true') {
+    data.estimatedMileage = 0
+    data.estimatedMileageMiles = 0
+    data.estimatedMileageFormatted = ''
+    data.addedMileageEntries = []
+    data.addedMilesRemoved = true
+  }
+
   const currentMileage = req.query.currentMileage || data.exactMileageMiles || data.exactMileage
   const purchasedMileage = 36825 + 8000
   const debitMiles = Number(currentMileage) - purchasedMileage
@@ -432,6 +449,7 @@ router.get('/b-eVED-screens/your-payment-summary', function (req, res) {
   if (currentMileage) {
     data.exactMileageMiles = currentMileage
     data.exactMileage = currentMileage
+    data.exactMileageMilesFormatted = Number(currentMileage).toLocaleString('en-GB')
   }
 
   data.totalDebitMiles = debitMiles > 0 ? debitMiles + addedMiles : 0

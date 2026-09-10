@@ -40,6 +40,11 @@
         </span>
 
         </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link govuk-link--no-visited-state" href="/v1/a-starting-screens/V5c-number">
+            Change<span class="govuk-visually-hidden"> registration number</span>
+          </a>
+        </dd>
       </div>
 
       <!-- create if statements here -->
@@ -63,7 +68,7 @@
 
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">Tax class</dt>
-        <dd class="govuk-summary-list__value">Alternative fuel</dd>
+        <dd class="govuk-summary-list__value">Electrically propelled vehicle</dd>
       </div>
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">Licence period expiry</dt>
@@ -200,33 +205,6 @@
     {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
       
-
-    {% from "govuk/components/radios/macro.njk" import govukRadios %}
-
-      {{ govukRadios({
-        classes: "govuk-radios--inline",
-        name: "vechile-details-radios",
-        fieldset: {
-          legend: {
-            text: "Are these details correct?",
-            isPageHeading: true,
-            classes: "govuk-fieldset__legend--s"
-          }
-        },
-        hint: {
-          text: ""
-        },
-        items: [
-          {
-            value: "yes",
-            text: "Yes"
-          },
-          {
-            value: "no",
-            text: "No, try again"
-          }
-        ]
-      }) }}
 
     <p class="govuk-body">
       By clicking ‘Continue’ you agree to DVLA checking that your vehicle has an electronic MOT/GVT certificate (if applicable).
