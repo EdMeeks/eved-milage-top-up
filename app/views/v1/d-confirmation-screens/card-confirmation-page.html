@@ -110,7 +110,7 @@
 
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">Tax class</dt>
-        <dd class="govuk-summary-list__value">Alternative fuel</dd>
+        <dd class="govuk-summary-list__value">Electrically propelled vehicle</dd>
       </div>
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">Licence period expiry</dt>
@@ -120,13 +120,13 @@
         </div>
     </div>
 
-     <!-- Mileage summary -->
+     <!-- Milage summary -->
 
     <div class="card">
     <div class="govuk-summary-card results">
     <div class="govuk-summary-card__title-wrapper">
       <h2 class="govuk-summary-card__title">
-        Mileage summary
+        Milage summary
       </h2>
     </div>
 
@@ -134,7 +134,7 @@
     <dl class="govuk-summary-list">
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Odometer reading
+          Exact milage reading
         </dt>
         <dd class="govuk-summary-list__value value" id="row-input">
           {{ data['exactMileageMilesFormatted'] or data['exactMileageMiles'] or data['exactMileage'] or 'Not provided' }} miles
@@ -163,18 +163,18 @@
       {% endif %}
       {% if data['totalDebitMiles'] %}
         <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">Total debit</dt>
+          <dt class="govuk-summary-list__key">Milage owed</dt>
           <dd class="govuk-summary-list__value">{{ data['totalDebitMiles'] }} miles</dd>
-          <dd class="govuk-summary-list__actions">
-            <strong class="govuk-tag">
+          <!--dd class="govuk-summary-list__actions">
+            <trong class="govuk-tag">
               Added miles
             </strong>
-          </dd>
+          </dd-->
         </div>
       {% endif %}
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key" id="row-diff-label">
-          Cost at 3p per mile
+          Total cost
         </dt>
         <dd class="govuk-summary-list__value">
           {% if data['totalDebitMiles'] %}
@@ -182,6 +182,14 @@
           {% else %}
             {{ data['evedCostFormatted'] or '£0.00' }}
           {% endif %}
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          New estimated milage
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['newEstimatedMileageFormatted'] }} miles
         </dd>
       </div>
     </dl>

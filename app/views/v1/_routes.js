@@ -258,10 +258,42 @@ router.post("/a-starting-screens/do-you-have-a-V5c-answer", function (request, r
   return response.redirect("/v1/a-starting-screens/which-document-do-you-have");
 });
 
+//Doesn't have V11 reminder letter:
+router.post('/a-starting-screens/which-document-do-you-have-answer', function (req, res) {
+  const documentType = req.session.data['documentType']
+
+  if (documentType === 'v5c-2') {
+    return res.redirect('/v1/a-starting-screens/v5c-2')
+  }
+
+  if (documentType === 'no-docs') {
+    return res.redirect('/v1/a-starting-screens/no-docs')
+  }
+
+  // If nothing selected, send them back
+  return res.redirect('/v1/a-starting-screens/no-docs')
+})
+
+router.post('/a-starting-screens/v5c-2-answer', function (req, res) {
+  const registration = req.body['vehicle-reg-2']
+
+  req.session.data['vehicle-reg-2'] = registration
+  req.session.data['vehicle-reg'] = registration
+  req.session.data.registrationEntryPath = 'v5c-2'
+
+  return res.redirect('/v1/a-starting-screens/check-vehicle-details?vehicle-reg=' +
+    encodeURIComponent(registration || '') + '&source=v5c-2')
+})
+
 // Vehichle details
 router.post("/b-eVED-screens/vehicle-details", function (request, response) {
   if (request.body["vehicle-reg"]) {
     request.session.data["vehicle-reg"] = request.body["vehicle-reg"];
+  }
+  if (request.body["registration-entry-path"] === "v5c-2") {
+    request.session.data.registrationEntryPath = "v5c-2";
+  } else {
+    request.session.data.registrationEntryPath = "v5c-number";
   }
 
   return response.redirect("/v1/b-eVED-screens/do-you-know-exact-mileage");
@@ -443,6 +475,7 @@ router.get('/b-eVED-screens/your-payment-summary', function (req, res) {
 
   const currentMileage = req.query.currentMileage || data.exactMileageMiles || data.exactMileage
   const purchasedMileage = 36825 + 8000
+  const paidForMileage = 44825
   const debitMiles = Number(currentMileage) - purchasedMileage
   const addedMiles = Number(data.estimatedMileage) || 0
 
@@ -468,10 +501,12 @@ router.get('/b-eVED-screens/your-payment-summary', function (req, res) {
 
   // eVED
   const estimatedMiles = toNumber(data.estimatedMileage)
+  const newEstimatedMileage = paidForMileage + estimatedMiles
   const debitMilesForCost = Math.max((Number(currentMileage) || 0) - purchasedMileage, 0)
   const totalMileage = debitMilesForCost + estimatedMiles
   const evedCost = totalMileage * 0.03
   data.totalMileage = totalMileage
+  data.newEstimatedMileageFormatted = newEstimatedMileage.toLocaleString('en-GB')
   data.totalDebitCostFormatted = formatCurrencyGBP(evedCost)
 
   // Total
