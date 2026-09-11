@@ -17,7 +17,7 @@
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <form action="/a-starting-screens/which-document-do-you-have-answer" method="post" novalidate>
+    <form action="/v1/a-starting-screens/which-document-do-you-have-answer" method="post" novalidate>
 
       <div class="govuk-form-group">
         <fieldset class="govuk-fieldset">
@@ -27,20 +27,20 @@
             </h1>
           </legend>
 
-          <div class="govuk-radios" data-module="govuk-radios">
+          <!--div class="govuk-radios" data-module="govuk-radios">
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="documentType" name="documentType" type="radio" value="v5c">
               <label class="govuk-label govuk-radios__label" for="documentType">
                 I have the V5C Registration Certificate (logbook) printed in my name
               </label>
-            </div>
+            </div-->
 
-            <div class="govuk-radios__item">
+            <!--div class="govuk-radios__item">
               <input class="govuk-radios__input" id="documentType-2" name="documentType" type="radio" value="last-chance">
               <label class="govuk-label govuk-radios__label" for="documentType-2">
                 I have the Last Chance Letter printed in my name
               </label>
-            </div>
+            </div-->
 
             <div class="govuk-radios__item">
               <input class="govuk-radios__input" id="documentType-3" name="documentType" type="radio" value="v5c-2">
@@ -52,20 +52,14 @@
             <div class="govuk-radios__divider">or</div>
 
             <div class="govuk-radios__item">
-              <input class="govuk-radios__input" id="documentType-4" name="documentType" type="radio" value="email">
+              <input class="govuk-radios__input" id="documentType-4" name="documentType" type="radio" value="no-docs">
               <label class="govuk-label govuk-radios__label" for="documentType-4">
-                I have an email reminder
+                I don't have any of these documents
               </label>
             </div>
           </div>
         </fieldset>
-      </div>
-
-      <p class="govuk-body">
-      <a class="govuk-link" href="/a-starting-screens/no-docs">
-        I don't have any of these documents
-      </a>
-      </p>
+      
 
       <details class="govuk-details" data-module="govuk-details">
         <summary class="govuk-details__summary">
@@ -73,6 +67,7 @@
             Need help?
           </span>
         </summary>
+      
 
         <div class="govuk-details__text">
           <h2 class="govuk-heading-s">Webchat</h2>
