@@ -25,24 +25,34 @@
       You should have received a V5C/2 (green slip) when you became the new keeper of the vehicle.
     </p>
 
-    <form action="/a-starting-screens/check-vehicle-details" method="post" novalidate>
+    <form action="/v1/a-starting-screens/v5c-2-answer" method="post" novalidate>
 
       <div class="govuk-form-group">
+        
+
+        {{ govukInput({
+          hint: {
+            text: "Enter your vehicle registration (number plate)"
+          },
+          classes: "govuk-input--width-10",
+          id: "vehicle-reg-2",
+          name: 'vehicle-reg-2',
+          value: data['vehicle-reg-2']
+        }) }}
+
         <label class="govuk-label" for="v5c2-reference">
           <strong>V5C/2 document reference number</strong>
         </label>
-        <div id="v5c2-reference-hint" class="govuk-hint">
-          This is a 12 digit number.
-        </div>
-        <input
-          class="govuk-input govuk-input--width-10"
-          id="v5c2-reference"
-          name="v5c2Reference"
-          type="text"
-          inputmode="numeric"
-          autocomplete="off"
-          aria-describedby="v5c2-reference-hint"
-        >
+
+        {{ govukInput({
+          hint: {
+            text: "This is a 12 digit number"
+          },
+          classes: "govuk-input--width-20",
+          id: "v5c-ref",
+          name: 'v5c-ref',
+          value: data['v5c-ref']
+        }) }}
       </div>
 
       <details class="govuk-details" data-module="govuk-details">
@@ -68,24 +78,7 @@
         </strong>
       </div>
 
-      <div class="govuk-form-group">
-        <label class="govuk-label" for="vehicle-registration">
-          <strong>Vehicle registration (number plate)</strong>
-        </label>
-        <div id="vehicle-registration-hint" class="govuk-hint">
-          For example, AB77 ABC
-        </div>
-        <input
-          class="govuk-input govuk-input--width-10"
-          id="vehicle-registration"
-          name="vehicleRegistration"
-          type="text"
-          autocomplete="off"
-          aria-describedby="vehicle-registration-hint"
-        >
-      </div>
-
-      <button type="submit" class="govuk-button" data-module="govuk-button">
+      <button type="submit" class="govuk-button govuk-!-margin-top-6" data-module="govuk-button">
         Continue
       </button>
 
@@ -93,5 +86,14 @@
 
   </div>
 </div>
+
+<script>
+  const registration = new URLSearchParams(window.location.search).get('vehicle-reg-2');
+  const registrationInput = document.getElementById('vehicle-reg-2');
+
+  if (registration && registrationInput && !registrationInput.value) {
+    registrationInput.value = registration;
+  }
+</script>
 
 {% endblock %}

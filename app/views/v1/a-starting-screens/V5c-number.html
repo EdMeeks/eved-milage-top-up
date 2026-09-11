@@ -18,6 +18,7 @@
   <div class="govuk-grid-column-two-thirds">
 
     <form action="/v1/a-starting-screens/check-vehicle-details" method="get" novalidate>
+      <input type="hidden" name="source" value="v5c-number">
 
       <div class="govuk-form-group">
         <h1 class="govuk-heading-xl">
@@ -32,7 +33,7 @@
 
         {{ govukInput({
           hint: {
-            text: "Enter your vehicle registration"
+            text: "Enter your vehicle registration (number plate)"
           },
           classes: "govuk-input--width-10",
           id: "vehicle-reg",

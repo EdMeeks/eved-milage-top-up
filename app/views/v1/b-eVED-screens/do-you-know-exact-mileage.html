@@ -38,19 +38,21 @@
 
 
 
-    <p>This is the last recorded odometer reading. If this is not correct, and was provided by a registered body such as an MOT station as an official reading, you will need to contact the company that took this reading. If the last odometer reading was provided by the vehicle keeper as a self declaration, please contact DVLA.</p>
+    <!--p>This is the last recorded odometer reading. If this is not correct, and was provided by a registered body such as an MOT station as an official reading, you will need to contact the company that took this reading. If the last odometer reading was provided by the vehicle keeper as a self declaration, please contact DVLA.</p>
 
     {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
     {% call govukInsetText() %}
       Your previously recorded mileage reading is <strong>36,825 miles</strong>.
-    {% endcall %}
+    {% endcall %}-->
+
+    <!--p>​We will use this to determine if you have driven more or less than your pre-paid electric vehicle mileage</p-->
 
     <div class="govuk-form-group govuk-!-margin-top-6" id="mileage-form-group">
-      <label class="govuk-label govuk-label--s" for="event-name">Enter your current mileage</label>
-
+      <label class="govuk-label govuk-label--s" for="event-name">Enter your vehicle's exact mileage</label>
+      
       <div id="mileage-form-hint" class="govuk-hint">
-      We will use this to determine if you have driven more or less than your pre-paid electric vehicle mileage
+      Check ​the ​dashboard ​on ​your ​vehicle. ​It ​will ​show ​mileage ​or ​kilometers​​​​​
       </div>
 
       <div class="govuk-input__wrapper govuk-!-margin-bottom-3">

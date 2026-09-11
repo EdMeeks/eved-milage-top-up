@@ -17,6 +17,7 @@
 
 <form action="/v1/b-eVED-screens/vehicle-details" method="post" novalidate>
 <input type="hidden" id="vehicle-reg-input" name="vehicle-reg" value="">
+<input type="hidden" id="registration-entry-path" name="registration-entry-path" value="v5c-number">
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds-from-desktop">
 
@@ -40,13 +41,13 @@
         </span>
 
         </dd>
+
         <dd class="govuk-summary-list__actions">
-          <a class="govuk-link govuk-link--no-visited-state" href="/v1/a-starting-screens/V5c-number">
+          <a class="govuk-link govuk-link--no-visited-state" id="change-registration-link" href="/v1/a-starting-screens/V5c-number">
             Change<span class="govuk-visually-hidden"> registration number</span>
           </a>
         </dd>
       </div>
-
       <!-- create if statements here -->
 
       <div class="govuk-summary-list__row">
@@ -221,11 +222,17 @@
 
 <script>
   const params = new URLSearchParams(window.location.search);
-  const registration = params.get('vehicle-reg');
+  const registration = params.get('vehicle-reg') || params.get('vehicle-reg-2');
+  const changeRegistrationLink = document.getElementById('change-registration-link');
 
   if (registration && registration.trim() !== '') {
     document.getElementById('registration-number').textContent = registration.trim();
     document.getElementById('vehicle-reg-input').value = registration.trim();
+  }
+
+  if (params.get('source') === 'v5c-2') {
+    changeRegistrationLink.href = '/v1/a-starting-screens/v5c-2?vehicle-reg-2=' + encodeURIComponent(registration || '');
+    document.getElementById('registration-entry-path').value = 'v5c-2';
   }
 </script>
 
