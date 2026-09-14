@@ -1,4 +1,3 @@
-
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
@@ -124,6 +123,17 @@
           –
         </dd>
       </div>
+      {% if data['totalDebitMiles'] %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Milage owed</dt>
+          <dd class="govuk-summary-list__value">{{ data['totalDebitMilesFormatted'] or data['totalDebitMiles'] }} miles</dd>
+          <!--dd class="govuk-summary-list__actions">
+            <trong class="govuk-tag">
+              Added miles
+            </strong>
+          </dd-->
+        </div>
+      {% endif %}
       {% if data['estimatedMileage'] %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
@@ -139,22 +149,11 @@
             </a>
             </p>
             <p class="govuk-body govuk-!-margin-bottom-3">
-              <a class="govuk-link govuk-link--no-visited-state" href="/v1/b-eVED-screens/your-payment-summary?remove=true&currentMileage={{ data['exactMileageMiles'] or data['exactMileage'] or '' }}">
+              <a class="govuk-link govuk-link--no-visited-state" href="/v1/b-eVED-screens/your-payment-summary?remove=true&currentMileage={{ data['exactMileageMiles'] or data['exactMileage'] or '' }}{% if (data['exactMileageMiles'] or data['exactMileage'] or 0) < 44825 %}&redirect=mileage-balance{% endif %}">
                 Remove<span class="govuk-visually-hidden"> added miles</span>
               </a>
             </p>
           </dd>
-        </div>
-      {% endif %}
-      {% if data['totalDebitMiles'] %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">Milage owed</dt>
-          <dd class="govuk-summary-list__value">{{ data['totalDebitMiles'] }} miles</dd>
-          <!--dd class="govuk-summary-list__actions">
-            <trong class="govuk-tag">
-              Added miles
-            </strong>
-          </dd-->
         </div>
       {% endif %}
       <div class="govuk-summary-list__row">

@@ -120,7 +120,7 @@
         </div>
     </div>
 
-     <!-- Milage summary -->
+    <!-- Milage summary -->
 
     <div class="card">
     <div class="govuk-summary-card results">
@@ -151,6 +151,17 @@
           –
         </dd>
       </div>
+      {% if data['totalDebitMiles'] %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Milage owed</dt>
+          <dd class="govuk-summary-list__value">{{ data['totalDebitMilesFormatted'] or data['totalDebitMiles'] }} miles</dd>
+          <!--dd class="govuk-summary-list__actions">
+            <trong class="govuk-tag">
+              Added miles
+            </strong>
+          </dd-->
+        </div>
+      {% endif %}
       {% if data['estimatedMileage'] %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
@@ -159,17 +170,6 @@
           <dd class="govuk-summary-list__value">
             {{ data['estimatedMileageFormatted'] or data['estimatedMileage'] }} miles
           </dd>
-        </div>
-      {% endif %}
-      {% if data['totalDebitMiles'] %}
-        <div class="govuk-summary-list__row">
-          <dt class="govuk-summary-list__key">Milage owed</dt>
-          <dd class="govuk-summary-list__value">{{ data['totalDebitMiles'] }} miles</dd>
-          <!--dd class="govuk-summary-list__actions">
-            <trong class="govuk-tag">
-              Added miles
-            </strong>
-          </dd-->
         </div>
       {% endif %}
       <div class="govuk-summary-list__row">
