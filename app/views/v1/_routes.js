@@ -319,7 +319,7 @@ function handleMileageChoice(request, response, noDestination, fromPaymentSummar
 }
 
 router.post("/b-eVED-screens/mileage-balance-answer", function (request, response) {
-  const destination = "/v1/a-starting-screens/start-page";
+  const destination = "/v1/b-eVED-screens/no-extra-mileage";
   const currentMileage = request.body.currentMileage || request.session.data["exactMileageMiles"];
   const isInDebit = Number(currentMileage) > 36825 + 8000;
 
