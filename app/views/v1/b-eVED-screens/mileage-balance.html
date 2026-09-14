@@ -87,7 +87,7 @@
       </div>
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Odometer reading
+          Exact milage reading
         </dt>
         <dd class="govuk-summary-list__value value" id="row-input">
           –
@@ -238,7 +238,7 @@
       debitNotification.hidden = false;
       creditNotification.hidden = true;
       debitMiles.textContent = formatNum(mileageOwed) + ' miles';
-      diffRowLabel.textContent = 'Total debit';
+      diffRowLabel.textContent = 'Milage owed';
       mileageStatusTag.classList.remove('govuk-tag--green');
       mileageStatusTag.classList.add('govuk-tag--red');
       mileageStatusTag.textContent = 'Exceeded miles';

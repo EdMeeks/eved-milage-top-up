@@ -464,6 +464,8 @@ function formatCurrencyGBP(amount) {
 
 router.get('/b-eVED-screens/your-payment-summary', function (req, res) {
   const data = req.session.data
+  const currentMileage = req.query.currentMileage || data.exactMileageMiles || data.exactMileage
+  const purchasedMileage = 36825 + 8000
 
   if (req.query.remove === 'true') {
     data.estimatedMileage = 0
@@ -471,10 +473,12 @@ router.get('/b-eVED-screens/your-payment-summary', function (req, res) {
     data.estimatedMileageFormatted = ''
     data.addedMileageEntries = []
     data.addedMilesRemoved = true
+
+    if (req.query.redirect === 'mileage-balance' && Number(currentMileage) < purchasedMileage) {
+      return res.redirect('/v1/b-eVED-screens/mileage-balance?mileage=' + encodeURIComponent(currentMileage || ''))
+    }
   }
 
-  const currentMileage = req.query.currentMileage || data.exactMileageMiles || data.exactMileage
-  const purchasedMileage = 36825 + 8000
   const paidForMileage = 44825
   const debitMiles = Number(currentMileage) - purchasedMileage
   const addedMiles = Number(data.estimatedMileage) || 0
@@ -486,6 +490,7 @@ router.get('/b-eVED-screens/your-payment-summary', function (req, res) {
   }
 
   data.totalDebitMiles = debitMiles > 0 ? debitMiles + addedMiles : 0
+  data.totalDebitMilesFormatted = data.totalDebitMiles.toLocaleString('en-GB')
   data.totalDebitCostFormatted = formatCurrencyGBP(data.totalDebitMiles * 0.03)
 
   // Registration number
@@ -501,12 +506,11 @@ router.get('/b-eVED-screens/your-payment-summary', function (req, res) {
 
   // eVED
   const estimatedMiles = toNumber(data.estimatedMileage)
-  const newEstimatedMileage = paidForMileage + estimatedMiles
   const debitMilesForCost = Math.max((Number(currentMileage) || 0) - purchasedMileage, 0)
   const totalMileage = debitMilesForCost + estimatedMiles
   const evedCost = totalMileage * 0.03
   data.totalMileage = totalMileage
-  data.newEstimatedMileageFormatted = newEstimatedMileage.toLocaleString('en-GB')
+  data.newEstimatedMileageFormatted = (paidForMileage + totalMileage).toLocaleString('en-GB')
   data.totalDebitCostFormatted = formatCurrencyGBP(evedCost)
 
   // Total
