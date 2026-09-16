@@ -72,7 +72,7 @@
 
 .govuk-notification-banner {
     border: 5px solid;
-    border-color: var(--_govuk-notification-banner-colour);
+    border-color: var(--_govuk-notification-banner-colour, #1d70b8);
 }
 
 .govuk-notification-banner--fail {
