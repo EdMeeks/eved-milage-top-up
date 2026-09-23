@@ -1,0 +1,330 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Application complete – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {{ govukPanel({
+      titleText: "Payment complete",
+      html: "Your application reference:<br><strong>5470-5281-6173-4485</strong>"
+    }) }}
+
+    
+
+    <!--Date timestamp-->
+
+    <!--<div class="call-to-action">-->
+
+      <div>
+
+      <h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-6">Confirmation of added miles</h2>
+
+            <p>
+                <strong>Date submitted: </strong>
+                <current date:="" <b=""> <span id="span1"></span>
+            <script type="text/javascript">
+                function GetDateFormat(date) {
+
+                var month = today.toLocaleString('default', { month: 'long' });
+
+                var day = date.getDate().toString();
+                day = day.length > 1 ? day : '0' + day;
+
+                return day + ' ' + month + ' ' + date.getFullYear();
+                }
+
+                var today = new Date();
+                var dateObj = new Date();
+                var dateFormat = GetDateFormat(dateObj); // 07/05/2016
+
+                document.getElementById('span1').innerHTML = dateFormat
+
+                            </script>
+
+                            <span>at</span>
+
+                            <script>
+                const dateTimeformat = (date) => {
+                let hours = date.getHours();
+                let minutes = date.getMinutes();
+                let x = hours >= 12 ? 'pm' : 'am';
+                hours = hours % 24;
+                hours = hours ? hours : 24;
+                minutes = minutes.toString().padStart(2, '0');
+                let mergeTime = hours + ':' + minutes + '' ;
+                return mergeTime;
+                }
+                document.write(dateTimeformat(new Date()));
+            </script>
+            </current></p>
+
+            <p class="govuk-body govuk-!-margin-bottom-6">These details confirm your submission. You do not need to contact us unless we get in touch with you.</p>
+
+
+
+        </div>
+
+
+    <!-- Vehicle summary -->
+
+  <div class="card">
+      <div class="govuk-summary-card results">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Vehicle summary</h2>
+        </div>
+
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Registration number</dt>
+        <dd class="govuk-summary-list__value">
+          
+        <span class="numberplate back" id="registration-number">
+        {{ data['vehicle-reg'] or 'SW65 DBA' }} 
+        </span>
+
+        </dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Vehichle make</dt>
+        <dd class="govuk-summary-list__value">Ford</dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Model</dt>
+        <dd class="govuk-summary-list__value">Mustang</dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Year</dt>
+        <dd class="govuk-summary-list__value">2025</dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Tax class</dt>
+        <dd class="govuk-summary-list__value">Electrically propelled vehicle</dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Licence period expiry</dt>
+        <dd class="govuk-summary-list__value">15 January 2027</dd>
+      </div>
+
+        </div>
+    </div>
+
+    <!-- Mileage summary -->
+
+    <div class="card">
+    <div class="govuk-summary-card results">
+    <div class="govuk-summary-card__title-wrapper">
+      <h2 class="govuk-summary-card__title">
+        Mileage summary
+      </h2>
+    </div>
+
+     <div class="govuk-summary-card__content">
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Exact mileage reading
+        </dt>
+        <dd class="govuk-summary-list__value value" id="row-input">
+          {{ data['exactMileageMilesFormatted'] or data['exactMileageMiles'] or data['exactMileage'] or 'Not provided' }} miles
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Paid for mileage
+        </dt>
+        <dd class="govuk-summary-list__value value">
+        44,825 miles
+        </dd>
+        <dd class="govuk-summary-list__value" id="row-paid-for-mileage" style="display:none">
+          –
+        </dd>
+      </div>
+      {% if data['totalDebitMiles'] %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Mileage owed</dt>
+          <dd class="govuk-summary-list__value">{{ data['totalDebitMilesFormatted'] or data['totalDebitMiles'] }} miles</dd>
+          <!--dd class="govuk-summary-list__actions">
+            <trong class="govuk-tag">
+              Added miles
+            </strong>
+          </dd-->
+        </div>
+      {% endif %}
+      {% if data['estimatedMileage'] %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Added miles
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['estimatedMileageFormatted'] or data['estimatedMileage'] }} miles
+          </dd>
+        </div>
+      {% endif %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key" id="row-diff-label">
+          Total cost
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {% if data['totalDebitMiles'] %}
+            {{ data['totalDebitCostFormatted'] }}
+          {% else %}
+            {{ data['evedCostFormatted'] or '£0.00' }}
+          {% endif %}
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          New total paid for mileage
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['newEstimatedMileageFormatted'] }} miles
+        </dd>
+      </div>
+    </dl>
+  </div>
+  </div>
+
+    <h2 class="govuk-heading-m">What happens next</h2>
+
+    <p class="govuk-body">
+      If an email address was provided, we’ll send you confirmation.
+    </p>
+
+    <h2 class="govuk-heading-m">You can also</h2>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>
+        view the amount of miles purchased at
+        <a class="govuk-link" href="https://vehicleenquiry.service.gov.uk">
+          vehicleenquiry.service.gov.uk
+        </a>
+      </li>
+      <!--li>
+        buy additional miles at
+        <a class="govuk-link" href="https://mileage.portal.gov.uk">
+          mileage.portal.gov.uk
+        </a>
+      </li-->
+      <li>
+        see your driving licence and vehicle details in one place at
+        <a class="govuk-link" href="https://www.gov.uk/driver-vehicles-account">
+          www.gov.uk/driver-vehicles-account
+        </a>
+      </li>
+    </ul>
+
+    <a href="https://www.gov.uk" class="govuk-button govuk-!-margin-top-3">
+      Return to GOV.UK
+    </a>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="#" onclick="window.print(); return false;">
+        Print this page
+      </a>
+    </p>
+
+  </div>
+</div>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const registration = params.get('vehicle-reg');
+
+  if (registration && registration.trim() !== '') {
+    document.getElementById('registration-number').textContent = registration.trim();
+  }
+</script>
+
+<script>
+  const TARGET = 36825;
+  const PREVIOUS_ADDED_MILES = 8000;
+  const PURCHASED_MILEAGE = TARGET + PREVIOUS_ADDED_MILES;
+
+  function formatNum(n) {
+    return n.toLocaleString('en-US');
+  }
+
+  function loadResult() {
+    const params = new URLSearchParams(window.location.search);
+    const raw = params.get('mileage');
+    const num = parseFloat(raw);
+
+    document.getElementById('current-mileage').value = raw || '';
+
+    // If someone lands here without a valid value, send them back to the input page
+    if (raw === null || isNaN(num) || num < 0) {
+      window.location.href = 'do-you-know-exact-mileage';
+      return;
+    }
+
+    const credit = PURCHASED_MILEAGE - num;
+    const isInCredit = num < PURCHASED_MILEAGE;
+
+    document.getElementById('row-target').textContent = formatNum(TARGET) + ' miles';
+    document.getElementById('row-input').textContent = formatNum(num) + ' miles';
+    document.getElementById('row-paid-for-mileage').textContent = formatNum(num + PREVIOUS_ADDED_MILES) + ' miles';
+
+    const diffRowValue = document.getElementById('row-diff');
+    const diffRowLabel = document.getElementById('row-diff-label');
+    const debitTag = document.getElementById('debit-tag');
+    const mileageStatusTag = document.getElementById('mileage-status-tag');
+    const costRow = document.getElementById('cost-row');
+    const costValue = document.getElementById('row-cost');
+    diffRowValue.textContent = formatNum(Math.abs(credit)) + ' miles';
+    diffRowValue.classList.remove('under', 'over');
+    diffRowValue.classList.add(isInCredit ? 'under' : 'over');
+
+    const debitNotification = document.getElementById('debit-notification');
+    const creditNotification = document.getElementById('credit-notification');
+    const debitMiles = document.getElementById('debit-miles');
+    const creditMiles = document.getElementById('credit-miles');
+    const checkAnotherButton = document.getElementById('check-another-button');
+
+    if (isInCredit) {
+      checkAnotherButton.style.display = 'none';
+      creditNotification.hidden = false;
+      debitNotification.hidden = true;
+      creditMiles.textContent = formatNum(credit) + ' miles';
+      diffRowLabel.textContent = 'Remaining credit';
+      mileageStatusTag.classList.remove('govuk-tag--red');
+      mileageStatusTag.classList.add('govuk-tag--green');
+      mileageStatusTag.textContent = 'Mileage balance';
+      debitTag.hidden = false;
+      diffRowValue.parentElement.classList.add('cost-hidden');
+      costRow.style.display = 'none';
+      costRow.classList.add('is-hidden');
+    } else {
+      checkAnotherButton.style.display = 'none';
+      const mileageOwed = Math.abs(credit);
+      const cost = mileageOwed * 0.03;
+
+      debitNotification.hidden = false;
+      creditNotification.hidden = true;
+      debitMiles.textContent = formatNum(mileageOwed) + ' miles';
+      diffRowLabel.textContent = 'Total debit';
+      mileageStatusTag.classList.remove('govuk-tag--green');
+      mileageStatusTag.classList.add('govuk-tag--red');
+      mileageStatusTag.textContent = 'Exceeded miles';
+      debitTag.hidden = false;
+      diffRowValue.parentElement.classList.remove('cost-hidden');
+      costValue.textContent = '£' + cost.toFixed(2);
+      costRow.style.display = 'table-row';
+      costRow.classList.remove('is-hidden');
+    }
+  }
+
+</script>
+
+{% endblock %}

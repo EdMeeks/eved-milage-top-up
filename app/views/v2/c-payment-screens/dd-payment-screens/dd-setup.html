@@ -1,0 +1,91 @@
+
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Your Direct Debit has been set up – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+
+
+
+<a href="javascript:history.back()" class="govuk-back-link">Back</a>
+
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      Your Direct Debit has been set up
+    </h1>
+    <p class="govuk-body">
+      Your Direct Debit payments for Vehicle Tax and Pay Per Mile have been set up.
+      We will send you a confirmation email, including your Direct Debit payment
+      schedule within 3 working days.
+    </p>
+
+    <p class="govuk-body">
+      Reference: <strong>0000000000001974049</strong>
+    </p>
+    <p class="govuk-body">
+      The payments will appear on your bank statement with these references:
+    </p>
+    <p class="govuk-body">
+      <strong>DVLA 295402</strong><br>
+      
+    </p>
+    <div style="background:#f3f2f1; padding:20px; margin-top:30px; margin-bottom:30px; max-width:650px;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:15px;">
+        <h2 class="govuk-heading-m govuk-!-margin-bottom-0">
+          Direct Debit Guarantee
+        </h2>
+        <img src="/public/images/direct-debit-logo.png" alt="Direct Debit" style="max-width:90px;">
+      </div>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          This Guarantee is offered by all banks and building societies that accept
+          instructions to pay Direct Debits.
+        </li>
+        <li>
+          If there are any changes to the amount, date or frequency of your Direct
+          Debit the Driver & Vehicle Licensing Agency (DVLA) will notify you 10
+          working days in advance of your account being debited, or as otherwise
+          agreed. If you request the DVLA to collect a payment, confirmation of the
+          amount and date will be given to you at the time of the request.
+        </li>
+        <li>
+          If an error is made in the payment of your Direct Debit by DVLA or your
+          bank or building society, you are entitled to a full and immediate refund
+          from your bank or building society.
+        </li>
+        <li>
+          If you receive a refund you are not entitled to, you must pay it back when
+          DVLA asks you to.
+        </li>
+        <li>
+          You can cancel a Direct Debit at any time by simply contacting your bank
+          or building society. Written confirmation may be required. Please also
+          notify us.
+        </li>
+      </ul>
+
+    </div>
+
+  <a class="govuk-button" data-module="govuk-button" href="/c-payment-screens/contact-details">
+      Continue
+    </a>
+
+  </div>
+
+
+
+{% endblock %}
+
+

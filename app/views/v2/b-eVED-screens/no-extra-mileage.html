@@ -1,0 +1,50 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+If you do not have any documents – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      You have not added any additional mileage to your vehicle
+    </h1>
+
+    <p>You have checked your milage is in credit and not purchased any additional milage.</p>
+
+    <h2 class="govuk-heading-m">You can also</h2>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>
+        buy additional miles at
+        <a class="govuk-link" href="https://mileage.portal.gov.uk">
+          mileage.portal.gov.uk
+        </a>
+      </li>
+      <li>
+        see your driving licence and vehicle details in one place at
+        <a class="govuk-link" href="https://www.gov.uk/driver-vehicles-account">
+          www.gov.uk/driver-vehicles-account
+        </a>
+      </li>
+    </ul>
+
+    <a href="https://www.gov.uk" class="govuk-button govuk-!-margin-top-3">
+      Return to GOV.UK
+    </a>
+
+  </div>
+</div>
+
+{% endblock %}

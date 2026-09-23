@@ -1,0 +1,312 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Your payment summary – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds-from-desktop">
+
+    <h1 class="govuk-heading-xl">Your payment summary</h1>
+
+    {% if data['estimatedMileage'] or data['addedMilesRemoved'] %}
+    <div class="govuk-notification-banner" role="region" aria-labelledby="estimated-mileage-notification-title" data-module="govuk-notification-banner">
+      <div class="govuk-notification-banner__header">
+        <h2 class="govuk-notification-banner__title" id="estimated-mileage-notification-title">
+          {% if data['addedMilesRemoved'] %}Added miles removed{% else %}Added mileage{% endif %}
+        </h2>
+      </div>
+      <div class="govuk-notification-banner__content">
+        <p class="govuk-body govuk-!-margin-bottom-0">
+          {% if data['addedMilesRemoved'] %}
+            The added miles have been removed from your vehicle.
+          {% else %}
+            You have added a balance of <strong>{{ data['estimatedMileageFormatted'] or data['estimatedMileage'] or '0' }} miles</strong> to your vehicle.
+          {% endif %}
+        </p>
+      </div>
+    </div>
+    {% endif %}
+  <!-- Vehicle summary -->
+
+  <div class="card">
+      <div class="govuk-summary-card results">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">Vehicle summary</h2>
+        </div>
+
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Registration number</dt>
+        <dd class="govuk-summary-list__value">
+          
+        <span class="numberplate back" id="registration-number">
+        {{ data['vehicle-reg'] or 'SW65 DBA' }} 
+        </span>
+
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link govuk-link--no-visited-state" href="{% if data['registrationEntryPath'] == 'v5c-2' %}/v2/a-starting-screens/v5c-2{% else %}/v2/a-starting-screens/V5c-number{% endif %}">
+            Change<span class="govuk-visually-hidden"> registration number</span>
+          </a>
+        </dd>
+      </div>
+
+      <!-- create if statements here -->
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Vehicle make</dt>
+        <dd class="govuk-summary-list__value">Ford</dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Model</dt>
+        <dd class="govuk-summary-list__value">Mustang</dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Year</dt>
+        <dd class="govuk-summary-list__value">2025</dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Tax class</dt>
+        <dd class="govuk-summary-list__value">Electrically propelled vehicle</dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Licence period expiry</dt>
+        <dd class="govuk-summary-list__value">15 January 2027</dd>
+      </div>
+
+        </div>
+    </div>
+
+    <!-- Mileage summary -->
+
+    <div class="card">
+    <div class="govuk-summary-card results">
+    <div class="govuk-summary-card__title-wrapper">
+      <h2 class="govuk-summary-card__title">
+        Mileage summary
+      </h2>
+    </div>
+
+     <div class="govuk-summary-card__content">
+    <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Exact mileage reading
+        </dt>
+        <dd class="govuk-summary-list__value value" id="row-input">
+          {{ data['exactMileageMilesFormatted'] or data['exactMileageMiles'] or data['exactMileage'] or 'Not provided' }} miles
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Paid for mileage
+        </dt>
+        <dd class="govuk-summary-list__value value">
+        44,825 miles
+        </dd>
+        <dd class="govuk-summary-list__value" id="row-paid-for-mileage" style="display:none">
+          –
+        </dd>
+      </div>
+      {% if data['totalDebitMiles'] %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">Mileage owed</dt>
+          <dd class="govuk-summary-list__value">{{ data['totalDebitMilesFormatted'] or data['totalDebitMiles'] }} miles</dd>
+          <!--dd class="govuk-summary-list__actions">
+            <trong class="govuk-tag">
+              Added miles
+            </strong>
+          </dd-->
+        </div>
+      {% endif %}
+      {% if data['estimatedMileage'] %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            Added miles
+          </dt>
+          <dd class="govuk-summary-list__value">
+            {{ data['estimatedMileageFormatted'] or data['estimatedMileage'] }} miles
+          </dd>
+          <dd class="govuk-summary-list__actions">
+            <p class="govuk-body govuk-!-margin-bottom-1">
+            <a class="govuk-link govuk-link--no-visited-state" href="/v2/b-eVED-screens/estimate-your-miles?reset=true">
+              Change<span class="govuk-visually-hidden"> added miles</span>
+            </a>
+            </p>
+            <p class="govuk-body govuk-!-margin-bottom-3">
+              <a class="govuk-link govuk-link--no-visited-state" href="/v2/b-eVED-screens/your-payment-summary?remove=true&currentMileage={{ data['exactMileageMiles'] or data['exactMileage'] or '' }}{% if (data['exactMileageMiles'] or data['exactMileage'] or 0) < 44825 %}&redirect=mileage-balance{% endif %}">
+                Remove<span class="govuk-visually-hidden"> added miles</span>
+              </a>
+            </p>
+          </dd>
+        </div>
+      {% endif %}
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key" id="row-diff-label">
+          Total cost
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {% if data['totalDebitMiles'] %}
+            {{ data['totalDebitCostFormatted'] }}
+          {% else %}
+            {{ data['evedCostFormatted'] or '£0.00' }}
+          {% endif %}
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          New total paid for mileage
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['newEstimatedMileageFormatted'] }} miles
+        </dd>
+      </div>
+    </dl>
+  </div>
+  </div>
+
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+<form action="/v2/b-eVED-screens/your-payment-summary-answer" method="post">
+  {% if not data['estimatedMileage'] %}
+    {{ govukRadios({
+  classes: "govuk-radios--inline",
+  name: "add-more-miles",
+  fieldset: {
+    legend: {
+      text: "Do you wish to add more miles?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--s govuk-!-margin-top-3"
+    }
+  },
+  hint: {
+    text: ""
+  },
+  items: [
+    {
+      value: "yes",
+      text: "Yes"
+    },
+    {
+      value: "no",
+      text: "No"
+    }
+  ]
+    }) }}
+  {% endif %}
+
+    <button class="govuk-button" data-module="govuk-button" type="submit">
+      Accept and continue
+    </button>
+
+    <details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          How are these amounts calculated?
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        Your total payment is a mileage-based charge.
+        Electric vehicles are charged at 3p per mile and plug-in hybrids at 1.5p per mile.
+      </div>
+    </details>
+
+  </div>
+</div>
+
+<script>
+  const TARGET = 36825;
+  const PREVIOUS_ADDED_MILES = 8000;
+  const PURCHASED_MILEAGE = TARGET + PREVIOUS_ADDED_MILES;
+
+  function formatNum(n) {
+    return n.toLocaleString('en-US');
+  }
+
+  function loadResult() {
+    const params = new URLSearchParams(window.location.search);
+    const raw = params.get('mileage');
+    const num = parseFloat(raw);
+
+    document.getElementById('current-mileage').value = raw || '';
+
+    // If someone lands here without a valid value, send them back to the input page
+    if (raw === null || isNaN(num) || num < 0) {
+      window.location.href = 'do-you-know-exact-mileage';
+      return;
+    }
+
+    const credit = PURCHASED_MILEAGE - num;
+    const isInCredit = num < PURCHASED_MILEAGE;
+
+    document.getElementById('row-target').textContent = formatNum(TARGET) + ' miles';
+    document.getElementById('row-input').textContent = formatNum(num) + ' miles';
+    document.getElementById('row-paid-for-mileage').textContent = formatNum(num + PREVIOUS_ADDED_MILES) + ' miles';
+
+    const diffRowValue = document.getElementById('row-diff');
+    const diffRowLabel = document.getElementById('row-diff-label');
+    const debitTag = document.getElementById('debit-tag');
+    const mileageStatusTag = document.getElementById('mileage-status-tag');
+    const costRow = document.getElementById('cost-row');
+    const costValue = document.getElementById('row-cost');
+    diffRowValue.textContent = formatNum(Math.abs(credit)) + ' miles';
+    diffRowValue.classList.remove('under', 'over');
+    diffRowValue.classList.add(isInCredit ? 'under' : 'over');
+
+    const debitNotification = document.getElementById('debit-notification');
+    const creditNotification = document.getElementById('credit-notification');
+    const debitMiles = document.getElementById('debit-miles');
+    const creditMiles = document.getElementById('credit-miles');
+    const checkAnotherButton = document.getElementById('check-another-button');
+
+    if (isInCredit) {
+      checkAnotherButton.style.display = 'none';
+      creditNotification.hidden = false;
+      debitNotification.hidden = true;
+      creditMiles.textContent = formatNum(credit) + ' miles';
+      diffRowLabel.textContent = 'Remaining credit';
+      mileageStatusTag.classList.remove('govuk-tag--red');
+      mileageStatusTag.classList.add('govuk-tag--green');
+      mileageStatusTag.textContent = 'Mileage balance';
+      debitTag.hidden = false;
+      diffRowValue.parentElement.classList.add('cost-hidden');
+      costRow.style.display = 'none';
+      costRow.classList.add('is-hidden');
+    } else {
+      checkAnotherButton.style.display = 'none';
+      const mileageOwed = Math.abs(credit);
+      const cost = mileageOwed * 0.03;
+
+      debitNotification.hidden = false;
+      creditNotification.hidden = true;
+      debitMiles.textContent = formatNum(mileageOwed) + ' miles';
+      diffRowLabel.textContent = 'Total debit';
+      mileageStatusTag.classList.remove('govuk-tag--green');
+      mileageStatusTag.classList.add('govuk-tag--red');
+      mileageStatusTag.textContent = 'Exceeded miles';
+      debitTag.hidden = false;
+      diffRowValue.parentElement.classList.remove('cost-hidden');
+      costValue.textContent = '£' + cost.toFixed(2);
+      costRow.style.display = 'table-row';
+      costRow.classList.remove('is-hidden');
+    }
+  }
+
+</script>
+
+{% endblock %}

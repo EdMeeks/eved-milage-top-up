@@ -1,0 +1,103 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Tax your vehicle – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBreadcrumbs({
+    items: [
+      { text: "Home", href: "#" },
+      { text: "Driving and transport", href: "#" },
+      { text: "Vehicle tax, MOT and insurance" }
+    ]
+  }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+
+  <!-- Main content -->
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">
+      Pay for additional mileage of your electric vehicle
+    </h1>
+
+    <div class="govuk-inset-text">
+      This service is also available
+      <a href="#">in Welsh (Cymraeg)</a>.
+    </div>
+
+    <p class="govuk-body-l">
+      Use this service to pay for additional mileage for your electric vehicle or plug-in hybrid if you have exceeded your vehicle's annual mileage allowance.
+    </p>
+
+    <p class="govuk-body">
+      You can use this service if you have a UK vehicle registration and need to pay for mileage above your annual allowance.
+    </p>
+
+    <h2 class="govuk-heading-m">
+      What you need
+    </h2>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>the registration number (number plate)</li>
+      <li>your vehicle registration V5c certificate </li>
+      <li>the current mileage reading </li>
+      <li>a debit or credit card</li>
+    </ul>
+
+    <h3 class="govuk-heading-m">
+      Cost
+    </h3>
+
+    <p class="govuk-body">
+      The cost depends on your vehicle type and how much you've exceeded your allowance. You'll see the exact amount before you pay.
+    </p>
+
+    <div class="govuk-inset-text">
+      You'll get a confirmation email when your payment is complete.
+    </div>
+
+
+    
+
+    {{ govukButton({
+      text: "Start now",
+      href: "/v2/a-starting-screens/do-you-have-a-V5c?reset=true",
+      isStartButton: true
+    }) }}
+
+
+    <h3 class="govuk-heading-m">
+      Other ways to pay
+    </h3>
+
+    <p class="govuk-body">
+      You can also pay by phone on 0300 790 6802 (Monday to Friday, 8am to 7pm, Saturday, 8am to 2pm).
+    </p>
+</div>
+
+<!-- Side content -->
+  <div class="govuk-grid-column-one-third">
+    <aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+      <h2 class="govuk-heading-m" id="subsection-title">Related content</h2>
+
+      <nav role="navigation" aria-labelledby="subsection-title">
+        <ul class="govuk-list govuk-!-font-size-16">
+          <li class="gem-c-related-navigation__link"><a class="govuk-link govuk-link govuk-link--no-visited-state" href="https://www.gov.uk/check-vehicle-tax" >Check if a vehicle is taxed</a></li>
+          <li class="gem-c-related-navigation__link"><a class="govuk-link govuk-link govuk-link--no-visited-state" href="https://www.gov.uk/get-vehicle-information-from-dvla">Get vehicle information from DVLA</a></li>
+          <li class="gem-c-related-navigation__link"><a class="govuk-link govuk-link govuk-link--no-visited-state" href="https://www.gov.uk/contact-the-dvla">Contact DVLA</a></li>
+        </ul>
+      </nav>
+    </aside>
+  </div>
+
+</div>
+{% endblock %}
