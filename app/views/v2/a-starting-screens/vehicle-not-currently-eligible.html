@@ -1,0 +1,53 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+        Vehicle not currently eligible to purchase additional miles
+    </h1>
+
+    <p>You should tax or SORN your vehicle.</p>
+    <p>You can purchase miles at the same time as taxing your vehicle.</p>
+  
+    <h2 class="govuk-heading-m">You can also</h2>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>
+        buy additional miles at
+        <a class="govuk-link" href="https://mileage.portal.gov.uk">
+          mileage.portal.gov.uk
+        </a>
+      </li>
+      <li>
+        you can SORN your vechicle at
+        <a class="govuk-link" href="https://www.gov.uk/make-a-sorn">
+          www.gov.uk/make-a-sorn
+        </a>
+      </li>
+    </ul>
+
+    <a href="https://www.gov.uk" class="govuk-button govuk-!-margin-top-3">
+      Return to GOV.UK
+    </a>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

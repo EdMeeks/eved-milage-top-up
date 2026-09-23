@@ -87,61 +87,7 @@
       </div>
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Exact mileYes, given consent
-Holidays
-Looking at gardening materials for customers
-General internet
-Don’t use social media, don’t have time
-
-Is it more browsing things?
-Yes
-
-What devices?
-iPad, lightweight, compared to PC / laptop.
-Got to do my tax return online.
-
-What would you use for tax return?
-I would use my laptop as it’s more complicated.
-
-Any gov services?
-NHS, doc appointment, app
-Car / vehicle tax, I have 3 vehicles
-
-Ever need any help?
-No vechicle tax is easy to use
-
-Ask for help?
-I used to call IT at imperial college before I was a gardener
-
-Electric car, sales person put milage tax on it. I also have a luxury vehicle so I will have luxury vehicle tax on it. My motor bike I pay monthly on it. I have just had the email to say my monthly direct debit has been set up.
-
-
-Yes, heard it won’t be much but it’s another tax.  
-
-There is no hiding from paying for the milage, as it will be found out when you do your MOT.
-
-
-Got milage owed
-
-Don’t want to add more miles as that’s correct.
-
-Asks again if I want to add more miles, assumes I am lying.
-
-Add email address, add in any email.
-
-So that would send an email to show that I paid. 
-
-I would also take a screenshot to confirm what I have paid as well.
-
-Very simple, self explanatory.
-Confusing, told me I’d paid 36,000 and then excess of 44,000.
-
-Won’t understand the word debit, would think debit card.
-
-Say “You have exceeded your current milage estimation”.
-
-Just clearer terminology.
-age reading
+          Exact mileage
         </dt>
         <dd class="govuk-summary-list__value value" id="row-input">
           –
@@ -185,7 +131,7 @@ age reading
 
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
-<form action="/v1/b-eVED-screens/mileage-balance-answer" method="post">
+<form action="/v2/b-eVED-screens/mileage-balance-answer" method="post">
   <input type="hidden" id="current-mileage" name="currentMileage" value="">
   {{ govukRadios({
   classes: "govuk-radios--inline",
