@@ -25,6 +25,10 @@
     border: 0 !important;
   }
 
+  #debit-tag[hidden] {
+    display: none !important;
+  }
+
   #diff-row.cost-hidden,
   #diff-row.cost-hidden > dt,
   #diff-row.cost-hidden > dd {
@@ -87,7 +91,7 @@
       </div>
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
-          Exact mileage
+          Exact mileage reading
         </dt>
         <dd class="govuk-summary-list__value value" id="row-input">
           –
@@ -196,6 +200,7 @@
 
     const credit = PURCHASED_MILEAGE - num;
     const isInCredit = num < PURCHASED_MILEAGE;
+    const isBalanced = num === PURCHASED_MILEAGE;
 
     document.getElementById('row-target').textContent = formatNum(TARGET) + ' miles';
     document.getElementById('row-input').textContent = formatNum(num) + ' miles';
@@ -217,7 +222,17 @@
     const creditMiles = document.getElementById('credit-miles');
     const checkAnotherButton = document.getElementById('check-another-button');
 
-    if (isInCredit) {
+    if (isBalanced) {
+      checkAnotherButton.style.display = 'none';
+      creditNotification.hidden = true;
+      debitNotification.hidden = true;
+      diffRowLabel.textContent = 'Remaining credit';
+      debitTag.hidden = true;
+      debitTag.style.display = 'none';
+      diffRowValue.parentElement.classList.add('cost-hidden');
+      costRow.style.display = 'none';
+      costRow.classList.add('is-hidden');
+    } else if (isInCredit) {
       checkAnotherButton.style.display = 'none';
       creditNotification.hidden = false;
       debitNotification.hidden = true;
@@ -227,6 +242,7 @@
       mileageStatusTag.classList.add('govuk-tag--green');
       mileageStatusTag.textContent = 'Mileage balance';
       debitTag.hidden = false;
+      debitTag.style.display = '';
       diffRowValue.parentElement.classList.add('cost-hidden');
       costRow.style.display = 'none';
       costRow.classList.add('is-hidden');
@@ -243,6 +259,7 @@
       mileageStatusTag.classList.add('govuk-tag--red');
       mileageStatusTag.textContent = 'Exceeded miles';
       debitTag.hidden = false;
+      debitTag.style.display = '';
       diffRowValue.parentElement.classList.remove('cost-hidden');
       costValue.textContent = '£' + cost.toFixed(2);
       costRow.style.display = 'table-row';
