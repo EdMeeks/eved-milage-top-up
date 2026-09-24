@@ -1,0 +1,133 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Home" %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">
+      Usability Round 2
+    </h1>
+    <h2 class="govuk-heading-m govuk-!-margin-bottom-9">5 October 2026</h2>
+    <!-- <h3 class="govuk-heading-s govuk-!-margin-bottom-1">What are we tesing?</h3> -->
+    <!-- <p class="govuk-body">Focus on filter and dashboard</p> -->
+
+    <table class="govuk-table govuk-!-margin-bottom-9">
+  <caption class="govuk-table__caption govuk-table__caption--m">Matching numberplate and V5c numbers</caption>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header app-custom-class">Correct matches</th>
+      <th scope="col" class="govuk-table__header app-custom-class">Number plate</th>
+      <th scope="col" class="govuk-table__header app-custom-class">V5c number</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">1</th>
+      <td class="govuk-table__cell">B25 CDE</td>
+      <td class="govuk-table__cell">01234567890</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">2</th>
+      <td class="govuk-table__cell">CD25 EFG</td>
+      <td class="govuk-table__cell">10234567890</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">3</th>
+      <td class="govuk-table__cell">AB75 CDE</td>
+      <td class="govuk-table__cell">12345678901</td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="govuk-table govuk-!-margin-bottom-9">
+  <caption class="govuk-table__caption govuk-table__caption--m">DOL out of date</caption>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header app-custom-class">Correct matches</th>
+      <th scope="col" class="govuk-table__header app-custom-class">Number plate</th>
+      <th scope="col" class="govuk-table__header app-custom-class">V5c number</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">1</th>
+      <td class="govuk-table__cell">UV25 XYZ</td>
+      <td class="govuk-table__cell">44567890123</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">2</th>
+      <td class="govuk-table__cell">VW75 XYZ</td>
+      <td class="govuk-table__cell">55678901234</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">3</th>
+      <td class="govuk-table__cell">WX26 YZA</td>
+      <td class="govuk-table__cell">66789012345</td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="govuk-table govuk-!-margin-bottom-9">
+  <caption class="govuk-table__caption govuk-table__caption--m">Tax renewal</caption>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header app-custom-class">Correct matches</th>
+      <th scope="col" class="govuk-table__header app-custom-class">Number plate</th>
+      <th scope="col" class="govuk-table__header app-custom-class">V5c number</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">1</th>
+      <td class="govuk-table__cell">ZA25 BCD</td>
+      <td class="govuk-table__cell">88901234567</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">2</th>
+      <td class="govuk-table__cell">ZB75 CDE</td>
+      <td class="govuk-table__cell">99012345678</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">3</th>
+      <td class="govuk-table__cell">ZC26 DEF</td>
+      <td class="govuk-table__cell">10123456789</td>
+    </tr>
+  </tbody>
+</table>
+
+    <p class="govuk-body">
+      <a class="govuk-button" id="continue" href="/v2/a-starting-screens/start-page.html">Start prototype</a>
+    </p>
+
+  <details class="govuk-details" open="">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+     What are we testing this round?
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+
+  <p class="govuk-body">Testing in round 1:</p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>Date of vehichle tax liability journey user responses to unhappy paths</li>
+    <li>Matching the number plate and V5c number are incorrect</li>
+    <li>If the date of liability has expired</li>
+    <li>If the date of liability is close to expiry </li>
+  </ul>
+  </div>
+</details>
+  </div>
+</div>
+
+
+{% endblock %}

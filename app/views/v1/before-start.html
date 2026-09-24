@@ -1,0 +1,47 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Home" %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">
+      Usability Round 1
+    </h1>
+    <h2 class="govuk-heading-m">15 September 2026</h2>
+    <!-- <h3 class="govuk-heading-s govuk-!-margin-bottom-1">What are we tesing?</h3> -->
+    <!-- <p class="govuk-body">Focus on filter and dashboard</p> -->
+    <p class="govuk-body">
+      <a class="govuk-button" id="continue" href="/v1/a-starting-screens/start-page.html">Start prototype</a>
+    </p>
+  <details class="govuk-details" open="">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+     What are we testing this round?
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+
+  <p class="govuk-body">Testing in round 1:</p>
+  <ul class="govuk-list govuk-list--bullet">
+    <li>Happy path when user has exceeded their estimated mileage</li>
+    <li>Users understanding of how data is presented</li>
+    <li>If users want to add more miles when they are in debit</li>
+    <li>What is users perception of the service and costs</li>
+  </ul>
+  </div>
+</details>
+  </div>
+</div>
+
+
+{% endblock %}
