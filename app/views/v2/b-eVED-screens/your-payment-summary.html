@@ -188,7 +188,7 @@
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
 
-<!--form action="/v2/b-eVED-screens/your-payment-summary-answer" method="post">
+<form action="/v2/b-eVED-screens/your-payment-summary-answer" method="post">
   {% if not data['estimatedMileage'] %}
     {{ govukRadios({
   classes: "govuk-radios--inline",
@@ -218,12 +218,12 @@
 
     <button class="govuk-button" data-module="govuk-button" type="submit">
       Accept and continue
-    </button>-->
+    </button>
 
-    {{ govukButton({
+    <!--{{ govukButton({
       text: "Accept and continue",
       href: "/v2/c-payment-screens/confirmation-of-your-payment"
-    }) }}
+  }) }}-->
 
     <details class="govuk-details" data-module="govuk-details">
       <summary class="govuk-details__summary">
