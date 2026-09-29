@@ -55,25 +55,33 @@
         <dd class="govuk-summary-list__value">Ford</dd>
       </div>
 
-      <div class="govuk-summary-list__row">
+      <!--div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">Model</dt>
         <dd class="govuk-summary-list__value">Mustang</dd>
       </div>
 
       <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">Colour</dt>
+        <dd class="govuk-summary-list__value">Blue</dd>
+      </div>
+
+      <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">Year</dt>
         <dd class="govuk-summary-list__value">2025</dd>
-      </div>
+      </div-->
 
       <!-- /// create if statements here ///  -->
 
       <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">Tax class</dt>
+        <dt class="govuk-summary-list__key">Fuel type</dt>
         <dd class="govuk-summary-list__value">Electrically propelled vehicle</dd>
       </div>
+      
       <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">Licence period expiry</dt>
-        <dd class="govuk-summary-list__value">15 January 2027</dd>
+        <dt class="govuk-summary-list__key">Tax/SORN status</dt>
+        <dd class="govuk-summary-list__value">
+            Your vehicle will be taxed from <strong><span id="">1 November 2026</span></strong>
+        </dd>
       </div>
 
       <!--<div class="govuk-summary-list__row">
@@ -205,12 +213,27 @@
 
     {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
+    <details class="govuk-details">
+    <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+    Incorrect vehicle details?
+    </span>
+    </summary>
+    <div class="govuk-details__text">
+    If your vehicle details are incorrect you may need to
+    <a href="https://www.gov.uk/change-vehicle-details-registration-certificate" rel="noopener noreferrer" target="_blank">
+    update them.
+    </a>
+    </div>
+    </details>
       
 
     <p class="govuk-body">
       By clicking ‘Continue’ you agree to DVLA checking that your vehicle has an electronic MOT/GVT certificate (if applicable).
       <a class="govuk-link" href="#">Find out how we do this</a>.
     </p>
+
+
 
     <button type="submit" class="govuk-button govuk-!-margin-top-3" data-module="govuk-button">
       Continue
