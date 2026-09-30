@@ -19,21 +19,17 @@
     <h1 class="govuk-heading-xl">Your payment summary</h1>
 
     {% if data['estimatedMileage'] or data['addedMilesRemoved'] %}
-    <div class="govuk-notification-banner" role="region" aria-labelledby="estimated-mileage-notification-title" data-module="govuk-notification-banner">
-      <div class="govuk-notification-banner__header">
-        <h2 class="govuk-notification-banner__title" id="estimated-mileage-notification-title">
+    <div class="govuk-inset-text">
+        <h2 class="govuk-heading-s">
           {% if data['addedMilesRemoved'] %}Added miles removed{% else %}Added mileage{% endif %}
         </h2>
-      </div>
-      <div class="govuk-notification-banner__content">
-        <p class="govuk-body govuk-!-margin-bottom-0">
+        <p class="govuk-body">
           {% if data['addedMilesRemoved'] %}
             The added miles have been removed from your vehicle.
           {% else %}
             You have added a balance of <strong>{{ data['estimatedMileageFormatted'] or data['estimatedMileage'] or '0' }} miles</strong> to your vehicle.
           {% endif %}
         </p>
-      </div>
     </div>
     {% endif %}
   <!-- Vehicle summary -->
@@ -70,23 +66,21 @@
         <dd class="govuk-summary-list__value">Ford</dd>
       </div>
 
-      <div class="govuk-summary-list__row">
+      <!--div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">Model</dt>
         <dd class="govuk-summary-list__value">Mustang</dd>
-      </div>
+      </div-->
 
       <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">Year</dt>
-        <dd class="govuk-summary-list__value">2025</dd>
-      </div>
-
-      <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">Tax class</dt>
+        <dt class="govuk-summary-list__key">Fuel type</dt>
         <dd class="govuk-summary-list__value">Electrically propelled vehicle</dd>
       </div>
+
       <div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">Licence period expiry</dt>
-        <dd class="govuk-summary-list__value">15 January 2027</dd>
+        <dt class="govuk-summary-list__key">Tax/SORN status</dt>
+        <dd class="govuk-summary-list__value">
+            Your vehicle will be taxed from <strong><span id="tax-start-date">1 November 2026</span></strong>
+        </dd>
       </div>
 
         </div>

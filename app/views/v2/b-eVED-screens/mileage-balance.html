@@ -45,24 +45,14 @@
     <div class="govuk-grid-column-two-thirds">
 <h1 class="govuk-heading-l">Mileage balance</h1>
 
-  <div class="govuk-notification-banner" role="alert" aria-labelledby="debit-notification-title" data-module="govuk-notification-banner" hidden id="debit-notification">
-    <div class="govuk-notification-banner__header">
-      <h2 class="govuk-notification-banner__title" id="debit-notification-title">Debit</h2>
-    </div>
-    <div class="govuk-notification-banner__content">
-      <h3 class="govuk-notification-banner__heading">Your current mileage is in debit</h3>
+  <div class="govuk-inset-text" role="alert" aria-labelledby="debit-notification-title"  hidden id="debit-notification">
+      <h2 class="govuk-heading-s">Your current mileage is in debit</h2>
       <p class="govuk-body">Your vehicle has exceeded its purchased mileage by <strong id="debit-miles"></strong>.</p>
-    </div>
   </div>
 
-  <div class="govuk-notification-banner" role="alert" aria-labelledby="credit-notification-title" data-module="govuk-notification-banner" hidden id="credit-notification">
-    <div class="govuk-notification-banner__header">
-      <h2 class="govuk-notification-banner__title" id="credit-notification-title">Credit</h2>
-    </div>
-    <div class="govuk-notification-banner__content">
-      <h3 class="govuk-notification-banner__heading">Your current mileage is in credit</h3>
+  <div class="govuk-inset-text" role="alert" aria-labelledby="credit-notification-title" hidden id="credit-notification">
+      <h2 class="govuk-heading-s">Your current mileage is in credit</h2>
       <p class="govuk-body">You have a balance of <strong id="credit-miles"></strong> remaining on your vehicle.</p>
-    </div>
   </div>
 
 
@@ -121,9 +111,9 @@
           –
         </dd>
         <dd class="govuk-summary-list__actions" id="debit-tag" hidden>
-          <strong class="govuk-tag govuk-tag--red" id="mileage-status-tag">
+          <!--strong class="govuk-tag govuk-tag--red" id="mileage-status-tag">
             Exceeded miles
-          </strong>
+          </strong-->
         </dd>
       </div>
       <div class="govuk-summary-list__row is-hidden" id="cost-row">
