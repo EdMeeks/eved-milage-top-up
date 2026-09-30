@@ -565,6 +565,8 @@ router.get('/b-eVED-screens/your-payment-summary', function (req, res) {
 
   data.totalDebitMiles = debitMiles > 0 ? debitMiles + addedMiles : 0
   data.totalDebitMilesFormatted = data.totalDebitMiles.toLocaleString('en-GB')
+  data.mileageOwed = Math.max(debitMiles, 0)
+  data.mileageOwedFormatted = data.mileageOwed.toLocaleString('en-GB')
   data.totalDebitCostFormatted = formatCurrencyGBP(data.totalDebitMiles * 0.03)
 
   // Registration number
@@ -584,7 +586,8 @@ router.get('/b-eVED-screens/your-payment-summary', function (req, res) {
   const totalMileage = debitMilesForCost + estimatedMiles
   const evedCost = totalMileage * 0.03
   data.totalMileage = totalMileage
-  data.newEstimatedMileageFormatted = (paidForMileage + totalMileage).toLocaleString('en-GB')
+  data.totalMileageFormatted = totalMileage.toLocaleString('en-GB')
+  data.newEstimatedMileageFormatted = ((Number(currentMileage) || 0) + estimatedMiles).toLocaleString('en-GB')
   data.totalDebitCostFormatted = formatCurrencyGBP(evedCost)
 
   // Total
