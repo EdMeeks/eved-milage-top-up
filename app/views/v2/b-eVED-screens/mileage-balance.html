@@ -25,10 +25,6 @@
     border: 0 !important;
   }
 
-  #debit-tag[hidden] {
-    display: none !important;
-  }
-
   #diff-row.cost-hidden,
   #diff-row.cost-hidden > dt,
   #diff-row.cost-hidden > dd {
@@ -109,11 +105,6 @@
         </dt>
         <dd class="govuk-summary-list__value value" id="row-diff">
           –
-        </dd>
-        <dd class="govuk-summary-list__actions" id="debit-tag" hidden>
-          <strong class="govuk-tag govuk-tag--red" id="mileage-status-tag">
-            Exceeded miles
-          </strong>
         </dd>
       </div>
       <div class="govuk-summary-list__row is-hidden" id="cost-row">
@@ -203,8 +194,6 @@
 
     const diffRowValue = document.getElementById('row-diff');
     const diffRowLabel = document.getElementById('row-diff-label');
-    const debitTag = document.getElementById('debit-tag');
-    const mileageStatusTag = document.getElementById('mileage-status-tag');
     const costRow = document.getElementById('cost-row');
     const costValue = document.getElementById('row-cost');
     diffRowValue.textContent = formatNum(Math.abs(credit)) + ' miles';
@@ -222,8 +211,6 @@
       creditNotification.hidden = true;
       debitNotification.hidden = true;
       diffRowLabel.textContent = 'Remaining credit';
-      debitTag.hidden = true;
-      debitTag.style.display = 'none';
       diffRowValue.parentElement.classList.add('cost-hidden');
       costRow.style.display = 'none';
       costRow.classList.add('is-hidden');
@@ -233,11 +220,6 @@
       debitNotification.hidden = true;
       creditMiles.textContent = formatNum(credit) + ' miles';
       diffRowLabel.textContent = 'Remaining credit';
-      mileageStatusTag.classList.remove('govuk-tag--red');
-      mileageStatusTag.classList.add('govuk-tag--green');
-      mileageStatusTag.textContent = 'Mileage balance';
-      debitTag.hidden = false;
-      debitTag.style.display = '';
       diffRowValue.parentElement.classList.add('cost-hidden');
       costRow.style.display = 'none';
       costRow.classList.add('is-hidden');
@@ -250,11 +232,6 @@
       creditNotification.hidden = true;
       debitMiles.textContent = formatNum(mileageOwed) + ' miles';
       diffRowLabel.textContent = 'Mileage owed';
-      mileageStatusTag.classList.remove('govuk-tag--green');
-      mileageStatusTag.classList.add('govuk-tag--red');
-      mileageStatusTag.textContent = 'Exceeded miles';
-      debitTag.hidden = false;
-      debitTag.style.display = '';
       diffRowValue.parentElement.classList.remove('cost-hidden');
       costValue.textContent = '£' + cost.toFixed(2);
       costRow.style.display = 'table-row';
