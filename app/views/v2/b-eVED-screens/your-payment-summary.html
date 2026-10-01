@@ -39,14 +39,8 @@
     {% endif %}
   <!-- Vehicle summary -->
 
-  <div class="card">
-      <div class="govuk-summary-card results">
-        <div class="govuk-summary-card__title-wrapper">
-          <h2 class="govuk-summary-card__title">Vehicle summary</h2>
-        </div>
-
-        <div class="govuk-summary-card__content">
-          <dl class="govuk-summary-list">
+  <h2 class="govuk-heading-m">Vehicle summary</h2>
+  <dl class="govuk-summary-list">
 
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">Registration number</dt>
@@ -87,21 +81,11 @@
             Your vehicle will be taxed from <strong><span id="tax-start-date">1 November 2026</span></strong>
         </dd>
       </div-->
+    </dl>
 
-        </div>
-    </div>
+  <!-- Mileage summary -->
 
-    <!-- Mileage summary -->
-
-    <div class="card">
-    <div class="govuk-summary-card results">
-    <div class="govuk-summary-card__title-wrapper">
-      <h2 class="govuk-summary-card__title">
-        Mileage summary
-      </h2>
-    </div>
-
-     <div class="govuk-summary-card__content">
+    <h2 class="govuk-heading-m">Mileage summary</h2>
     <dl class="govuk-summary-list">
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
@@ -153,6 +137,15 @@
           </dd>
         </div>
       {% endif %}
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Miles being purchased
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['totalMileageFormatted'] or data['totalMileage'] or '0' }} miles
+        </dd>
+      </div>
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key" id="row-diff-label">
           Total cost
@@ -165,14 +158,6 @@
           {% endif %}
         </dd>
       </div>
-      <!--div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Miles being purchased
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {{ data['totalMileageFormatted'] or data['totalMileage'] or '0' }} miles
-        </dd>
-      </div-->
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
           New total paid for mileage
@@ -182,8 +167,6 @@
         </dd>
       </div>
     </dl>
-  </div>
-  </div>
 
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
 

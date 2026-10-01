@@ -21,6 +21,14 @@
       V5C/2 new keeper supplement (green slip)
     </h1>
 
+    <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-visually-hidden">Warning</span>
+          Only new keepers should use this number. Do not use it if you have a V5C in your name or a V11 reminder.
+        </strong>
+      </div>
+
     <p class="govuk-body">
       You should have received a V5C/2 (green slip) when you became the new keeper of the vehicle.
     </p>
@@ -28,19 +36,12 @@
     <form action="/v2/a-starting-screens/vehicle-record-answer" method="post" novalidate>
       <input type="hidden" name="source" value="v5c-2">
 
+      
+
       <div class="govuk-form-group">
         
 
-        {{ govukInput({
-          hint: {
-            text: "Enter your vehicle registration (number plate)"
-          },
-          classes: "govuk-input--width-10",
-          id: "vehicle-reg-2",
-          name: 'vehicle-reg-2',
-          autocomplete: "off",
-          value: data['vehicle-reg-2']
-        }) }}
+        
 
         <label class="govuk-label" for="v5c2-reference">
           <strong>V5C/2 document reference number</strong>
@@ -74,13 +75,27 @@
         </div>
       </details>
 
-      <div class="govuk-warning-text">
-        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
-        <strong class="govuk-warning-text__text">
-          <span class="govuk-visually-hidden">Warning</span>
-          Only new keepers should use this number. Do not use it if you have a V5C in your name or a V11 reminder.
-        </strong>
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="vehicle-registration">
+          <strong>Vehicle registration (number plate)</strong>
+        </label>
+        <div id="vehicle-registration-hint" class="govuk-hint">
+          For example, AB12 CDE
+        </div>
+        <input class="govuk-input govuk-input--width-10" id="vvehicle-reg-2" name="vehicle-reg-2" type="text" autocomplete="off" aria-describedby="vehicle-registration-hint" value: data['vehicle-reg-2']>
       </div>
+
+      <!--{{ govukInput({
+        label: {
+          text: "Enter your vehicle registration (number plate)"
+        },
+          
+          classes: "govuk-input--width-10",
+          id: "vehicle-reg-2",
+          name: 'vehicle-reg-2',
+          autocomplete: "off",
+          value: data['vehicle-reg-2']
+    }) }}-->
 
       <button type="submit" class="govuk-button govuk-!-margin-top-6" data-module="govuk-button">
         Continue

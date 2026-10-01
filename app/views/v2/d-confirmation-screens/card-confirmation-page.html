@@ -21,7 +21,7 @@
 
     <!--<div class="call-to-action">-->
 
-      <div>
+      <!--div>
 
       <h2 class="govuk-heading-m govuk-!-margin-top-6 govuk-!-margin-bottom-6">Confirmation of added miles</h2>
 
@@ -68,19 +68,13 @@
 
 
 
-        </div>
+        </div-->
 
 
     <!-- Vehicle summary -->
 
-  <div class="card">
-      <div class="govuk-summary-card results">
-        <div class="govuk-summary-card__title-wrapper">
-          <h2 class="govuk-summary-card__title">Vehicle summary</h2>
-        </div>
-
-        <div class="govuk-summary-card__content">
-          <dl class="govuk-summary-list">
+  <h2 class="govuk-heading-m govuk-!-margin-top-6">Vehicle summary</h2>
+  <dl class="govuk-summary-list">
 
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">Registration number</dt>
@@ -119,21 +113,11 @@
             Your vehicle will be taxed from <strong><span id="tax-start-date">1 November 2026</span></strong>
         </dd>
       </div-->
+    </dl>
 
-        </div>
-    </div>
+  <!-- Mileage summary -->
 
-    <!-- Mileage summary -->
-
-    <div class="card">
-    <div class="govuk-summary-card results">
-    <div class="govuk-summary-card__title-wrapper">
-      <h2 class="govuk-summary-card__title">
-        Mileage summary
-      </h2>
-    </div>
-
-     <div class="govuk-summary-card__content">
+    <h2 class="govuk-heading-m">Mileage summary</h2>
     <dl class="govuk-summary-list">
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
@@ -141,11 +125,6 @@
         </dt>
         <dd class="govuk-summary-list__value value" id="row-input">
           {{ data['exactMileageMilesFormatted'] or data['exactMileageMiles'] or data['exactMileage'] or 'Not provided' }} miles
-        </dd>
-        <dd class="govuk-summary-list__actions">
-          <a class="govuk-link govuk-link--no-visited-state" href="../b-eVED-screens/do-you-know-exact-mileage">
-            Change<span class="govuk-visually-hidden"> exact mleage reading</span>
-          </a>
         </dd>
       </div>
       <div class="govuk-summary-list__row">
@@ -171,20 +150,17 @@
           <dd class="govuk-summary-list__value">
             {{ data['estimatedMileageFormatted'] or data['estimatedMileage'] }} miles
           </dd>
-          <dd class="govuk-summary-list__actions">
-            <p class="govuk-body govuk-!-margin-bottom-1">
-            <a class="govuk-link govuk-link--no-visited-state" href="/v2/b-eVED-screens/estimate-your-miles?reset=true">
-              Change<span class="govuk-visually-hidden"> added miles</span>
-            </a>
-            </p>
-            <p class="govuk-body govuk-!-margin-bottom-3">
-              <a class="govuk-link govuk-link--no-visited-state" href="/v2/b-eVED-screens/your-payment-summary?remove=true&currentMileage={{ data['exactMileageMiles'] or data['exactMileage'] or '' }}{% if (data['exactMileageMiles'] or data['exactMileage'] or 0) < 44825 %}&redirect=mileage-balance{% endif %}">
-                Remove<span class="govuk-visually-hidden"> added miles</span>
-              </a>
-            </p>
-          </dd>
         </div>
       {% endif %}
+
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Miles being purchased
+        </dt>
+        <dd class="govuk-summary-list__value">
+          {{ data['totalMileageFormatted'] or data['totalMileage'] or '0' }} miles
+        </dd>
+      </div>
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key" id="row-diff-label">
           Total cost
@@ -197,14 +173,6 @@
           {% endif %}
         </dd>
       </div>
-      <!--div class="govuk-summary-list__row">
-        <dt class="govuk-summary-list__key">
-          Miles being purchased
-        </dt>
-        <dd class="govuk-summary-list__value">
-          {{ data['totalMileageFormatted'] or data['totalMileage'] or '0' }} miles
-        </dd>
-      </div-->
       <div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
           New total paid for mileage
@@ -214,8 +182,6 @@
         </dd>
       </div>
     </dl>
-  </div>
-  </div>
 
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
 

@@ -55,18 +55,8 @@
 
 <div>
 
-
-
-  <div class="card">
-    <div class="govuk-summary-card results">
-  <div class="govuk-summary-card__title-wrapper">
-    <h2 class="govuk-summary-card__title">
-      Summary
-    </h2>
-  </div>
-  
-  <div class="govuk-summary-card__content">
-    <dl class="govuk-summary-list">
+  <h2 class="govuk-heading-m">Summary</h2>
+  <dl class="govuk-summary-list">
       <div class="govuk-summary-list__row" style="display:none;">
         <dt class="govuk-summary-list__key">
           Previous total milage
@@ -116,8 +106,6 @@
         </dd>
       </div>
     </dl>
-  </div>
-  </div>
 
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
 
@@ -149,18 +137,30 @@
   }) }}
 
   <button type="submit" class="govuk-button govuk-!-margin-top-0">Continue</button>
+
+
 </form>
+
+<p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="https://www.gov.uk/contact-the-dvla">Contact the DVLA if your mileage reading is incorrect</a></p>
+
   
-</div>
+  
+<div>
     <button type="button" class="ghost govuk-button govuk-!-margin-top-0" id="check-another-button" style="display: none;" onclick="window.location.href = 'do-you-know-exact-mileage'">Check another figure</button>
 </div>
 
-    <p class=""gov-uk-body"><a class="govuk-link govuk-link--no-visited-state" href="https://www.gov.uk/contact-the-dvla">Contact the DVLA if your mileage reading is incorrect</a></p>
 
 
   </div>
 
+
+
+
+
 </div>
+
+
+
 </div>
 
 <script>
