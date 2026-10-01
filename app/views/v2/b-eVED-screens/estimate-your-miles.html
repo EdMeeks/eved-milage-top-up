@@ -38,6 +38,8 @@
       {% endcall %}
     {% endif %}
 
+    <p class="govuk-body">Any extra mileage you buy is added to your existing debt.</p> 
+
     <p class="govuk-body">The minimum mileage you can add is 100 miles.</p> 
 
       <form id="estimate-mileage-form" action="/v2/b-eVED-screens/estimate-your-miles-answer" method="post" novalidate>
@@ -48,9 +50,10 @@
             <span class="govuk-visually-hidden">Error:</span> {{ errorMessage }}
           </p>
         {% endif %}
-        <div id="waste-hint" class="govuk-hint">
-      Add more miles
-      </div>
+      
+        <label class="govuk-label" for="estimated-mileage">
+          <strong>Estimated miles</strong>
+        </label>
       
 
       <div class="govuk-input__wrapper govuk-!-margin-bottom-3">
