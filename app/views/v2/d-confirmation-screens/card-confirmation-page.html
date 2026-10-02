@@ -183,57 +183,6 @@
       </div>
     </dl>
 
-{% from "govuk/components/radios/macro.njk" import govukRadios %}
-
-
-<form action="/v2/b-eVED-screens/your-payment-summary-answer" method="post">
-  {% if not data['estimatedMileage'] %}
-    {{ govukRadios({
-  classes: "govuk-radios--inline",
-  name: "add-more-miles",
-  fieldset: {
-    legend: {
-      text: "Do you wish to add more miles?",
-      isPageHeading: true,
-      classes: "govuk-fieldset__legend--s govuk-!-margin-top-3"
-    }
-  },
-  hint: {
-    text: ""
-  },
-  items: [
-    {
-      value: "yes",
-      text: "Yes"
-    },
-    {
-      value: "no",
-      text: "No"
-    }
-  ]
-    }) }}
-  {% endif %}
-
-    <button class="govuk-button" data-module="govuk-button" type="submit">
-      Accept and continue
-    </button>
-
-    <!--{{ govukButton({
-      text: "Accept and continue",
-      href: "/v2/c-payment-screens/confirmation-of-your-payment"
-  }) }}-->
-
-    <details class="govuk-details" data-module="govuk-details">
-      <summary class="govuk-details__summary">
-        <span class="govuk-details__summary-text">
-          How are these amounts calculated?
-        </span>
-      </summary>
-      <div class="govuk-details__text">
-        Your total payment is a mileage-based charge.
-        Electric vehicles are charged at 3p per mile and plug-in hybrids at 1.5p per mile.
-      </div>
-    </details>
 
   </div>
 </div>
