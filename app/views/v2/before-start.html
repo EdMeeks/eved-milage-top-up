@@ -118,19 +118,71 @@
   </summary>
   <div class="govuk-details__text">
 
-  <h3 class="govuk-heading-m">Testing in round 2</h3>
+  <h3 class="govuk-heading-m">Research and testing objectives round 2: Vehicle tax liability</h3>
 
-<p class="govuk-body">User responses to unhappy paths for the date of vehicle tax liability journey.</p>
+      <h3>Vehicle tax and registration details</h3>
+      <p>We need to understand how users navigate unexpected journeys ("unhappy paths"). This includes finding out how they respond when:</p>
+      <ul>
+        <li>A vehicle tax liability renewal or expiry date is incorrect</li>
+        <li>The vehicle details they enter do not match official records</li>
+      </ul>
 
-<h4 class="govuk-heading-s">Incorrect vehicle details</h4>
-<p class="govuk-body">The user enters a <strong>number plate</strong> and <strong>V5C reference number</strong> that do not match our records.</p>
+      <h3>Pricing clarity</h3>
+      <p>We need to evaluate if the price structures and example costs on the start page are clear and easy for users to understand.</p>
 
-<h4 class="govuk-heading-s">Expired tax liability</h4>
-<p class="govuk-body">The user enters details for a vehicle where the <strong>date of liability has expired</strong> (the vehicle is untaxed).</p>
+      <h3>Payment states</h3>
+      <p>We must test both the 'in credit' and 'in debit' user journeys to ensure users understand their financial balance.</p>
 
-<h4 class="govuk-heading-s">Near expiry tax liability</h4>
-<p class="govuk-body">The user enters details for a vehicle where the <strong>date of liability is close to expiry</strong>.</p>
-  </div>
+      <h3>Mileage summary data</h3>
+      <p>We need to observe how users read, interpret, and act on the mileage summary. Testing will help us determine if we need to restructure the data or separate it into different groups.</p>
+
+      <h3 class="govuk-heading-m govuk-!-margin-top-6">User journeys for unexpected errors (unhappy paths)</h3>
+
+      <h3 class="govuk-heading-s">Incorrect vehicle details</h3>
+      <p>The user enters a registration number (number plate) and V5C logbook reference number that do not match DVLA records.</p>
+
+      <h3 class="govuk-heading-s">Expired tax liability</h3>
+      <p>The user enters details for an untaxed vehicle where the date of liability has already passed.</p>
+
+      <h3 class="govuk-heading-s">Near expiry tax liability</h3>
+      <p>The user enters details for a vehicle where the date of liability is close to expiring.</p>
+
+      <h3 class="govuk-heading-m">Payment summary of top up mileage</h3>
+      <p>How users interact with this data is crucial for understanding usability. The current prototype displays the following breakdown for mileage and costs using the standard GOV.UK Summary List structure:</p>
+
+      <h3 class="govuk-heading-s">Prototype data example</h3>
+      <div class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <div class="govuk-summary-list__key">Exact mileage</div>
+          <div class="govuk-summary-list__value">67,890 miles</div>
+        </div>
+        <div class="govuk-summary-list__row">
+          <div class="govuk-summary-list__key">Paid for mileage</div>
+          <div class="govuk-summary-list__value">44,825 miles</div>
+        </div>
+        <div class="govuk-summary-list__row">
+          <div class="govuk-summary-list__key">Mileage owed</div>
+          <div class="govuk-summary-list__value">23,065 miles</div>
+        </div>
+        <div class="govuk-summary-list__row">
+          <div class="govuk-summary-list__key">Added miles</div>
+          <div class="govuk-summary-list__value">10,000 miles</div>
+        </div>
+        <div class="govuk-summary-list__row">
+          <div class="govuk-summary-list__key">Miles being purchased</div>
+          <div class="govuk-summary-list__value">33,065 miles</div>
+        </div>
+        <div class="govuk-summary-list__row">
+          <div class="govuk-summary-list__key">Total cost</div>
+          <div class="govuk-summary-list__value">£991.95</div>
+        </div>
+        <div class="govuk-summary-list__row">
+          <div class="govuk-summary-list__key">New total paid for mileage</div>
+          <div class="govuk-summary-list__value">77,890 miles</div>
+        </div>
+      </div>
+
+</div>
 </details>
   </div>
 </div>
