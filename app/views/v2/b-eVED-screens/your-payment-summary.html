@@ -123,17 +123,17 @@
           <dd class="govuk-summary-list__value">
             {{ data['estimatedMileageFormatted'] or data['estimatedMileage'] }} miles
           </dd>
-          <dd class="govuk-summary-list__actions">
-            <p class="govuk-body govuk-!-margin-bottom-1">
-            <a class="govuk-link govuk-link--no-visited-state" href="/v2/b-eVED-screens/estimate-your-miles?reset=true">
+          <dd class="govuk-summary-list__actions app-custom-class">
+            <li class="govuk-summary-list__actions-list-item">
+              <a class="govuk-link govuk-link--no-visited-state" href="/v2/b-eVED-screens/estimate-your-miles?reset=true">
               Change<span class="govuk-visually-hidden"> added miles</span>
-            </a>
-            </p>
-            <p class="govuk-body govuk-!-margin-bottom-3">
+              </a>
+            </li>
+            <li class="govuk-summary-list__actions-list-item">        
               <a class="govuk-link govuk-link--no-visited-state" href="/v2/b-eVED-screens/your-payment-summary?remove=true&currentMileage={{ data['exactMileageMiles'] or data['exactMileage'] or '' }}{% if (data['exactMileageMiles'] or data['exactMileage'] or 0) < 44825 %}&redirect=mileage-balance{% endif %}">
                 Remove<span class="govuk-visually-hidden"> added miles</span>
               </a>
-            </p>
+            </li>
           </dd>
         </div>
       {% endif %}
