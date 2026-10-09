@@ -2,7 +2,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+  You must tax your vehicle before purchasing miles – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block containerStart %}
@@ -21,32 +21,23 @@
         You must tax your vehicle before purchasing miles
     </h1>
 
-    <p>Our records show this vehicle is not taxed. You must tax your vehicle or make a Statutory Off Road Notification (SORN) before you can buy more miles.</p>
-  
-    <h2 class="govuk-heading-m">Take action</h2>
+    <!-- 2. GDS Warning Text component for legal/critical blockers -->
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-visually-hidden">Warning</span>
+            Our records show this vehicle is not taxed.
+          </strong>
+        </div>
 
-    <ul class="govuk-list govuk-list--bullet">
-      <li>
-        tax your vehicle (including electric and plug-in hybrids) online at
-        <a class="govuk-link govuk-link--no-visited-state" href="/v2/a-starting-screens/tax-start-page">
-          tax-your-vechicle.gov.uk
-        </a>
-      </li>
-      <li>
-        make a SORN if you are taking your vehicle off the road at
-        <a class="govuk-link govuk-link--no-visited-state" href="https://www.gov.uk/make-a-sorn">
-          www.gov.uk/make-a-sorn
-        </a>
-      </li>
-    </ul>
+        <p class="govuk-body">
+          You must <a class="govuk-link govuk-link--no-visited-state" href="https://www.gov.uk">tax your vehicle</a> or <a class="govuk-link govuk-link--no-visited-state" href="https://www.gov.uk">make a SORN</a> (Statutory Off Road Notification) before you can buy more miles.
+        </p>
 
-    <a href="https://www.gov.uk" class="govuk-button govuk-!-margin-top-3">
-      Return to GOV.UK
-    </a>
+        <p class="govuk-body">
+          You can also <a class="govuk-link govuk-link--no-visited-state" href="https://www.gov.uk">return to GOV.UK</a> to find other driving and transport services.
+        </p>
 
-    </form>
-
-  </div>
 </div>
 
 {% endblock %}

@@ -38,7 +38,13 @@
       {% endcall %}
     {% endif %}
 
-    <p class="govuk-body">Any extra mileage you buy will be added to what you already owe.</p> 
+    <div class="govuk-warning-text">
+    <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+    <strong class="govuk-warning-text__text">
+      <span class="govuk-visually-hidden">Warning</span>
+      Any extra mileage you buy will be added to what you already owe.
+    </strong>
+  </div>
 
       <form id="estimate-mileage-form" action="/v2/b-eVED-screens/estimate-your-miles-answer" method="post" novalidate>
       <input type="hidden" id="current-mileage" name="currentMileage" value="{{ data['exactMileageMiles'] or data['exactMileage'] or '' }}">
