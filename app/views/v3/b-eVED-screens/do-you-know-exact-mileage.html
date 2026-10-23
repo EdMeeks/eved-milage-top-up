@@ -1,0 +1,320 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Do you know your vehicle’s exact mileage? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<style>
+  .govuk-error-message[hidden] {
+    display: none;
+  }
+
+  .govuk-form-group--error {
+    padding-left: 15px;
+    border-left: 5px solid;
+    border-left-color: var(--govuk-error-colour, #ca3535);
+  }
+</style>
+
+<form action="/b-eVED-screens/mileage-answer" method="post" novalidate>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+    <div class="govuk-error-summary" data-module="govuk-error-summary" hidden>
+  <div role="alert">
+    
+    
+    <h2 class="govuk-error-summary__title">
+      There is a problem
+    </h2>
+    <div class="govuk-error-summary__body">
+      <ul class="govuk-list govuk-error-summary__list">
+        <li>
+          <a href="#mileage">Enter your mileage</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+
+      
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset">
+          
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              Enter your vehicle’s exact mileage
+            </h1>
+          </legend>
+
+          <div class="error-msg" id="error-msg"></div>
+          <p class="govuk-body">
+            Check the dashboard on your vehicle. It will show the mileage in miles or kilometres.
+          </p>
+
+          <div id="mileage-unit-group">
+            <h2 class="govuk-heading-m">
+              Is the total mileage in miles or kilometres?
+            </h2>
+
+            <p id="mileage-unit-error" class="govuk-error-message" hidden>
+              <span class="govuk-visually-hidden">Error:</span> Select whether your mileage is in miles or kilometres.
+            </p>
+
+            <div class="govuk-radios" data-module="govuk-radios" aria-describedby="mileage-unit-error">
+
+            <div class="govuk-radios__item">
+              <input
+                class="govuk-radios__input"
+                id="mileage-unit-miles"
+                name="mileageUnit"
+                type="radio"
+                value="miles"
+                data-aria-controls="conditional-mileage-miles"
+              >
+              <label class="govuk-label govuk-radios__label" for="mileage-unit-miles">
+                Miles (mi)
+              </label>
+            </div>
+
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-mileage-miles">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="exact-mileage-miles">
+                  Enter the mileage in miles
+                </label>
+                <p id="exact-mileage-miles-error" class="govuk-error-message" hidden>
+                  <span class="govuk-visually-hidden">Error:</span> Enter your mileage in miles.
+                </p>
+                <input
+                  class="govuk-input govuk-!-width-one-third"
+                  id="exact-mileage-miles"
+                  name="exactMileageMiles"
+                  type="text"
+                  inputmode="numeric"
+                  autocomplete="off"
+                  spellcheck="false"
+                >
+              </div>
+            </div>
+
+            <div class="govuk-radios__item">
+              <input
+                class="govuk-radios__input"
+                id="mileage-unit-kilometres"
+                name="mileageUnit"
+                type="radio"
+                value="kilometres"
+                data-aria-controls="conditional-mileage-kilometres"
+              >
+              <label class="govuk-label govuk-radios__label" for="mileage-unit-kilometres">
+                Kilometres (km)
+              </label>
+            </div>
+
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-mileage-kilometres">
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="exact-mileage-km">
+                  Enter the mileage in kilometres
+                </label>
+                <div id="exact-mileage-km-hint" class="govuk-hint">
+                  We’ll convert this to miles for you
+                </div>
+                <p id="exact-mileage-km-error" class="govuk-error-message" hidden>
+                  <span class="govuk-visually-hidden">Error:</span> Enter your mileage in kilometres.
+                </p>
+                <input
+                  class="govuk-input govuk-!-width-one-third"
+                  id="exact-mileage-km"
+                  name="exactMileageKm"
+                  type="text"
+                  inputmode="numeric"
+                  autocomplete="off"
+                  spellcheck="false"
+                  aria-describedby="exact-mileage-km-hint"
+                >
+              </div>
+            </div>
+
+            </div>
+          </div>
+        </fieldset>
+
+
+
+
+      <button type="submit" class="govuk-button govuk-!-margin-top-3" data-module="govuk-button">
+        Continue
+      </button>
+
+      <p class="govuk-body govuk-!-margin-top-3">
+        <a class="govuk-link govuk-link--no-visited-state" href="/v3/b-eVED-screens/dropout-does-not-know-exact-mileage">
+          I don't know my vehicle's exact mileage
+        </a>
+      </p>
+
+    </div>
+  </div>
+</form>
+
+<!--form action="/b-eVED-screens/mileage-answer" method="post" novalidate-->
+  
+
+
+
+
+  <!--<h1 class="govuk-heading-l">Do you know your current exact mileage?</h1>
+
+    <div class="govuk-form-group govuk-!-margin-top-6" id="mileage-form-group">
+      
+      
+      <div id="mileage-form-hint" class="govuk-hint">
+      Check ​the ​dashboard ​on ​your ​vehicle. ​It ​will ​show ​mileage ​or ​kilometers​​​​​
+      </div>
+
+      <div class="govuk-input__wrapper govuk-!-margin-bottom-3">
+
+      <input class="govuk-input govuk-input--width-5" type="number" id="mileage" placeholder="0" inputmode="numeric" min="0">
+
+      <div class="govuk-input__suffix" id="mileage-unit" aria-hidden="true">miles</div>
+      </div>
+
+
+
+      
+      
+
+    </div>
+
+    </div>
+
+    <p class="govuk-body govuk-!-margin-top-3">
+        <a class="govuk-link govuk-link--no-visited-state" href="/v3/b-eVED-screens/dropout-does-not-know-exact-mileage">
+          I don't know my vehicle's exact mileage
+        </a>
+      </p>
+
+    <p class=""gov-uk-body"><a class="govuk-link govuk-link--no-visited-state" href="https://www.gov.uk/contact-the-dvla">Contact the DVLA if your mileage reading is incorrect</a></p>
+
+
+      <button type="button" class="govuk-button govuk-!-margin-top-3" data-module="govuk-button" onclick="submitForm()">
+        Continue
+      </button>
+
+  
+</div-->
+
+<script>
+  const PREVIOUS_RECORDED_MILEAGE = 36825;
+  const KILOMETRES_TO_MILES = 0.621371;
+  const form = document.querySelector('form[action="/b-eVED-screens/mileage-answer"]');
+  const radios = form.querySelectorAll('input[name="mileageUnit"]');
+  const errorSummary = document.querySelector('.govuk-error-summary');
+  const errorLink = document.querySelector('.govuk-error-summary__list a');
+  const unitError = document.getElementById('mileage-unit-error');
+  const mileageFormGroup = document.getElementById('mileage-unit-group');
+
+  function showSelectedMileageInput() {
+    radios.forEach(function (radio) {
+      const controlsId = radio.getAttribute('aria-controls') || radio.getAttribute('data-aria-controls');
+      const conditional = document.getElementById(controlsId);
+      conditional.classList.toggle('govuk-radios__conditional--hidden', !radio.checked);
+    });
+  }
+
+  function clearInlineErrors() {
+    unitError.hidden = true;
+    mileageFormGroup.classList.remove('govuk-form-group--error');
+    form.querySelectorAll('.govuk-error-message[id^="exact-mileage-"]').forEach(function (error) {
+      error.hidden = true;
+    });
+    form.querySelectorAll('.govuk-input--error').forEach(function (input) {
+      input.classList.remove('govuk-input--error');
+    });
+  }
+
+  radios.forEach(function (radio) {
+    radio.addEventListener('change', function () {
+      clearInlineErrors();
+      showSelectedMileageInput();
+    });
+  });
+
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    clearInlineErrors();
+
+    const selectedUnit = form.querySelector('input[name="mileageUnit"]:checked');
+    if (!selectedUnit) {
+      mileageFormGroup.classList.add('govuk-form-group--error');
+      unitError.hidden = false;
+      errorSummary.hidden = false;
+      errorLink.href = '#mileage-unit-miles';
+      return;
+    }
+
+    const input = document.getElementById(
+      selectedUnit.value === 'kilometres' ? 'exact-mileage-km' : 'exact-mileage-miles'
+    );
+    const raw = input.value.trim();
+    const enteredValue = parseFloat(raw);
+    const miles = selectedUnit.value === 'kilometres'
+      ? Math.round(enteredValue * KILOMETRES_TO_MILES)
+      : enteredValue;
+
+    if (raw === '' || isNaN(miles) || miles < 0) {
+      const inputError = document.getElementById(input.id + '-error');
+      mileageFormGroup.classList.add('govuk-form-group--error');
+      input.classList.add('govuk-input--error');
+      inputError.hidden = false;
+      errorSummary.hidden = false;
+      errorLink.href = '#' + input.id;
+      errorLink.textContent = selectedUnit.value === 'kilometres'
+        ? 'Enter your mileage in kilometers'
+        : 'Enter your mileage';
+      input.focus();
+      return;
+    }
+
+    if (miles < PREVIOUS_RECORDED_MILEAGE) {
+      const inputError = document.getElementById(input.id + '-error');
+      mileageFormGroup.classList.add('govuk-form-group--error');
+      input.classList.add('govuk-input--error');
+      inputError.textContent = '';
+      inputError.insertAdjacentHTML(
+        'beforeend',
+        '<span class="govuk-visually-hidden">Error:</span> The mileage must be at least 36,825 miles.'
+      );
+      inputError.hidden = false;
+      errorSummary.hidden = false;
+      errorLink.href = '#' + input.id;
+      input.focus();
+      return;
+    }
+
+    errorSummary.hidden = true;
+    window.location.assign('/v3/b-eVED-screens/mileage-balance?mileage=' + encodeURIComponent(miles));
+  });
+
+  showSelectedMileageInput();
+</script>
+      
+      </div>
+
+    </div>
+  </div>
+<!--/form-->
+
+{% endblock %}

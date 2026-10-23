@@ -1,0 +1,143 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName="Home" %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">
+      Usability Round 3
+    </h1>
+    <h2 class="govuk-heading-m govuk-!-margin-bottom-9">12 October 2026</h2>
+    <!-- <h3 class="govuk-heading-s govuk-!-margin-bottom-1">What are we tesing?</h3> -->
+    <!-- <p class="govuk-body">Focus on filter and dashboard</p> -->
+
+<table class="govuk-table govuk-!-margin-bottom-9">
+  <caption class="govuk-table__caption govuk-table__caption--m">Matching numberplate and V5C numbers</caption>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header app-custom-class">Correct matches</th>
+      <th scope="col" class="govuk-table__header app-custom-class">V5C number</th>
+      <th scope="col" class="govuk-table__header app-custom-class">Number plate</th>
+      
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">1</th>
+      <td class="govuk-table__cell">01234567890</td>
+      <td class="govuk-table__cell">AB25 CDE</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">2</th>
+      <td class="govuk-table__cell">10234567890</td>
+      <td class="govuk-table__cell">CD25 EFG</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">3</th>
+      <td class="govuk-table__cell">12345678901</td>
+      <td class="govuk-table__cell">AB75 CDE</td>
+    </tr>
+  </tbody>
+</table>
+
+    <p class="govuk-body">
+      <a class="govuk-button" id="continue" href="/v3/a-starting-screens/start-page.html">Start prototype</a>
+    </p>
+
+  <details class="govuk-details" open="">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+     What are we testing this round?
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+
+  <h2 class="govuk-heading-l">
+        User research plan: Active eVED mileage Direct Debit at point of transaction
+      </h2>
+
+      <h3 class="govuk-heading-m">Research round focus</h2>
+      
+      <p class="govuk-body">
+        The focus of this round of testing is the <strong>active Direct Debit (DD) on eVED mileage in force at point of transaction</strong> scenario.
+      </p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li><strong>In scope:</strong> Credit journey only</li>
+        <li><strong>Out of scope:</strong> Debt journey (reserved for a later round)</li>
+      </ul>
+
+      <h3 class="govuk-heading-m">Scenario framing</h3>
+      
+      <p class="govuk-body">
+        To ground the research, the testing scenario is set at the <strong>midpoint of the transaction</strong>:
+      </p>
+      
+      <ul class="govuk-list govuk-list--bullet">
+        <li>The Direct Debit has 6 months remaining.</li>
+        <li>The user has paid 6 months of eVED (with 6 months remaining).</li>
+      </ul>
+
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+      <h2 class="govuk-heading-l">Research objectives</h2>
+      
+      <p class="govuk-body">
+        We need to test user understanding across four key areas of the user interface.
+      </p>
+
+      <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            1. Direct Debit component clarity
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Does the user understand the information displayed on the page, specifically within the Direct Debit component box?
+          </dd>
+        </div>
+        
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            2. Terminology and value comprehension
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Does the user understand active Direct Debit terminology? Is it clear how many miles are still to be collected or purchased?
+          </dd>
+        </div>
+        
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            3. Cost breakdown
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Does the user understand the displayed values? Is the split between these values clear?
+          </dd>
+        </div>
+        
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            4. Component placement
+          </dt>
+          <dd class="govuk-summary-list__value">
+            The 'Paid for mileage' information has moved and is no longer in a dropdown menu. Do users find, read, and understand this content in its new location?
+          </dd>
+        </div>
+      </dl>
+
+</div>
+</details>
+  </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% macro validVehicleRecords() %}
+  [
+    { "registration": "AB25 CDE", "v5cReference": "01234567890" },
+    { "registration": "CD25 EFG", "v5cReference": "10234567890" },
+    { "registration": "AB75 CDE", "v5cReference": "12345678901" },
+    { "registration": "CD75 EFG", "v5cReference": "23456789012" },
+    { "registration": "EF75 GHI", "v5cReference": "34567890123" },
+    { "registration": "GH75 JKL", "v5cReference": "45678901234" },
+    { "registration": "JK75 MNO", "v5cReference": "56789012345" },
+    { "registration": "LM75 NPR", "v5cReference": "67890123456" },
+    { "registration": "MN26 PQR", "v5cReference": "78901234567" },
+    { "registration": "NP26 RST", "v5cReference": "89012345678" },
+    { "registration": "PR26 STU", "v5cReference": "90123456789" },
+    { "registration": "RS26 TUV", "v5cReference": "11234567890" },
+    { "registration": "ST26 UVW", "v5cReference": "22345678901" },
+    { "registration": "TU26 VWX", "v5cReference": "33456789012" }
+  ]
+{% endmacro %}
+
+{% macro ineligibleVehicleRecords() %}
+  [
+    { "registration": "UV25 XYZ", "v5cReference": "44567890123" },
+    { "registration": "VW75 XYZ", "v5cReference": "55678901234" },
+    { "registration": "WX26 YZA", "v5cReference": "66789012345" },
+    { "registration": "XY26 ZAB", "v5cReference": "77890123456" }
+  ]
+{% endmacro %}
+
+{% macro taxDueVehicleRecords() %}
+  [
+    { "registration": "ZA25 BCD", "v5cReference": "88901234567" },
+    { "registration": "ZB75 CDE", "v5cReference": "99012345678" },
+    { "registration": "ZC26 DEF", "v5cReference": "10123456789" },
+    { "registration": "ZD26 EFG", "v5cReference": "21123456789" }
+  ]
+{% endmacro %}
