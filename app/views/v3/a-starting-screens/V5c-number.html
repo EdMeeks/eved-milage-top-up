@@ -1,0 +1,87 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="/v3/a-starting-screens/vehicle-record-answer" method="post" novalidate>
+      <input type="hidden" name="source" value="v5c-number">
+
+      <div class="govuk-form-group">
+        <h1 class="govuk-heading-xl">
+          <label class="govuk-label govuk-label--l" for="v11-reference">
+            What is your V5C reference number and car registration?
+          </label>
+        </h1>
+
+        <p class="govuk-body govuk-!-margin-bottom-6">
+          We need this information to check your vehicle details.
+        </p>
+
+        <label class="govuk-label" for="v5c2-reference">
+          <strong>V5C document reference number</strong>
+        </label>
+
+        {{ govukInput({
+          hint: {
+            text: "This is an 11 digit number"
+          },
+          classes: "govuk-input--width-20",
+          id: "v5c-ref",
+          name: 'v5c-ref',
+          inputmode: "numeric",
+          autocomplete: "off",
+          value: data['v5c-ref']
+        }) }}
+      </div>
+
+      <div class="govuk-form-group">
+        <label class="govuk-label" for="vehicle-registration">
+          <strong>Vehicle registration (number plate)</strong>
+        </label>
+        <div id="vehicle-registration-hint" class="govuk-hint">
+          For example, AB12 CDE
+        </div>
+        <input class="govuk-input govuk-input--width-10" id="vvehicle-reg" name="vehicle-reg" type="text" autocomplete="off" aria-describedby="vehicle-registration-hint" value: data['vehicle-reg']>
+      </div>
+
+        
+
+        <!--input
+          class="govuk-input govuk-input--width-20"
+          id="v11-reference"
+          name="v11Reference"
+          type="text"
+          inputmode="numeric"
+          autocomplete="off"
+          aria-describedby="v11-reference-hint"
+        >
+      </div-->
+
+      <!--button type="submit" class="govuk-button govuk-!-margin-top-6" data-module="govuk-button">
+        Continue
+      </button-->
+
+      <button type="submit" class="govuk-button govuk-!-margin-top-6" data-module="govuk-button">
+        Continue
+      </button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

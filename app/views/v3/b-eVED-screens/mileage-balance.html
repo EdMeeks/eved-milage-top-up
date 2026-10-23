@@ -1,0 +1,289 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Mileage balance – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<style>
+
+  #cost-row.is-hidden {
+    display: none;
+  }
+
+  #cost-row.is-hidden,
+  #cost-row.is-hidden > dt,
+  #cost-row.is-hidden > dd {
+    border: 0 !important;
+  }
+
+  #diff-row.cost-hidden,
+  #diff-row.cost-hidden > dt,
+  #diff-row.cost-hidden > dd {
+    border-bottom: 0 !important;
+  }
+
+  .govuk-summary-list__row:last-child > dt,
+  .govuk-summary-list__row:last-child > dd {
+    border-bottom: 0 !important;
+  }
+</style>
+
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+  <h1 class="govuk-heading-l">Mileage balance</h1>
+
+    <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+      
+      <div class="govuk-notification-banner__header">
+        <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+          Important
+        </h2>
+      </div>
+      
+      <div class="govuk-notification-banner__content">
+        
+      <p class="govuk-notification-banner__heading">
+      You are paying your current eVED in 12 monthly Direct Debit installments.
+      </p>
+      
+      <p><span class="govuk-!-font-weight-bold">You still owe 5,000 miles for this vehicle tax year.</span></p><p>Mileage breakdown:</p>
+      
+      <ul class="govuk-list govuk-list--bullet">
+        <li><strong>Total paid for mileage:</strong> 44,825 miles</li>
+        <li><strong>Amount paid for so far:</strong> 39,000 miles</li>
+        <li><strong>Balance you owe:</strong> 5,000 miles</li>
+      </ul>
+
+      </div>
+
+    </div>
+  
+  {# Page Content: What 'paid for mileage' means #}
+
+    <p class="govuk-body">
+      <strong>Paid for mileage</strong> is the mileage that has been paid for to date as the <strong>owner or keeper of the vehicle</strong> in the DVLA eVED service.
+    </p>
+
+    <p class="govuk-body">
+      It reflects your registered history with the vehicle, not just the miles bought in your most recent transaction.
+    </p>
+
+    <h3 class="govuk-heading-s">How it is calculated</h3>
+
+    <p class="govuk-body">
+      The system calculates this total by recording your vehicle's odometer readings over time:
+    </p>
+
+    <ol class="govuk-list govuk-list--number">
+      <li>
+        <strong>The baseline:</strong> It starts with the mileage reading entered the very first time you added miles as the registered owner or keeper.
+      </li>
+      <li>
+        <strong>The accumulation:</strong> Every subsequent mile purchased is added to this baseline to keep an accurate record of your total paid-for balance.
+      </li>
+    </ol>
+
+  
+
+
+
+
+  <h2 class="govuk-heading-m govuk-!-margin-top-9">Mileage summary</h2>
+  <dl class="govuk-summary-list">
+      <div class="govuk-summary-list__row" style="display:none;">
+        <dt class="govuk-summary-list__key">
+          Previous total milage
+        </dt>
+        <dd class="govuk-summary-list__value" id="row-target">
+          36,825 mi
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Exact mileage reading
+        </dt>
+        <dd class="govuk-summary-list__value value" id="row-input">
+          –
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link govuk-link--no-visited-state" href="../b-eVED-screens/do-you-know-exact-mileage">
+            Change<span class="govuk-visually-hidden"> exact mleage reading</span>
+          </a>
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          Paid for mileage
+        </dt>
+        <dd class="govuk-summary-list__value value">
+        44,825 miles
+        </dd>
+        <dd class="govuk-summary-list__value" id="row-paid-for-mileage" style="display:none">
+          –
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row" id="diff-row">
+        <dt class="govuk-summary-list__key" id="row-diff-label">
+          Remaining credit
+        </dt>
+        <dd class="govuk-summary-list__value value" id="row-diff">
+          –
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row is-hidden" id="cost-row">
+        <dt class="govuk-summary-list__key">
+          Cost at 3p per mile
+        </dt>
+        <dd class="govuk-summary-list__value" id="row-cost">
+          –
+        </dd>
+      </div>
+    </dl>
+
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+<form action="/v3/b-eVED-screens/mileage-balance-answer" method="post">
+  <input type="hidden" id="current-mileage" name="currentMileage" value="">
+  {{ govukRadios({
+  classes: "govuk-radios--inline",
+  name: "add-more-miles",
+  fieldset: {
+    legend: {
+      text: "Do you wish to add more miles?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--s govuk-!-margin-top-6"
+    }
+  },
+  hint: {
+    text: ""
+  },
+  items: [
+    {
+      value: "yes",
+      text: "Yes"
+    },
+    {
+      value: "no",
+      text: "No"
+    }
+  ]
+  }) }}
+
+  <button type="submit" class="govuk-button govuk-!-margin-top-0">Continue</button>
+
+
+</form>
+
+<p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="https://www.gov.uk/contact-the-dvla">Contact the DVLA if your 'paid for mileage' reading is incorrect</a></p>
+
+  
+  
+<div>
+    <button type="button" class="ghost govuk-button govuk-!-margin-top-0" id="check-another-button" style="display: none;" onclick="window.location.href = 'do-you-know-exact-mileage'">Check another figure</button>
+</div>
+
+
+
+  </div>
+
+
+
+
+
+</div>
+
+
+
+</div>
+
+<script>
+  const TARGET = 36825;
+  const PREVIOUS_ADDED_MILES = 8000;
+  const PURCHASED_MILEAGE = TARGET + PREVIOUS_ADDED_MILES;
+
+  function formatNum(n) {
+    return n.toLocaleString('en-US');
+  }
+
+  function loadResult() {
+    const params = new URLSearchParams(window.location.search);
+    const raw = params.get('mileage');
+    const num = parseFloat(raw);
+
+    document.getElementById('current-mileage').value = raw || '';
+
+    // If someone lands here without a valid value, send them back to the input page
+    if (raw === null || isNaN(num) || num < 0) {
+      window.location.href = 'do-you-know-exact-mileage';
+      return;
+    }
+
+    const credit = PURCHASED_MILEAGE - num;
+    const isInCredit = num < PURCHASED_MILEAGE;
+    const isBalanced = num === PURCHASED_MILEAGE;
+
+    document.getElementById('row-target').textContent = formatNum(TARGET) + ' miles';
+    document.getElementById('row-input').textContent = formatNum(num) + ' miles';
+    document.getElementById('row-paid-for-mileage').textContent = formatNum(num + PREVIOUS_ADDED_MILES) + ' miles';
+
+    const diffRowValue = document.getElementById('row-diff');
+    const diffRowLabel = document.getElementById('row-diff-label');
+    const costRow = document.getElementById('cost-row');
+    const costValue = document.getElementById('row-cost');
+    diffRowValue.textContent = formatNum(Math.abs(credit)) + ' miles';
+    diffRowValue.classList.remove('under', 'over');
+    diffRowValue.classList.add(isInCredit ? 'under' : 'over');
+
+    const debitNotification = document.getElementById('debit-notification');
+    const creditNotification = document.getElementById('credit-notification');
+    const debitMiles = document.getElementById('debit-miles');
+    const creditMiles = document.getElementById('credit-miles');
+    const checkAnotherButton = document.getElementById('check-another-button');
+
+    if (isBalanced) {
+      checkAnotherButton.style.display = 'none';
+      creditNotification.hidden = true;
+      debitNotification.hidden = true;
+      diffRowLabel.textContent = 'Remaining credit';
+      diffRowValue.parentElement.classList.add('cost-hidden');
+      costRow.style.display = 'none';
+      costRow.classList.add('is-hidden');
+    } else if (isInCredit) {
+      checkAnotherButton.style.display = 'none';
+      creditNotification.hidden = false;
+      debitNotification.hidden = true;
+      creditMiles.textContent = formatNum(credit) + ' miles';
+      diffRowLabel.textContent = 'Remaining credit';
+      diffRowValue.parentElement.classList.add('cost-hidden');
+      costRow.style.display = 'none';
+      costRow.classList.add('is-hidden');
+    } else {
+      checkAnotherButton.style.display = 'none';
+      const mileageOwed = Math.abs(credit);
+      const cost = mileageOwed * 0.03;
+
+      debitNotification.hidden = false;
+      creditNotification.hidden = true;
+      debitMiles.textContent = formatNum(mileageOwed) + ' miles';
+      diffRowLabel.textContent = 'Mileage owed';
+      diffRowValue.parentElement.classList.remove('cost-hidden');
+      costValue.textContent = '£' + cost.toFixed(2);
+      costRow.style.display = 'table-row';
+      costRow.classList.remove('is-hidden');
+    }
+  }
+
+  loadResult();
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,71 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Your vehicle's tax is due to expire soon – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+        Your vehicle's tax is due to expire soon
+    </h1>
+
+    <div class="govuk-inset-text">
+      Your vehicle tax expires on <b>31 October 2026.</b>
+    </div>
+
+  <form class="govuk-form" method="post" action="/v3/a-starting-screens/eved-options-screen">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="hasV11-hint">
+
+
+          <legend class="govuk-fieldset__legend">
+            What do you want to do?
+          </legend>
+
+          <div class="govuk-radios govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="eved-options" name="eved-options" type="radio" value="yes">
+              <label class="govuk-label govuk-radios__label" for="eved-options">
+                Renew my vehicle tax
+              </label>
+              <div id="event-name-hint" class="govuk-hint">
+                This will take you to the separate Tax your vehicle service. You must have enough credit, or you will need to purchase mileage during the transaction
+              </div>
+            </div>
+
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="eved-options-2" name="eved-options" type="radio" value="no">
+              <label class="govuk-label govuk-radios__label" for="eved-options-2">
+                Purchase miles
+              </label>
+              <div id="event-name-hint" class="govuk-hint">
+                You will need to purchase miles if have exceeded your paid for mileage
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+
+    </form>
+
+  </div>
+</div>
+
+{% endblock %}

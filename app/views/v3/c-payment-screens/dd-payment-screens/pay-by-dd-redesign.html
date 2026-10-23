@@ -1,0 +1,98 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Pay by Direct Debit – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+
+
+
+<a href="javascript:history.back()" class="govuk-back-link">Back</a>
+
+{% endblock %}
+
+{% block content %}
+
+{% set paymentType = data.paymentMethod %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      Pay by Direct Debit
+    </h1>
+
+    <p class="govuk-body">
+      Direct Debit payments are taken on the first working day of each month.
+    </p>
+
+    <p class="govuk-body">
+      Your first payment date may be different.
+    </p>
+
+    <p class="govuk-body">
+      You cannot change the date your payments are taken.
+    </p>
+
+    <div class="govuk-inset-text">
+      Your Direct Debit will not renew automatically. You'll need to set up a new Direct Debit the next time you tax this vehicle.
+    </div>
+
+    <p class="govuk-body">
+
+      If you tell us you've sold the vehicle, we'll cancel your Direct Debit.
+    </p>
+
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-visually-hidden">Warning</span>
+        If you do not keep up with your payments, your vehicle tax will be cancelled and we may take enforcement action
+      </strong>
+    </div>
+
+    <p class="govuk-body">
+
+     {% if data.taxLength == '12' and paymentType == 'dd-monthly' %}
+
+    <p>Monthly Direct Debit payments of <strong>{{ data.ddMonthlyAmountFormatted }}</strong> a month for <strong>
+      {{data.taxLength }}</strong> months, totalling <b>{{ data.paymentTotalFormatted or '£0.00' }}</b> per year.</p>
+
+    {% elseif paymentType == 'dd-12'%}
+    <p>A Direct Debit payment of <b>{{ data.paymentTotalFormatted or '£0.00' }}.</b></p>
+
+    {% elseif data.taxLength == '6'%}
+    <p>A Direct Debit payment of <b>{{ data.paymentTotalFormatted or '£0.00' }}.</b></p>
+
+    {% endif %}
+
+    <details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          How DVLA handles your personal data</span>
+      </summary>
+
+      <div class="govuk-details__text">
+        DVLA handles your personal data in accordance with road vehicle law and data
+        protection laws. The law allows us to release your data to the police and
+        other enforcement bodies. We also provide data to other parties where the
+        law allows it. For further information about how we process your data, your
+        rights and who to contact, see our privacy notice at
+        <a class="govuk-link" href="https://www.gov.uk/dvla/privacy-policy">
+          www.gov.uk/dvla/privacy-policy
+        </a>.
+      </div>
+    </details>
+
+
+    <a class="govuk-button" data-module="govuk-button" href="/c-payment-screens/dd-payment-screens/dd-details">
+      Continue
+    </a>
+
+
+
+  </div>
+</div>
+
+{% endblock %}
