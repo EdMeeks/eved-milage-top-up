@@ -587,7 +587,7 @@ router.get('/b-eVED-screens/your-payment-summary', function (req, res) {
   const evedCost = totalMileage * 0.03
   data.totalMileage = totalMileage
   data.totalMileageFormatted = totalMileage.toLocaleString('en-GB')
-  data.newEstimatedMileageFormatted = ((Number(currentMileage) || 0) + estimatedMiles).toLocaleString('en-GB')
+  data.newEstimatedMileageFormatted = (paidForMileage + totalMileage).toLocaleString('en-GB')
   data.totalDebitCostFormatted = formatCurrencyGBP(evedCost)
 
   // Total
