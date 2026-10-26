@@ -39,39 +39,29 @@
 
 <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-  <h1 class="govuk-heading-l">Mileage balance</h1>
+    <h1 class="govuk-heading-l">Mileage balance</h1>
 
-    <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
-      
-      <div class="govuk-notification-banner__header">
-        <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
-          Important
-        </h2>
+      <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title" data-module="govuk-notification-banner">
+        <div class="govuk-notification-banner__header">
+          <h2 class="govuk-notification-banner__title" id="govuk-notification-banner-title">
+            Important
+          </h2>
+        </div>
+        <div class="govuk-notification-banner__content">
+          <p class="govuk-notification-banner__heading">
+            You are paying your current eVED in 12 monthly Direct Debit installments.
+          </p>
+          <p><span class="govuk-!-font-weight-bold">You still owe 4,167 miles for this vehicle tax year.</span></p>
+          <p>Mileage breakdown:</p>
+          <ul class="govuk-list govuk-list--bullet">
+            <li><strong>Total paid for mileage:</strong> 44,825 miles</li>
+            <li><strong>Amount paid for so far:</strong> 39,833 miles</li>
+            <li><strong>Balance you owe:</strong> 4,167 miles</li>
+          </ul>
+          <p class="govuk-body">You do not need to do anything. We will take this payment separately.</p>
+          <p class="govuk-body">If you cancel your Direct Debit, your total paid-for mileage will stop at the amount processed so far.</p>
+        </div>
       </div>
-      
-      <div class="govuk-notification-banner__content">
-        
-      <p class="govuk-notification-banner__heading">
-      You are paying your current eVED in 12 monthly Direct Debit installments.
-      </p>
-      
-      <p><span class="govuk-!-font-weight-bold">You still owe 5,000 miles for this vehicle tax year.</span></p><p>Mileage breakdown:</p>
-      
-      <ul class="govuk-list govuk-list--bullet">
-        <li><strong>Total paid for mileage:</strong> 44,825 miles</li>
-        <li><strong>Amount paid for so far:</strong> 39,000 miles</li>
-        <li><strong>Balance you owe:</strong> 5,000 miles</li>
-      </ul>
-
-      <p class="govuk-body">You do not need to do anything. We will take this payment separately.</p>
-
-      <p class="govuk-body">If you cancel your Direct Debit, your total paid-for mileage will stop at the amount processed so far.</p>
-
-  
-
-      </div>
-
-    </div>
   
   {# Page Content: What 'paid for mileage' means #}
 
@@ -99,11 +89,23 @@
     </ol>
 
   
+    <div class="govuk-inset-text govuk-!-margin-top-9" role="alert" aria-labelledby="debit-notification-title" hidden id="debit-notification">
+        <h2 class="govuk-heading-s govuk-!-margin-bottom-0" id="debit-notification-title">
+          Your vehicle has a mileage debt of <strong id="debit-miles"></strong>.
+        </h2>
+        <p class="govuk-body">This vehicle has driven more miles than the total paid for mileage .</p>
+      </div>
+
+      <div class="govuk-inset-text govuk-!-margin-top-9" role="alert" aria-labelledby="credit-notification-title" hidden id="credit-notification">
+        <h2 class="govuk-heading-s govuk-!-margin-bottom-0" id="credit-notification-title">
+          Your vehicle has a mileage credit of <strong id="credit-miles"></strong>.
+        </h2>
+        <p class="govuk-body">This vehicle has driven less miles than the total paid for mileage.</p>
+      </div>
 
 
 
-
-  <h2 class="govuk-heading-m govuk-!-margin-top-9">Mileage summary</h2>
+  <h2 class="govuk-heading-m govuk-!-margin-top-6">Mileage summary</h2>
   <dl class="govuk-summary-list">
       <div class="govuk-summary-list__row" style="display:none;">
         <dt class="govuk-summary-list__key">

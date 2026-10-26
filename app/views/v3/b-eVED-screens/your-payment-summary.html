@@ -18,6 +18,13 @@
 
     <h1 class="govuk-heading-xl">Your payment summary</h1>
 
+    {% if data['mileageOwed'] > 0 %}
+    <div class="govuk-inset-text">
+      <strong>Your current mileage is in debit.</strong>
+      Your vehicle has exceeded its paid for mileage by {{ data['mileageOwedFormatted'] or data['mileageOwed'] }} miles.
+    </div>
+    {% endif %}
+
     {% if data['estimatedMileage'] or data['addedMilesRemoved'] %}
     <div class="govuk-inset-text">
         <h2 class="govuk-heading-s">
