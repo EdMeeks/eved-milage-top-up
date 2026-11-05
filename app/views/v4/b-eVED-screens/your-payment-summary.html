@@ -18,13 +18,6 @@
 
     <h1 class="govuk-heading-xl">Your payment summary</h1>
 
-    {% if data['mileageOwed'] > 0 %}
-    <div class="govuk-inset-text">
-      <strong>Your current mileage is in debit.</strong>
-      Your vehicle has exceeded its paid for mileage by {{ data['mileageOwedFormatted'] or data['mileageOwed'] }} miles.
-    </div>
-    {% endif %}
-
     {% if data['estimatedMileage'] or data['addedMilesRemoved'] %}
     <div class="govuk-inset-text">
         <h2 class="govuk-heading-s">
@@ -42,6 +35,10 @@
             You have added a balance of <strong>{{ data['estimatedMileageFormatted'] or data['estimatedMileage'] or '0' }} miles</strong> to your vehicle.
           {% endif %}
         </p-->
+        <p class="govuk-body"><strong>This is a single payment.</strong> It will not be added to your Direct Debit for vehicle tax and paid mileage.</p>
+    </div>
+    {% else %}
+    <div class="govuk-inset-text">
         <p class="govuk-body"><strong>This is a single payment.</strong> It will not be added to your Direct Debit for vehicle tax and paid mileage.</p>
     </div>
     {% endif %}
