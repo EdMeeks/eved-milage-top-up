@@ -1,0 +1,43 @@
+
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Is this address correct? – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+
+
+
+<a href="javascript:history.back()" class="govuk-back-link">Back</a>
+
+{% endblock %}
+
+
+
+{% block content %}
+<div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">Is this address correct?</h1>
+
+        <p class="govuk-!-font-weight-bold">
+            84 Warren Street<br>
+            West Heath<br>
+            Birmingham<br>
+            B38 8XL
+        </p>
+
+    <a class="govuk-button" data-module="govuk-button" href="/c-payment-screens/dd-payment-screens/payment-details">
+      Yes, continue
+    </a>
+
+        <p><a href="/c-payment-screens/dd-payment-screens/address-find">No, search again</a></p>
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+

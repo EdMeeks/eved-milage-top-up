@@ -1,0 +1,80 @@
+
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Pay by Direct Debit – GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+
+
+
+<a href="javascript:history.back()" class="govuk-back-link">Back</a>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      Pay by Direct Debit
+    </h1>
+
+    <p class="govuk-body">
+      Direct Debit payments will be taken on the first working day of the month.
+      Your first payment date may be different. These dates cannot be changed.
+    </p>
+
+    <p class="govuk-body">
+      Your Direct Debit payments will renew automatically unless you notify us of
+      any changes. We are unable to change the date payments are collected.
+      Failure to keep up these payments may result in you being liable for
+      enforcement action and this payment option being removed from you in the
+      future.
+    </p>
+
+    <p class="govuk-body">
+      If you tell us you have sold the vehicle, we will then cancel your Direct Debit.
+    </p>
+
+    <p class="govuk-body">
+      DVLA handles your personal data in accordance with road vehicle law and data
+      protection laws. The law allows us to release your data to the police and
+      other enforcement bodies. We also provide data to other parties where the
+      law allows it. For further information about how we process your data, your
+      rights and who to contact, see our privacy notice at
+      <a class="govuk-link" href="https://www.gov.uk/dvla/privacy-policy">
+        www.gov.uk/dvla/privacy-policy
+      </a>.
+    </p>
+
+    <p class="govuk-body">
+      <strong>Monthly Direct Debit payments</strong>
+      (approximately <strong>£49.94</strong> each month)<br>
+      totalling <strong>£599.29</strong> per year
+    </p>
+
+    <a class="govuk-button" data-module="govuk-button" href="/dd-payment-screens/dd-details">
+      Continue
+    </a>
+
+    <details class="govuk-details" data-module="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Need help?
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        Contact DVLA if you need help with Direct Debit vehicle tax payments.
+      </div>
+    </details>
+
+  </div>
+</div>
+
+{% endblock %}
+
+
