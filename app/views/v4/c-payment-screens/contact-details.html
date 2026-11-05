@@ -1,0 +1,74 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Contact details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block containerStart %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+<form method="post" action="/c-payment-screens/contact-details">
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">
+      Contact details
+    </h1>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="email">
+        <strong>Email address (optional)</strong>
+      </label>
+      <div class="govuk-hint">
+        We’ll use this email address to confirm your transaction and may contact you about this service.
+      </div>
+      <input class="govuk-input govuk-input--width-20" id="email" type="email">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label" for="mobile">
+        <strong>Mobile number (optional)</strong>
+      </label>
+      <div class="govuk-hint">
+        We may use this mobile number to contact you about this service.
+      </div>
+      <input class="govuk-input govuk-input--width-10" id="mobile" type="tel">
+    </div>
+
+    <p class="govuk-body">
+      The DVLA does not share mobile numbers or email addresses with outside organisations.
+    </p>
+
+    <h2 class="govuk-heading-m">
+      Research (optional)
+    </h2>
+
+  <div class="govuk-form-group">
+    <div class="govuk-checkboxes">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="research-consent" type="checkbox">
+        <label class="govuk-label govuk-checkboxes__label" for="research-consent">
+          I consent to being contacted by email to take part in research relating to
+          Department for Transport motoring services and road safety.
+        </label>
+      </div>
+    </div>
+  </div>
+
+   <button type="submit" class="govuk-button" data-module="govuk-button">
+    Continue
+  </button>
+
+</form>
+
+  </div>
+</div>
+
+{% endblock %}
