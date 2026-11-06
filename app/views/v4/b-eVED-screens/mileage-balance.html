@@ -44,11 +44,11 @@
   {# Page Content: What 'paid for mileage' means #}
 
   <p class="govuk-body  govuk-!-margin-top-0">
-      <strong>Paid for mileage</strong> is the mileage that has been paid for to date as the <strong>owner or keeper of the vehicle</strong> in the DVLA eVED service.
+      <strong>Paid for mileage</strong> is the total mileage that has been paid for against the vehicle. 
     </p>
 
     <p class="govuk-body">
-      It reflects your registered history with the vehicle, not just the miles bought in your most recent transaction.
+      It includes paid-for mileage from previous transactions for the vehicle, not just the most recent transaction.
     </p>
 
     <details class="govuk-details">
@@ -140,20 +140,20 @@
     </dl>
 
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
-
+<div id="credit-mileage-options" hidden>
 <h2 class="govuk-heading-m govuk-!-margin-top-6">Do you wish to add more miles?</h2>
   <p class="govuk-body  govuk-!-margin-top-0">
-      If you exceeded your paid mileage, no penalties apply; the additional amount will be automatically added to next year's eVED.
+      The vehicle has a mileage credit, so there is nothing to pay at this time.
     </p>
 <form action="/v4/b-eVED-screens/mileage-balance-answer" method="post">
-  <input type="hidden" id="current-mileage" name="currentMileage" value="">
+  <input type="hidden" name="currentMileage" value="">
   {{ govukRadios({
-  classes: "govuk-radios--inline",
+  classes: "govuk-radios",
   name: "add-more-miles",
   fieldset: {
     legend: {
-      text: "",
-      isPageHeading: true,
+      text: "You can either:",
+      isPageHeading: false,
       classes: "govuk-fieldset__legend--s govuk-!-margin-top-6"
     }
   },
@@ -163,19 +163,62 @@
   items: [
     {
       value: "yes",
-      text: "Yes"
+      text: "Purchase additional miles"
+    },
+    {
+      divider: "or"
     },
     {
       value: "no",
-      text: "No"
+      text: "Leave the service"
     }
   ]
   }) }}
-
   <button type="submit" class="govuk-button govuk-!-margin-top-0">Continue</button>
-
-
 </form>
+</div>
+  
+<div id="debt-mileage-options" hidden>
+<h2 class="govuk-heading-m govuk-!-margin-top-6">Do you wish to add more miles?</h2>
+  <p class="govuk-body  govuk-!-margin-top-0">
+      The vehicle has travelled more miles than have been paid for, so there is a mileage debt.
+    </p>
+<form action="/v4/b-eVED-screens/mileage-balance-answer" method="post">
+  <input type="hidden" name="currentMileage" value="">
+  {{ govukRadios({
+  classes: "govuk-radios",
+  name: "add-more-miles",
+  fieldset: {
+    legend: {
+      text: "You can either:",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--s govuk-!-margin-top-6"
+    }
+  },
+  hint: {
+    text: ""
+  },
+  items: [
+    {
+      value: "yes-1",
+      text: "Pay the mileage debt"
+    },
+    {
+      value: "yes",
+      text: "Pay the mileage debt and buy additional miles"
+    },
+    {
+      divider: "or"
+    },
+    {
+      value: "no",
+      text: "Leave the service"
+    }
+  ]
+  }) }}
+  <button type="submit" class="govuk-button govuk-!-margin-top-0">Continue</button>
+</form>
+</div>
 
 <p class="govuk-body"><a class="govuk-link govuk-link--no-visited-state" href="https://www.gov.uk/contact-the-dvla">Contact the DVLA if your 'paid for mileage' reading is incorrect</a></p>
 
@@ -213,7 +256,9 @@
     const raw = params.get('mileage');
     const num = parseFloat(raw);
 
-    document.getElementById('current-mileage').value = raw || '';
+    document.querySelectorAll('input[name="currentMileage"]').forEach(input => {
+      input.value = raw || '';
+    });
 
     // If someone lands here without a valid value, send them back to the input page
     if (raw === null || isNaN(num) || num < 0) {
@@ -223,7 +268,11 @@
 
     const credit = PURCHASED_MILEAGE - num;
     const isInCredit = num < PURCHASED_MILEAGE;
+    const isInDebt = num > PURCHASED_MILEAGE;
     const isBalanced = num === PURCHASED_MILEAGE;
+
+    document.getElementById('credit-mileage-options').hidden = !isInCredit;
+    document.getElementById('debt-mileage-options').hidden = !isInDebt;
 
     document.getElementById('row-target').textContent = formatNum(TARGET) + ' miles';
     document.getElementById('row-input').textContent = formatNum(num) + ' miles';
