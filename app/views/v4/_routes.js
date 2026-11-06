@@ -385,6 +385,9 @@ function handleMileageChoice(request, response, noDestination, fromPaymentSummar
     request.session.data["exactMileageMiles"] = currentMileage;
     request.session.data["exactMileage"] = currentMileage;
   }
+  if (addMoreMiles === "yes-1") {
+    return response.redirect("/v4/b-eVED-screens/your-payment-summary?currentMileage=" + encodeURIComponent(currentMileage || ""));
+  }
   if (addMoreMiles === "yes") {
     return response.redirect("/v4/b-eVED-screens/estimate-your-miles?mileage=" + encodeURIComponent(currentMileage || ""));
   }

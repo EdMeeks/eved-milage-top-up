@@ -37,23 +37,40 @@
 
         {{ govukInput({
           hint: {
-            text: "This is an 11 digit number"
+            text: "This is an 11 digit number on your V5C document - for example, '1234 567 8910'"
           },
           classes: "govuk-input--width-20",
           id: "v5c-ref",
           name: 'v5c-ref',
           inputmode: "numeric",
           autocomplete: "off",
-          value: data['v5c-ref']
-        }) }}
+          value: data['v5c-ref'],
+          prefix: {text: "V5C"}
+          }) 
+        }}
       </div>
+
+      <details class="govuk-details" data-module="govuk-details">
+        <summary class="govuk-details__summary">
+          <span class="govuk-details__summary-text">
+            Where to find your V5C/2 document reference number
+          </span>
+        </summary>
+        <div class="govuk-details__text">
+          <img
+            src="/public/images/v5c2-diagram.png"
+            class="govuk-!-margin-bottom-2"
+            alt="Diagram showing where to find the V5C/2 document reference number."
+          >
+        </div>
+      </details>
 
       <div class="govuk-form-group">
         <label class="govuk-label" for="vehicle-registration">
           <strong>Vehicle registration (number plate)</strong>
         </label>
         <div id="vehicle-registration-hint" class="govuk-hint">
-          For example, AB12 CDE
+          For example, 'AB12 CDE'
         </div>
         <input class="govuk-input govuk-input--width-10" id="vvehicle-reg" name="vehicle-reg" type="text" autocomplete="off" aria-describedby="vehicle-registration-hint" value: data['vehicle-reg']>
       </div>
