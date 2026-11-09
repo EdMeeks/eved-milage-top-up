@@ -44,11 +44,15 @@
   {# Page Content: What 'paid for mileage' means #}
 
   <p class="govuk-body  govuk-!-margin-top-0">
-      <strong>Paid up to mileage</strong> is the total mileage that has been paid up to against the vehicle. 
+      <strong>Paid up to mileage</strong> is the total mileage that has been paid for against the vehicle.
     </p>
 
     <p class="govuk-body">
-      It includes paid-for mileage from previous transactions for the vehicle, not just the most recent transaction.
+      It includes mileage from previous payments for the vehicle, not just the most recent payment.
+    </p>
+
+    <p class="govuk-body">
+      The exact mileage reading is compared with the paid up to mileage to calculate if the vechile has mileage credit of debt.
     </p>
 
     <details class="govuk-details">
@@ -57,14 +61,17 @@
           How it is calculated
         </span>
       </summary>
-      <div class="govuk-details__text"><p class="govuk-body">
-          The system calculates this total by recording your vehicle's odometer readings over time:
-        </p><ol class="govuk-list govuk-list--number">
+      <div class="govuk-details__text">
+        <p class="govuk-body">
+          The system keeps a record of the vehicle's mileage and calculates how much been paid for.
+        </p>
+        <p class="govuk-body">The paid up to mileage:</p>
+        <ol class="govuk-list govuk-list--number">
           <li>
-            <strong>The baseline:</strong> It starts with the mileage reading entered the very first time you added miles as the registered owner or keeper.
+            includes all previous payments for the vechicle
           </li>
           <li>
-            <strong>The accumulation:</strong> Every subsequent mile purchased is added to this baseline to keep an accurate record of your total paid-for balance.
+            is updated whenever additional mileage is paid for
           </li>
         </ol>
       </div>
